@@ -42,7 +42,7 @@ extra_javascript:
 
 nav:
   - Início: index.md
-  - Contexto: contexto.md
+  - Objetivos: objetivos.md
   - Equipe: equipe.md
   - Encaminhamentos: encaminhamentos.md
   - Protótipo: prototipo.md

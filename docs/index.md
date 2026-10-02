@@ -14,7 +14,7 @@ hide:
         Substituindo o preenchimento despadronizado em papel de parecer por formulários digitais didáticos e orientados por critérios clínicos. O objetivo é qualificar a contrarreferência, acelerar a regulação e integrar a atenção terciária com a Atenção Primária à Saúde.
       </p>
       <div class="hero-buttons">
-        <a href="contexto/" class="hero-btn hero-btn-primary">Conhecer o Diagnóstico →</a>
+        <a href="objetivos/" class="hero-btn hero-btn-primary">Conhecer os Objetivos →</a>
         <a href="prototipo/" class="hero-btn hero-btn-secondary">Acessar Protótipo Digital</a>
       </div>
     </div>
@@ -34,15 +34,15 @@ hide:
 
 <div class="hub-grid-4-cards">
   <!-- Card 01 -->
-  <a href="contexto/" class="hub-card-item">
+  <a href="objetivos/" class="hub-card-item">
     <div class="hub-card-top">
       <span class="hub-card-number">01</span>
-      <span class="hub-card-tag">Diagnóstico</span>
+      <span class="hub-card-tag">Objetivos</span>
     </div>
     <div>
-      <h3 class="hub-card-title">Contexto e Problema</h3>
+      <h3 class="hub-card-title">Objetivos do Projeto</h3>
       <p class="hub-card-desc">
-        Entenda o gargalo do papel de parecer e por que 80% das solicitações são devolvidas como P3 por falta de critérios.
+        Conheça o objetivo geral, metas por etapa, objetivos específicos e locais de atuação do GT 8 no HUB e UBSs.
       </p>
     </div>
   </a>
