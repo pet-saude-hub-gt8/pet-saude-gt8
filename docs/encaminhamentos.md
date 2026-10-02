@@ -10,7 +10,7 @@ hide:
       <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
       <h1 class="page-header-title">Encaminhamentos</h1>
       <p class="page-header-subtitle">
-        Matriz de entregas, plano de trabalho e atribuição de responsabilidades para a Etapa 1 do projeto.
+        Matriz de entregas, plano de trabalho e atribuição de responsabiilidades para a Etapa 1 do projeto.
       </p>
     </div>
     <div class="page-header-minicard">
