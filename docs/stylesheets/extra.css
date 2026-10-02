@@ -1,0 +1,661 @@
+/* ==========================================================================
+   PET-Saúde GT 8 | HUB - UnB — Design System Completo (Claro, Escuro & Alto Contraste)
+   ========================================================================== */
+
+:root {
+  --md-text-font-size: 16px;
+  --md-typeset-font-size: var(--md-text-font-size);
+
+  /* Azul do chapéu/livro da logo do PET */
+  --md-primary-fg-color: #2b5c8f; 
+  /* Azul claro da escrita 'Saúde' */
+  --md-primary-fg-color--light: #499dd6; 
+  /* Laranja da palavra 'PET' e do círculo */
+  --md-accent-fg-color: #ea5b2d; 
+  --md-accent-fg-color--transparent: rgba(234, 91, 45, 0.1);
+}
+
+/* Tipografia global sem serifa */
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
+}
+
+/* Redimensionamento dinâmico de fonte */
+html,
+body,
+.md-typeset {
+  font-size: var(--md-text-font-size) !important;
+}
+
+/* ==========================================================================
+   PALETA: MODO CLARO ([data-md-color-scheme="default"])
+   ========================================================================== */
+body[data-md-color-scheme="default"] {
+  background-color: #f8fafc !important;
+  color: #0f172a !important;
+}
+
+body[data-md-color-scheme="default"] .md-main,
+body[data-md-color-scheme="default"] .md-content {
+  background-color: #f8fafc !important;
+}
+
+/* Header em tom azul institucional no Modo Claro */
+body[data-md-color-scheme="default"] .md-header {
+  background-color: #0d3b66 !important;
+  border-bottom: 1px solid #092c4c !important;
+  color: #ffffff !important;
+}
+
+body[data-md-color-scheme="default"] .md-header__title .md-ellipsis {
+  color: #ffffff !important;
+}
+
+body[data-md-color-scheme="default"] .md-header__nav-item {
+  color: #cbd5e1 !important;
+}
+
+body[data-md-color-scheme="default"] .md-header__nav-item:hover,
+body[data-md-color-scheme="default"] .md-header__nav-item.is-active {
+  color: #ffffff !important;
+}
+
+body[data-md-color-scheme="default"] .md-header__nav-item.is-active::after {
+  background-color: #38bdf8 !important;
+}
+
+body[data-md-color-scheme="default"] .md-header__accessibility .md-header__button {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+}
+
+body[data-md-color-scheme="default"] .md-header__accessibility .md-header__button:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  border-color: #ffffff !important;
+}
+
+/* Títulos do Grid no Modo Claro */
+body[data-md-color-scheme="default"] .hub-grid-title {
+  color: #0f172a !important;
+}
+
+body[data-md-color-scheme="default"] .hub-grid-subtitle {
+  color: #64748b !important;
+}
+
+/* Cartões no Modo Claro: Fundo Branco Limpo com Borda Suave */
+body[data-md-color-scheme="default"] .hub-card-item {
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04) !important;
+}
+
+body[data-md-color-scheme="default"] .hub-card-item:hover {
+  background-color: #f8fafc !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 8px 24px -4px rgba(2, 132, 199, 0.15) !important;
+}
+
+body[data-md-color-scheme="default"] .hub-card-number {
+  color: #0284c7 !important;
+  background: rgba(2, 132, 199, 0.08) !important;
+  border: 1px solid rgba(2, 132, 199, 0.2) !important;
+}
+
+body[data-md-color-scheme="default"] .hub-card-tag {
+  color: #64748b !important;
+}
+
+body[data-md-color-scheme="default"] .hub-card-title {
+  color: #0f172a !important;
+}
+
+body[data-md-color-scheme="default"] .hub-card-desc {
+  color: #475569 !important;
+}
+
+/* ==========================================================================
+   PALETA: MODO ESCURO ([data-md-color-scheme="slate"])
+   ========================================================================== */
+body[data-md-color-scheme="slate"] {
+  background-color: #08162b !important;
+  color: #f8fafc !important;
+}
+
+body[data-md-color-scheme="slate"] .md-main,
+body[data-md-color-scheme="slate"] .md-content {
+  background-color: #08162b !important;
+}
+
+/* Header em tom azul escuro profundo no Modo Escuro */
+body[data-md-color-scheme="slate"] .md-header {
+  background-color: #061122 !important;
+  border-bottom: 1px solid #1a3c6b !important;
+  color: #f8fafc !important;
+}
+
+body[data-md-color-scheme="slate"] .md-header__title .md-ellipsis {
+  color: #f8fafc !important;
+}
+
+body[data-md-color-scheme="slate"] .md-header__nav-item {
+  color: #94a3b8 !important;
+}
+
+body[data-md-color-scheme="slate"] .md-header__nav-item:hover,
+body[data-md-color-scheme="slate"] .md-header__nav-item.is-active {
+  color: #ffffff !important;
+}
+
+body[data-md-color-scheme="slate"] .md-header__nav-item.is-active::after {
+  background-color: #38bdf8 !important;
+}
+
+body[data-md-color-scheme="slate"] .md-header__accessibility .md-header__button {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: #f8fafc !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+
+body[data-md-color-scheme="slate"] .md-header__accessibility .md-header__button:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: #38bdf8 !important;
+}
+
+/* Títulos do Grid no Modo Escuro */
+body[data-md-color-scheme="slate"] .hub-grid-title {
+  color: #ffffff !important;
+}
+
+body[data-md-color-scheme="slate"] .hub-grid-subtitle {
+  color: #94a3b8 !important;
+}
+
+/* Cartões no Modo Escuro: Fundo #112a4d com contraste sutil sobre #08162b */
+body[data-md-color-scheme="slate"] .hub-card-item {
+  background-color: #112a4d !important;
+  border: 1px solid #1a3c6b !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+}
+
+body[data-md-color-scheme="slate"] .hub-card-item:hover {
+  background-color: #15335c !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 12px 24px -6px rgba(4, 10, 20, 0.4) !important;
+}
+
+body[data-md-color-scheme="slate"] .hub-card-number {
+  color: #38bdf8 !important;
+  background: rgba(56, 189, 248, 0.12) !important;
+  border: 1px solid rgba(56, 189, 248, 0.2) !important;
+}
+
+body[data-md-color-scheme="slate"] .hub-card-tag {
+  color: #94a3b8 !important;
+}
+
+body[data-md-color-scheme="slate"] .hub-card-title {
+  color: #ffffff !important;
+}
+
+body[data-md-color-scheme="slate"] .hub-card-desc {
+  color: #94a3b8 !important;
+}
+
+/* ==========================================================================
+   ESTRUTURA DA BARRA SUPERIOR (NAVBAR)
+   ========================================================================== */
+.md-header__inner {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0.6rem 1.5rem !important;
+  max-width: 1280px !important;
+}
+
+/* Logo PET-Saúde com tamanho ampliado e destaque */
+.md-header__button.md-logo {
+  margin: 0 0.85rem 0 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.md-header__button.md-logo img,
+.md-header__button.md-logo svg {
+  height: 52px !important;
+  width: auto !important;
+  max-height: 52px !important;
+  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  object-fit: contain;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.md-header__button.md-logo:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+}
+
+.md-nav__title .md-nav__button.md-logo img {
+  height: 52px !important;
+  width: auto !important;
+  border-radius: 8px;
+  background-color: #ffffff;
+  padding: 3px;
+}
+
+.md-header__title {
+  flex-grow: 0 !important;
+  margin-right: 1.5rem !important;
+}
+
+.md-header__title .md-ellipsis {
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+
+.md-header__nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  margin-left: 0.5rem;
+  flex: 1 1 auto;
+}
+
+.md-header__nav-item {
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  padding: 0.4rem 0.2rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.md-header__nav-item.is-active::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 2px;
+}
+
+.md-header__accessibility {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  margin-right: 0.5rem;
+}
+
+.md-header__accessibility .md-header__button {
+  cursor: pointer;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.75rem;
+  padding: 0.35rem 0.75rem;
+  width: auto;
+  height: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.md-header__accessibility .md-header__button:hover {
+  transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   LAYOUT DA HOME: BANNER FULL WIDTH & ALINHAMENTO
+   ========================================================================== */
+body:has(.hero-full),
+body.page-home-hero {
+  overflow-x: hidden;
+}
+
+body:has(.hero-full) .md-main__inner,
+body.page-home-hero .md-main__inner {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+body:has(.hero-full) .md-content,
+body.page-home-hero .md-content {
+  margin: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+body:has(.hero-full) .md-content__inner,
+body.page-home-hero .md-content__inner {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+body:has(.hero-full) .md-content__inner::before,
+body.page-home-hero .md-content__inner::before {
+  display: none !important;
+}
+
+/* ==========================================================================
+   HERO SECTION (PAINEL PRINCIPAL)
+   ========================================================================== */
+.hero-full {
+  background-color: #0c3258;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 3.5rem 0 !important;
+  border-bottom: 1px solid #092c4c;
+  display: block !important;
+}
+
+body[data-md-color-scheme="slate"] .hero-full {
+  background-color: #061122 !important;
+  border-bottom: 1px solid #1a3c6b !important;
+}
+
+.hero-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hero-text-block {
+  flex: 1;
+  max-width: 720px;
+}
+
+.hero-kicker {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #38bdf8;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.hero-title {
+  font-size: 2.75rem !important;
+  font-weight: 800 !important;
+  line-height: 1.15 !important;
+  color: #ffffff !important;
+  margin: 0 0 1rem 0 !important;
+  letter-spacing: -0.02em;
+}
+
+.hero-desc {
+  font-size: 1.05rem !important;
+  line-height: 1.65 !important;
+  color: #e2e8f0 !important;
+  margin: 0 0 2rem 0 !important;
+}
+
+.hero-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.65rem;
+  border-radius: 9999px;
+  text-decoration: none !important;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  line-height: 1.2;
+}
+
+.hero-btn-primary {
+  background: #3b82f6;
+  color: #ffffff !important;
+  border: 1px solid #3b82f6;
+  box-shadow: 0 4px 14px rgba(59, 130, 246, 0.35);
+}
+
+.hero-btn-primary:hover {
+  background: #2563eb;
+  border-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.45);
+}
+
+.hero-btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(8px);
+}
+
+.hero-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Card Hospital Parceiro (Direita) */
+.partner-card {
+  width: 320px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+  backdrop-filter: blur(8px);
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.partner-card-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #38bdf8;
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 0.75rem;
+}
+
+.partner-card-logo {
+  background: #ffffff;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 0.85rem;
+  display: inline-block;
+}
+
+.partner-card-logo img {
+  max-height: 52px;
+  display: block;
+}
+
+.partner-card-desc {
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ==========================================================================
+   GRID DE NAVEGAÇÃO: 4 CARTÕES EM UMA LINHA
+   ========================================================================== */
+.hub-grid-4-cards {
+  max-width: 1280px;
+  margin: 3.5rem auto 5rem auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.hub-card-item {
+  border-radius: 16px;
+  padding: 1.65rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none !important;
+  box-sizing: border-box;
+  min-height: 200px;
+}
+
+.hub-card-item:hover {
+  transform: translateY(-4px);
+}
+
+.hub-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.1rem;
+}
+
+.hub-card-number {
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  letter-spacing: 0.05em;
+}
+
+.hub-card-tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.hub-card-title {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  margin: 0 0 0.65rem 0 !important;
+  line-height: 1.35 !important;
+}
+
+.hub-card-desc {
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+  margin: 0 !important;
+}
+
+/* Responsividade do Grid e Hero */
+@media (max-width: 1080px) {
+  .hub-grid-4-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+  .hero-text-block {
+    max-width: 100%;
+    text-align: center;
+  }
+  .hero-buttons {
+    justify-content: center;
+  }
+  .partner-card {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .hub-grid-4-cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   MODO DE ALTO CONTRASTE (body[data-contrast="high"])
+   ========================================================================== */
+body[data-contrast="high"],
+body[data-contrast="high"] .md-main,
+body[data-contrast="high"] .md-content {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+body[data-contrast="high"] .md-header,
+body[data-contrast="high"] .hero-full,
+body[data-contrast="high"] .partner-card,
+body[data-contrast="high"] .hub-card-item {
+  background: #000000 !important;
+  background-color: #000000 !important;
+  border-color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+body[data-contrast="high"] h1,
+body[data-contrast="high"] h2,
+body[data-contrast="high"] h3,
+body[data-contrast="high"] p,
+body[data-contrast="high"] span,
+body[data-contrast="high"] .hero-title,
+body[data-contrast="high"] .hero-desc,
+body[data-contrast="high"] .partner-card-desc,
+body[data-contrast="high"] .hub-card-title,
+body[data-contrast="high"] .hub-card-desc {
+  color: #ffffff !important;
+}
+
+body[data-contrast="high"] a,
+body[data-contrast="high"] .hero-kicker,
+body[data-contrast="high"] .partner-card-tag,
+body[data-contrast="high"] .hub-card-number,
+body[data-contrast="high"] .hub-card-tag,
+body[data-contrast="high"] .md-header__nav-item,
+body[data-contrast="high"] .md-header__accessibility .md-header__button {
+  color: #ffff00 !important;
+  border-color: #ffff00 !important;
+}
+
+body[data-contrast="high"] .hero-btn-primary,
+body[data-contrast="high"] .hero-btn-secondary,
+body[data-contrast="high"] .hub-action-btn-primary,
+body[data-contrast="high"] .hub-action-btn-secondary {
+  background-color: #000000 !important;
+  color: #ffff00 !important;
+  border: 2px solid #ffff00 !important;
+}
+
+/* Ocultar barra roxa nativa de abas */
+.md-tabs {
+  display: none !important;
+}
+
+/* Ocultar Rodapé padrão do MkDocs Material */
+footer.md-footer {
+  display: none !important;
+}
