@@ -1,4 +1,5 @@
 site_name: "PET-Saúde GT 8 | HUB - UnB"
+site_url: "https://pet-saude-hub-gt8.github.io/pet-saude-gt8/"
 
 theme:
   name: material
