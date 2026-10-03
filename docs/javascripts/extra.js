@@ -275,13 +275,180 @@ window.avaliarRegulacaoClinica = avaliarRegulacaoClinica;
 window.preencherExemplo = preencherExemplo;
 window.resetarFormulario = resetarFormulario;
 
+/**
+ * Alterna a pasta ativa no layout de Encaminhamentos
+ * @param {string} folderId - ID da pasta ('etapa-1', 'etapa-2', 'etapa-3', 'modelos')
+ * @param {string} [targetAnchorId] - ID opcional da âncora interna para scroll
+ */
+function switchFolderPanel(folderId, targetAnchorId) {
+  const panels = document.querySelectorAll('.folder-content-panel');
+  if (!panels.length) return;
+
+  // Ativa o painel correspondente e oculta os demais
+  let targetPanel = null;
+  panels.forEach(panel => {
+    if (panel.getAttribute('data-folder') === folderId) {
+      panel.classList.add('active');
+      targetPanel = panel;
+    } else {
+      panel.classList.remove('active');
+    }
+  });
+
+  if (!targetPanel) return;
+
+  // Atualiza estado visual das pastas na sidebar
+  const folders = document.querySelectorAll('.tree-folder');
+  let activeFolderEl = null;
+  folders.forEach(folder => {
+    if (folder.getAttribute('data-folder-id') === folderId) {
+      folder.classList.add('active-folder');
+      folder.classList.add('open');
+      const icon = folder.querySelector('.folder-icon');
+      if (icon) icon.textContent = '📂';
+      activeFolderEl = folder;
+    } else {
+      folder.classList.remove('active-folder');
+    }
+  });
+
+  // Atualiza banner de contexto
+  if (activeFolderEl) {
+    const folderNameEl = activeFolderEl.querySelector('.folder-name');
+    const folderBadgeEl = activeFolderEl.querySelector('.status-badge');
+    const titleEl = document.getElementById('folder-current-title');
+    const badgeWrapEl = document.getElementById('folder-current-badge-wrap');
+
+    if (titleEl && folderNameEl) {
+      titleEl.textContent = folderNameEl.textContent.trim();
+    }
+    if (badgeWrapEl) {
+      if (folderBadgeEl) {
+        badgeWrapEl.innerHTML = folderBadgeEl.outerHTML;
+      } else {
+        badgeWrapEl.innerHTML = '';
+      }
+    }
+  }
+
+  // Scroll suave para a âncora desejada dentro do painel
+  if (targetAnchorId) {
+    const cleanId = targetAnchorId.replace('#', '');
+    const anchorEl = document.getElementById(cleanId);
+    if (anchorEl) {
+      setTimeout(() => {
+        anchorEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 60);
+      return;
+    }
+  }
+
+  // Se não tem âncora específica, rola até o topo da área de documentos
+  const banner = document.querySelector('.active-folder-banner');
+  if (banner) {
+    const topOffset = banner.getBoundingClientRect().top + window.scrollY - 85;
+    if (window.scrollY > topOffset) {
+      window.scrollTo({ top: topOffset, behavior: 'smooth' });
+    }
+  }
+}
+
+window.switchFolderPanel = switchFolderPanel;
+
+/**
+ * Manipulador interativo para a árvore de pastas em Encaminhamentos
+ */
+function initFolderTree() {
+  const folders = document.querySelectorAll('.tree-folder');
+  if (!folders.length) return;
+
+  folders.forEach(folder => {
+    const header = folder.querySelector('.tree-folder-header');
+    if (!header || header.dataset.hasListener) return;
+    header.dataset.hasListener = 'true';
+
+    header.addEventListener('click', (e) => {
+      const folderId = folder.getAttribute('data-folder-id');
+      const isAlreadyActive = folder.classList.contains('active-folder');
+
+      if (!isAlreadyActive && folderId) {
+        // Se clicar em outra pasta, ativa o painel dela
+        switchFolderPanel(folderId);
+        // Ativa o primeiro arquivo por padrão
+        const firstFile = folder.querySelector('.tree-file');
+        if (firstFile) {
+          document.querySelectorAll('.tree-file').forEach(f => f.classList.remove('active'));
+          firstFile.classList.add('active');
+        }
+      } else {
+        // Se já estiver ativa, apenas alterna expandir/recolher
+        folder.classList.toggle('open');
+        const icon = header.querySelector('.folder-icon');
+        if (icon) {
+          icon.textContent = folder.classList.contains('open') ? '📂' : '📁';
+        }
+      }
+    });
+  });
+
+  const files = document.querySelectorAll('.tree-file');
+  files.forEach(file => {
+    if (file.dataset.hasListener) return;
+    file.dataset.hasListener = 'true';
+
+    file.addEventListener('click', (e) => {
+      const parentFolder = file.closest('.tree-folder');
+      const folderId = parentFolder ? parentFolder.getAttribute('data-folder-id') : null;
+      const targetAnchor = file.getAttribute('href');
+
+      if (folderId) {
+        switchFolderPanel(folderId, targetAnchor);
+      }
+      files.forEach(f => f.classList.remove('active'));
+      file.classList.add('active');
+    });
+  });
+
+  // Se houver âncora na URL ao carregar a página, abre a pasta correspondente
+  if (window.location.hash) {
+    const targetEl = document.querySelector(window.location.hash);
+    if (targetEl) {
+      const parentPanel = targetEl.closest('.folder-content-panel');
+      if (parentPanel) {
+        const folderId = parentPanel.getAttribute('data-folder');
+        if (folderId) {
+          switchFolderPanel(folderId, window.location.hash);
+          const activeFile = document.querySelector(`.tree-file[href="${window.location.hash}"]`);
+          if (activeFile) {
+            files.forEach(f => f.classList.remove('active'));
+            activeFile.classList.add('active');
+          }
+          return;
+        }
+      }
+    }
+  }
+
+  // Inicializa com a primeira pasta ('etapa-1') se nenhuma estiver ativa
+  const currentActivePanel = document.querySelector('.folder-content-panel.active');
+  if (!currentActivePanel) {
+    switchFolderPanel('etapa-1');
+  }
+}
+
+function initPageScripts() {
+  checkPageLayout();
+  initFolderTree();
+}
+
 // Disparo inicial e subscrição a mudanças de página no MkDocs Material
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', checkPageLayout);
+  document.addEventListener('DOMContentLoaded', initPageScripts);
 } else {
-  checkPageLayout();
+  initPageScripts();
 }
 
 if (typeof document$ !== 'undefined') {
-  document$.subscribe(checkPageLayout);
+  document$.subscribe(initPageScripts);
 }
+
