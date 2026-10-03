@@ -68,9 +68,9 @@ hide:
       <span class="hub-card-tag">Fluxos</span>
     </div>
     <div>
-      <h3 class="hub-card-title">Encaminhamentos da Etapa 1</h3>
+      <h3 class="hub-card-title">Encaminhamentos</h3>
       <p class="hub-card-desc">
-        Acesse o mapeamento de processos e as responsabilidades específicas de cada membro.
+        Saiba mais sobre como são feitos os encaminhamentos entre o HUB e a atenção primária à saúde.
       </p>
     </div>
   </a>
