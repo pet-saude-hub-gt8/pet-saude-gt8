@@ -297,12 +297,12 @@ hide:
     </p>
   </div>
 
-  <div class="obj-card" style="margin-bottom: 1.5rem; display: block;">
-    <h4 style="margin: 0 0 0.5rem 0; color: #0c3258; font-weight: 700;">A Fragilidade do "Papel de Parecer" e o Gargalo das Devoluções (P3)</h4>
-    <p style="margin: 0 0 0.85rem 0; color: #475569; font-size: 0.92rem; line-height: 1.6;">
+  <div class="obj-card diagnostico-card">
+    <h4 class="diagnostico-card-title">A Fragilidade do "Papel de Parecer" e o Gargalo das Devoluções (P3)</h4>
+    <p class="diagnostico-card-text">
       Atualmente, o processo de contrarreferência ocorre por meio de folhas físicas avulsas preenchidas manualmente. Sem campos clínicos obrigatórios ou critérios objetivos pré-formatados, anotações lacônicas (ex.: <em>"Glicemia alterada, encaminho para endócrino"</em>) resultam em <strong>cerca de 80% de devoluções como P3 pela regulação técnica</strong>.
     </p>
-    <p style="margin: 0; color: #475569; font-size: 0.92rem; line-height: 1.6;">
+    <p class="diagnostico-card-text">
       Ao atingir os objetivos propostos pelo GT 8, o projeto busca digitalizar o ponto de cuidado, estruturar a contrarreferência guiada por protocolos e garantir que cada nível de atenção cumpra seu papel no SUS.
     </p>
   </div>

@@ -15,7 +15,7 @@ hide:
       </p>
       <div class="hero-buttons">
         <a href="objetivos/" class="hero-btn hero-btn-primary">Conhecer os Objetivos →</a>
-        <a href="prototipo/" class="hero-btn hero-btn-secondary">Acessar Protótipo Digital</a>
+        <a href="prototipo/" class="hero-btn hero-btn-orange">Acessar Protótipo Digital</a>
       </div>
     </div>
 

@@ -417,6 +417,38 @@ body[data-md-color-scheme="slate"] .hero-full {
   transform: translateY(-2px);
 }
 
+.hero-btn-orange {
+  background: #ff5e1e;
+  color: #ffffff !important;
+  border: 1px solid #ff5e1e;
+  box-shadow: 0 4px 14px rgba(255, 94, 30, 0.4);
+}
+
+.hero-btn-orange:hover {
+  background: #e04a0e;
+  border-color: #e04a0e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(255, 94, 30, 0.55);
+}
+
+body[data-md-color-scheme="slate"] .hero-btn-orange {
+  background: #ff682b;
+  border-color: #ff682b;
+  box-shadow: 0 4px 16px rgba(255, 104, 43, 0.45);
+}
+
+body[data-md-color-scheme="slate"] .hero-btn-orange:hover {
+  background: #ff7d47;
+  border-color: #ff7d47;
+  box-shadow: 0 8px 24px rgba(255, 104, 43, 0.65);
+}
+
+body[data-contrast="high"] .hero-btn-orange {
+  background: #ff682b !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
 .partner-card {
   width: 320px;
   background: rgba(255, 255, 255, 0.08);
@@ -1548,6 +1580,63 @@ body[data-md-color-scheme="slate"] .obj-number {
 
 body[data-md-color-scheme="slate"] .obj-text {
   color: #e2e8f0;
+}
+
+/* Card Diagnóstico Situacional */
+.diagnostico-card {
+  margin-bottom: 1.5rem;
+  display: block !important;
+}
+
+.diagnostico-card-title,
+.obj-card h4 {
+  margin: 0 0 0.65rem 0 !important;
+  color: #0c3258;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  line-height: 1.4;
+}
+
+body[data-md-color-scheme="slate"] .diagnostico-card-title,
+body[data-md-color-scheme="slate"] .obj-card h4 {
+  color: #38bdf8 !important; /* Azul celeste brilhante de alto contraste */
+}
+
+body[data-contrast="high"] .diagnostico-card-title,
+body[data-contrast="high"] .obj-card h4 {
+  color: #ffff00 !important;
+}
+
+.diagnostico-card-text {
+  margin: 0 0 0.85rem 0 !important;
+  color: #334155;
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.diagnostico-card-text:last-child {
+  margin-bottom: 0 !important;
+}
+
+body[data-md-color-scheme="slate"] .diagnostico-card-text,
+body[data-md-color-scheme="slate"] .obj-card p {
+  color: #e2e8f0 !important; /* Texto claro nítido para modo escuro */
+}
+
+body[data-md-color-scheme="slate"] .diagnostico-card-text strong,
+body[data-md-color-scheme="slate"] .obj-card strong {
+  color: #ffffff !important;
+  font-weight: 700;
+}
+
+body[data-md-color-scheme="slate"] .diagnostico-card-text em,
+body[data-md-color-scheme="slate"] .obj-card em {
+  color: #bae6fd !important;
+}
+
+body[data-contrast="high"] .diagnostico-card-text,
+body[data-contrast="high"] .obj-card p {
+  color: #ffffff !important;
 }
 
 /* Grid Comparativo em 3 Colunas (Etapas) */
