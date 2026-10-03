@@ -2823,3 +2823,287 @@ footer.md-footer {
   display: none !important;
 }
 
+/* ==========================================================================
+   CARD INTERATIVO DE APRESENTAÇÃO DE SLIDES (PDF) - COMPACTO E CENTRALIZADO
+   ========================================================================== */
+.presentation-section {
+  max-width: 1280px;
+  margin: 0 auto 5rem auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.presentation-card {
+  width: 100%;
+  max-width: 840px; /* Largura reduzida e contida */
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(12, 50, 88, 0.12);
+  background: #ffffff;
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+body[data-md-color-scheme="slate"] .presentation-card {
+  background: #0f243e;
+  border-color: rgba(56, 189, 248, 0.2);
+  box-shadow: 0 10px 30px -8px rgba(0, 0, 0, 0.45);
+}
+
+body[data-contrast="high"] .presentation-card {
+  background: #000000;
+  border: 2px solid #ffffff;
+  box-shadow: none;
+}
+
+.presentation-card-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.9rem;
+  padding: 1.35rem 1.5rem;
+  background: #f8fafc;
+  border-bottom: 1px solid rgba(12, 50, 88, 0.08);
+}
+
+body[data-md-color-scheme="slate"] .presentation-card-header {
+  background: #0a1b30;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+body[data-contrast="high"] .presentation-card-header {
+  background: #000000;
+  border-bottom: 2px solid #ffffff;
+}
+
+.presentation-card-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.presentation-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 12px;
+  border-radius: 9999px;
+  background: var(--pet-orange-bg, rgba(234, 91, 45, 0.1));
+  color: var(--pet-orange, #ea5b2d);
+  border: 1px solid var(--pet-orange-border, rgba(234, 91, 45, 0.25));
+  margin-bottom: 0.45rem;
+}
+
+body[data-contrast="high"] .presentation-badge {
+  background: transparent;
+  color: #ffff00;
+  border-color: #ffff00;
+}
+
+.presentation-title {
+  margin: 0 !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+body[data-md-color-scheme="slate"] .presentation-title {
+  color: #f8fafc !important;
+}
+
+body[data-contrast="high"] .presentation-title {
+  color: #ffffff !important;
+}
+
+.presentation-subtitle {
+  margin: 0.25rem 0 0 0 !important;
+  font-size: 0.86rem !important;
+  color: #64748b;
+  line-height: 1.4;
+  max-width: 560px;
+}
+
+body[data-md-color-scheme="slate"] .presentation-subtitle {
+  color: #94a3b8;
+}
+
+body[data-contrast="high"] .presentation-subtitle {
+  color: #ffffff !important;
+}
+
+.presentation-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.presentation-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  text-decoration: none !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.presentation-btn svg {
+  flex-shrink: 0;
+}
+
+.presentation-btn-primary {
+  background: #0c3258;
+  color: #ffffff !important;
+  border: 1px solid #092644;
+}
+
+.presentation-btn-primary:hover {
+  background: #154b80;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(12, 50, 88, 0.25);
+}
+
+body[data-md-color-scheme="slate"] .presentation-btn-primary {
+  background: #38bdf8;
+  color: #08162b !important;
+  border-color: #38bdf8;
+}
+
+body[data-md-color-scheme="slate"] .presentation-btn-primary:hover {
+  background: #7dd3fc;
+  box-shadow: 0 4px 12px rgba(56, 189, 248, 0.35);
+}
+
+body[data-contrast="high"] .presentation-btn-primary {
+  background: #ffff00;
+  color: #000000 !important;
+  border: 2px solid #ffff00;
+}
+
+.presentation-btn-secondary {
+  background: #f1f5f9;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1;
+}
+
+.presentation-btn-secondary:hover {
+  background: #e2e8f0;
+  color: #0f172a !important;
+  transform: translateY(-1px);
+}
+
+body[data-md-color-scheme="slate"] .presentation-btn-secondary {
+  background: rgba(255, 255, 255, 0.08);
+  color: #e2e8f0 !important;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+body[data-md-color-scheme="slate"] .presentation-btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff !important;
+}
+
+body[data-contrast="high"] .presentation-btn-secondary {
+  background: transparent;
+  color: #ffffff !important;
+  border: 2px solid #ffffff;
+}
+
+body[data-contrast="high"] .presentation-btn-secondary:hover {
+  background: #ffffff;
+  color: #000000 !important;
+}
+
+/* Container do Iframe com proporção ideal e altura menor */
+.presentation-embed-wrapper {
+  position: relative;
+  width: 100%;
+  height: 460px; /* Reduzido de 560px para proporção mais equilibrada */
+  background: #1e293b;
+  overflow: hidden;
+}
+
+.presentation-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Barra inferior de suporte/fallback centralizada */
+.presentation-fallback-bar {
+  padding: 0.65rem 1.25rem;
+  background: #f8fafc;
+  border-top: 1px solid rgba(12, 50, 88, 0.08);
+  font-size: 0.78rem;
+  color: #64748b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+body[data-md-color-scheme="slate"] .presentation-fallback-bar {
+  background: #0a1b30;
+  border-top-color: rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+}
+
+body[data-contrast="high"] .presentation-fallback-bar {
+  background: #000000;
+  border-top: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.presentation-fallback-bar a {
+  color: #0284c7 !important;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+body[data-md-color-scheme="slate"] .presentation-fallback-bar a {
+  color: #38bdf8 !important;
+}
+
+body[data-contrast="high"] .presentation-fallback-bar a {
+  color: #ffff00 !important;
+}
+
+@media (max-width: 768px) {
+  .presentation-section {
+    margin-bottom: 3.5rem;
+    padding: 0 1rem;
+  }
+  .presentation-card-header {
+    padding: 1.1rem 1rem;
+  }
+  .presentation-card-actions {
+    width: 100%;
+  }
+  .presentation-btn {
+    flex: 1;
+    justify-content: center;
+  }
+  .presentation-embed-wrapper {
+    height: 320px;
+  }
+}
+
+
+
