@@ -27,8 +27,72 @@ hide:
 
 <div class="page-main-container">
 
+  <!-- Sumário em Mini-Cards no Topo (Opção 2) -->
+  <div class="mini-cards-summary">
+    <div class="summary-header-label">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+      Nesta Página • Sumário dos Tópicos
+    </div>
+    <div class="summary-grid">
+      <a href="#sec-geral" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">01</span>
+          <span class="summary-card-icon">🎯</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Objetivo Geral</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+
+      <a href="#sec-especificos" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">02</span>
+          <span class="summary-card-icon">📋</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Objetivos Específicos</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+
+      <a href="#sec-metas" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">03</span>
+          <span class="summary-card-icon">🗓️</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Metas & Entregas</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+
+      <a href="#sec-locais" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">04</span>
+          <span class="summary-card-icon">📍</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Locais de Atuação</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+
+      <a href="#sec-diagnostico" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">05</span>
+          <span class="summary-card-icon">⚠️</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Diagnóstico Situacional</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
   <!-- 1. Objetivo Geral em Destaque -->
-  <div class="highlight-card">
+  <div class="highlight-card" id="sec-geral">
     <div class="highlight-card-kicker">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
       Objetivo Geral
@@ -39,7 +103,7 @@ hide:
   </div>
 
   <!-- 2. Objetivos Específicos Globais -->
-  <div class="section-heading-wrap">
+  <div class="section-heading-wrap" id="sec-especificos">
     <h2 class="section-title">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
       Objetivos Específicos Globais
@@ -87,7 +151,7 @@ hide:
   </div>
 
   <!-- 3. Objetivos Específicos por Etapas -->
-  <div class="section-heading-wrap">
+  <div class="section-heading-wrap" id="sec-metas">
     <h2 class="section-title">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
       Metas e Entregas por Etapas
@@ -162,7 +226,7 @@ hide:
   </div>
 
   <!-- 4. Locais de Atuação -->
-  <div class="section-heading-wrap">
+  <div class="section-heading-wrap" id="sec-locais">
     <h2 class="section-title">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
       Locais de Atuação do Projeto
@@ -223,7 +287,7 @@ hide:
   </div>
 
   <!-- 5. Diagnóstico Situacional Complementar (Justificativa) -->
-  <div class="section-heading-wrap">
+  <div class="section-heading-wrap" id="sec-diagnostico">
     <h2 class="section-title">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
       Diagnóstico Situacional: Por que esses objetivos são essenciais?

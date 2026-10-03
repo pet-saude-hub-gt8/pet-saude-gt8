@@ -27,8 +27,72 @@ hide:
 
 <div class="page-main-container">
 
+  <!-- Sumário em Mini-Cards no Topo (Opção 2) -->
+  <div class="mini-cards-summary">
+    <div class="summary-header-label">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h7"/></svg>
+      Nesta Página • Categorias da Equipe
+    </div>
+    <div class="summary-grid">
+      <a href="#sec-coordenacao" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">01</span>
+          <span class="summary-card-icon">🏛️</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Coordenação Geral</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+
+      <a href="#sec-tutores" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">02</span>
+          <span class="summary-card-icon">📚</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Tutores Acadêmicos</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+
+      <a href="#sec-orientacao" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">03</span>
+          <span class="summary-card-icon">🏥</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Orientação de Serviço</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+
+      <a href="#sec-preceptores" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">04</span>
+          <span class="summary-card-icon">🩺</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Preceptores</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+
+      <a href="#sec-monitores" class="summary-jump-card">
+        <div class="summary-card-top">
+          <span class="summary-number">05</span>
+          <span class="summary-card-icon">🎓</span>
+        </div>
+        <div>
+          <div class="summary-card-title">Monitores da Graduação</div>
+          <div class="summary-card-arrow">Acessar ↓</div>
+        </div>
+      </a>
+    </div>
+  </div>
+
   <!-- 1. Coordenação Geral -->
-  <div class="team-category">
+  <div class="team-category" id="sec-coordenacao">
     <div class="section-heading-wrap" style="margin-top: 0;">
       <h2 class="section-title">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path></svg>
@@ -49,7 +113,7 @@ hide:
   </div>
 
   <!-- 2. Tutores -->
-  <div class="team-category">
+  <div class="team-category" id="sec-tutores">
     <div class="section-heading-wrap">
       <h2 class="section-title">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
@@ -79,7 +143,7 @@ hide:
   </div>
 
   <!-- 3. Orientação de Serviço -->
-  <div class="team-category">
+  <div class="team-category" id="sec-orientacao">
     <div class="section-heading-wrap">
       <h2 class="section-title">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
@@ -100,7 +164,7 @@ hide:
   </div>
 
   <!-- 4. Preceptores -->
-  <div class="team-category">
+  <div class="team-category" id="sec-preceptores">
     <div class="section-heading-wrap">
       <h2 class="section-title">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
@@ -157,7 +221,7 @@ hide:
   </div>
 
   <!-- 5. Monitores da Graduação -->
-  <div class="team-category">
+  <div class="team-category" id="sec-monitores">
     <div class="section-heading-wrap">
       <h2 class="section-title">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
