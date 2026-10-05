@@ -25,29 +25,12 @@ hide:
   </div>
 </div>
 
-<div class="page-main-container">
+<div class="page-main-container" style="max-width: 1000px; padding: 0 1rem;">
 
-  <div class="empty-state-card">
-    <div class="empty-state-icon-wrap">
-      🛠️
-    </div>
-    <span class="empty-state-tag">
-      Em Desenvolvimento
-    </span>
-    <h2 class="empty-state-title">
-      Protótipo em Construção
-    </h2>
-    <p class="empty-state-desc">
-      Esta seção está reservada para o protótipo digital interativo. O formulário, regras de negócio e critérios de triagem estão sendo produzidos pela equipe do GT 8.
-    </p>
-    <div class="empty-state-actions">
-      <a href="../" class="hero-btn hero-btn-secondary" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.65rem 1.25rem;">
-        ← Voltar para o Início
-      </a>
-      <a href="../encaminhamentos/" class="hero-btn hero-btn-primary" style="display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.65rem 1.25rem;">
-        Ver Encaminhamentos →
-      </a>
-    </div>
-  </div>
+  <iframe 
+    src="../assets/prototipo_app.html" 
+    style="width: 100%; height: 1450px; border: none; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background-color: transparent;" 
+    title="Protótipo Interativo HUB"
+  ></iframe>
 
 </div>
