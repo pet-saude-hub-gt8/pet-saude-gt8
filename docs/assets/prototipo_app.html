@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protótipo Encaminhamento Ambulatorial HUB - Pneumologia</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unb: '#009a44',
+                        pet: '#ea5b2d',
+                        hub: '#006699',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scroll::-webkit-scrollbar { width: 6px; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .badge-urgent { background-color: #ef4444; color: white; border: none; }
+        .badge-priority { background-color: #f59e0b; color: white; border: none; }
+        .badge-aps { background-color: #009a44; color: white; border: none; }
+    </style>
+</head>
+<body class="bg-base-200 p-3 sm:p-6 font-sans">
+
+    <div class="max-w-4xl mx-auto bg-base-100 shadow-xl rounded-2xl overflow-hidden border border-gray-100">
+        <!-- Header Institucional -->
+        <div class="bg-unb text-white p-6 relative overflow-hidden">
+            <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl pointer-events-none select-none">🩺</div>
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 relative z-10">
+                <div>
+                    <span class="inline-block bg-white/20 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full mb-1">
+                        PET-Saúde: Saúde Digital • GT 8
+                    </span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Encaminhamento Ambulatorial Estruturado</h2>
+                    <p class="text-sm opacity-95 mt-1 font-medium">Hospital Universitário de Brasília (HUB / UnB / EBSERH) • Atenção Primária à Saúde</p>
+                </div>
+                <div class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/20 text-right self-start sm:self-center">
+                    <span class="block text-xs uppercase tracking-wider text-green-100">Protocolo Clínico</span>
+                    <span class="font-bold text-white text-sm">100% Homologado</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra de Simulação Rápida Didática -->
+        <div class="bg-slate-50 border-b border-gray-200 px-6 py-3 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-bold uppercase tracking-wider text-gray-500">⚡ Cenários Didáticos:</span>
+                <span class="text-xs text-gray-500 hidden md:inline">Clique para preencher automaticamente:</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+                <button type="button" onclick="carregarCenario('p1')" class="btn btn-xs bg-red-100 text-red-800 hover:bg-red-200 border-red-200 font-semibold">
+                    🚨 P1 - Urgente (Hemoptise / Hipoxemia)
+                </button>
+                <button type="button" onclick="carregarCenario('p2')" class="btn btn-xs bg-amber-100 text-amber-900 hover:bg-amber-200 border-amber-200 font-semibold">
+                    🟡 P2 - Prioritário (Asma GINA 5)
+                </button>
+                <button type="button" onclick="carregarCenario('p3')" class="btn btn-xs bg-emerald-100 text-emerald-900 hover:bg-emerald-200 border-emerald-200 font-semibold">
+                    🟢 P3 - Devolução Orientada (APS)
+                </button>
+                <button type="button" onclick="limparFormulario()" class="btn btn-xs btn-ghost text-gray-500">
+                    Limpar
+                </button>
+            </div>
+        </div>
+
+        <div class="p-6 sm:p-8 space-y-8">
+            
+            <!-- 1. Seleção de Especialidade -->
+            <section>
+                <h3 class="text-base font-bold text-gray-800 uppercase tracking-wide border-b pb-2 mb-4 flex items-center gap-2">
+                    <span class="w-6 h-6 rounded-full bg-green-100 text-unb flex items-center justify-center text-xs">1</span>
+                    Especialidade Requisitada
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <!-- Ativo: Pneumologia -->
+                    <label class="cursor-pointer">
+                        <input type="radio" name="especialidade" class="peer sr-only" checked />
+                        <div class="card bg-base-100 border-2 border-unb ring-2 ring-unb/20 shadow-sm transition-all text-center p-4 hover:shadow-md">
+                            <span class="text-3xl mb-1">🫁</span>
+                            <span class="font-bold text-unb">Pneumologia</span>
+                            <span class="badge badge-sm badge-success mx-auto mt-2 text-white font-medium">Disponível no HUB</span>
+                        </div>
+                    </label>
+                    <!-- Em Breve: Endocrinologia -->
+                    <div class="card bg-gray-50 border-2 border-dashed border-gray-200 opacity-60 text-center p-4 select-none">
+                        <span class="text-3xl mb-1 grayscale">🩸</span>
+                        <span class="font-bold text-gray-500">Endocrinologia</span>
+                        <span class="badge badge-sm badge-ghost mx-auto mt-2">Em pactuação</span>
+                    </div>
+                    <!-- Em Breve: Cardiologia -->
+                    <div class="card bg-gray-50 border-2 border-dashed border-gray-200 opacity-60 text-center p-4 select-none">
+                        <span class="text-3xl mb-1 grayscale">🫀</span>
+                        <span class="font-bold text-gray-500">Cardiologia</span>
+                        <span class="badge badge-sm badge-ghost mx-auto mt-2">Em pactuação</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Formulário Dinâmico: Pneumologia -->
+            <form id="form-pneumo" class="space-y-8" onsubmit="event.preventDefault(); submeterEncaminhamento();">
+                
+                <!-- 2. Identificação do Paciente -->
+                <section>
+                    <h3 class="text-base font-bold text-gray-800 uppercase tracking-wide border-b pb-2 mb-4 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-green-100 text-unb flex items-center justify-center text-xs">2</span>
+                        Identificação do Paciente & Território
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <label class="form-control w-full">
+                            <div class="label"><span class="label-text font-semibold text-gray-700">Nome Completo do Paciente *</span></div>
+                            <input type="text" id="paciente-nome" placeholder="Ex.: Maria Aparecida da Silva" class="input input-bordered w-full required-field" />
+                        </label>
+                        <label class="form-control w-full">
+                            <div class="label"><span class="label-text font-semibold text-gray-700">Cartão SUS / Prontuário HUB *</span></div>
+                            <input type="text" id="paciente-sus" placeholder="Ex.: 898.0012.3456.7890 ou 123456" class="input input-bordered w-full required-field" />
+                        </label>
+                        <label class="form-control w-full">
+                            <div class="label"><span class="label-text font-semibold text-gray-700">Unidade Básica de Origem (UBS) *</span></div>
+                            <select id="paciente-ubs" class="select select-bordered w-full required-field">
+                                <option disabled selected value="">Selecione a Unidade de Origem...</option>
+                                <option value="UBS 1 Asa Sul">UBS 1 Asa Sul (Região Central)</option>
+                                <option value="UBS 17 Ceilândia">UBS 17 Ceilândia (Região Oeste)</option>
+                                <option value="UBS 1 Itapoã">UBS 1 Itapoã (Região Leste)</option>
+                                <option value="UBS 1 Santa Maria">UBS 1 Santa Maria (Região Sul)</option>
+                                <option value="Ambulatório HUB">Ambulatório de Saúde Integral HUB (Inter-ambulatório)</option>
+                                <option value="Outra UBS DF">Outra UBS do Distrito Federal</option>
+                            </select>
+                        </label>
+                        <label class="form-control w-full">
+                            <div class="label"><span class="label-text font-semibold text-gray-700">Médico Solicitante / CRM *</span></div>
+                            <input type="text" id="paciente-crm" placeholder="Ex.: Dra. Camila Vasconcelos - CRM-DF 21940" class="input input-bordered w-full required-field" />
+                        </label>
+                    </div>
+                </section>
+
+                <!-- 3. Dados Clínicos e Sinais Vitais -->
+                <section>
+                    <h3 class="text-base font-bold text-gray-800 uppercase tracking-wide border-b pb-2 mb-4 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-green-100 text-unb flex items-center justify-center text-xs">3</span>
+                        Dados Clínicos Base & Sinais Vitais
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
+                        <label class="form-control w-full">
+                            <div class="label"><span class="label-text font-semibold text-gray-700">Tempo de Evolução (semanas) *</span></div>
+                            <input type="number" id="clinico-tempo" min="1" max="520" placeholder="Ex.: 12" class="input input-bordered w-full required-field" />
+                        </label>
+                        <label class="form-control w-full">
+                            <div class="label">
+                                <span class="label-text font-semibold text-gray-700">SpO2 em Ar Ambiente (%) *</span>
+                                <span class="label-text-alt text-error font-medium">&lt; 90% = P1</span>
+                            </div>
+                            <input type="number" id="clinico-spo2" min="50" max="100" placeholder="Ex.: 95" class="input input-bordered w-full required-field" />
+                        </label>
+                        <label class="form-control w-full">
+                            <div class="label"><span class="label-text font-semibold text-gray-700">Carga Tabágica (Maços/Ano)</span></div>
+                            <input type="number" id="clinico-tabaco" min="0" max="200" placeholder="Ex.: 20 (ou 0 se não fumante)" class="input input-bordered w-full" />
+                        </label>
+                    </div>
+                    
+                    <div class="form-control w-fit mb-4 bg-red-50/70 p-3 rounded-xl border border-red-100">
+                        <label class="label cursor-pointer gap-4 p-0">
+                            <div>
+                                <span class="label-text font-bold text-red-900 block">Uso Contínuo de O2 Domiciliar?</span>
+                                <span class="text-xs text-red-700">Oxigenoterapia domiciliar prolongada instituída</span>
+                            </div>
+                            <input type="checkbox" id="clinico-o2" class="toggle toggle-error" />
+                        </label>
+                    </div>
+
+                    <label class="form-control w-full">
+                        <div class="label">
+                            <span class="label-text font-semibold text-gray-700">Queixa Principal & Tratamentos Realizados na APS *</span>
+                        </div>
+                        <textarea id="clinico-queixa" class="textarea textarea-bordered h-24 required-field text-sm" placeholder="Descreva os sintomas primários, evolução, medicamentos já prescritos na UBS (ex.: doses de corticoide/broncodilatadores) e resposta terapêutica observada..."></textarea>
+                    </label>
+                </section>
+
+                <!-- 4. Exames Prévios (Checklist e Upload de Laudos) -->
+                <section>
+                    <h3 class="text-base font-bold text-gray-800 uppercase tracking-wide border-b pb-2 mb-4 flex items-center gap-2">
+                        <span class="w-6 h-6 rounded-full bg-green-100 text-unb flex items-center justify-center text-xs">4</span>
+                        Exames Complementares Realizados (com Anexos)
+                    </h3>
+                    <p class="text-xs text-gray-600 mb-3">Marque os exames disponíveis para habilitar o upload digital do laudo/imagem (PDF ou imagem):</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-200/80 transition-all hover:border-gray-300">
+                            <label class="cursor-pointer label gap-2 justify-start p-0">
+                                <input type="checkbox" id="check-rx" class="checkbox checkbox-primary exam-checkbox" data-target="upload-rx" />
+                                <span class="label-text font-semibold text-gray-800">Radiografia (RX) de Tórax</span>
+                            </label>
+                            <input type="file" id="upload-rx" class="file-input file-input-bordered file-input-sm w-full mt-2 hidden" accept=".pdf,image/*" />
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-200/80 transition-all hover:border-gray-300">
+                            <label class="cursor-pointer label gap-2 justify-start p-0">
+                                <input type="checkbox" id="check-tc" class="checkbox checkbox-primary exam-checkbox" data-target="upload-tc" />
+                                <span class="label-text font-semibold text-gray-800">Tomografia (TCAR) de Tórax</span>
+                            </label>
+                            <input type="file" id="upload-tc" class="file-input file-input-bordered file-input-sm w-full mt-2 hidden" accept=".pdf,image/*" />
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-200/80 transition-all hover:border-gray-300">
+                            <label class="cursor-pointer label gap-2 justify-start p-0">
+                                <input type="checkbox" id="check-espiro" class="checkbox checkbox-primary exam-checkbox" data-target="upload-espiro" />
+                                <span class="label-text font-semibold text-gray-800">Espirometria Pré e Pós-BD</span>
+                            </label>
+                            <input type="file" id="upload-espiro" class="file-input file-input-bordered file-input-sm w-full mt-2 hidden" accept=".pdf,image/*" />
+                        </div>
+                        <div class="bg-gray-50 p-3 rounded-xl border border-gray-200/80 transition-all hover:border-gray-300">
+                            <label class="cursor-pointer label gap-2 justify-start p-0">
+                                <input type="checkbox" id="check-gaso" class="checkbox checkbox-primary exam-checkbox" data-target="upload-gaso" />
+                                <span class="label-text font-semibold text-gray-800">Gasometria Arterial</span>
+                            </label>
+                            <input type="file" id="upload-gaso" class="file-input file-input-bordered file-input-sm w-full mt-2 hidden" accept=".pdf,image/*" />
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Subespecialidade & Critérios Estruturados do HUB -->
+                <section class="bg-amber-50/60 p-5 sm:p-6 rounded-2xl border border-amber-200/80">
+                    <h3 class="text-base font-bold text-pet uppercase tracking-wide border-b border-amber-200 pb-2 mb-4 flex items-center justify-between">
+                        <span class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-pet text-white flex items-center justify-center text-xs">5</span>
+                            Critérios Clínicos da Subespecialidade (HUB)
+                        </span>
+                        <span class="badge badge-warning text-xs font-semibold">Obrigatório para P2</span>
+                    </h3>
+
+                    <label class="form-control w-full max-w-md mb-5">
+                        <div class="label"><span class="label-text font-bold text-gray-800">Selecione a Hipótese Diagnóstica Primária *</span></div>
+                        <select class="select select-bordered select-warning w-full required-field font-medium text-gray-800" id="subespecialidade">
+                            <option disabled selected value="">Escolha a subespecialidade...</option>
+                            <option value="pneumo-geral">Pneumologia Geral (Tosse / Nódulo / Investigação)</option>
+                            <option value="asma">Asma Grave / Difícil Controle</option>
+                            <option value="dpoc">DPOC Grave (GOLD 3 ou 4)</option>
+                            <option value="sono">Distúrbios Respiratórios do Sono (Apneia / SAOS)</option>
+                            <option value="intersticial">Doença Pulmonar Intersticial / Fibrose Pulmonar</option>
+                            <option value="hipertensao">Hipertensão Pulmonar / Doença Vascular</option>
+                        </select>
+                    </label>
+
+                    <!-- PAINEL 1: PNEUMOLOGIA GERAL -->
+                    <div id="criterios-pneumo-geral" class="criteria-panel hidden space-y-3 bg-white p-4 rounded-xl shadow-sm border border-amber-100">
+                        <p class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Critérios de Avaliação — Pneumologia Geral:</p>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-p-tosse" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Tosse crônica persistente (&gt; 8 semanas)</strong> refratária ao tratamento empírico na APS, com RX de tórax realizado</span>
+                        </label>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-red-50/70 p-2 rounded-lg border border-transparent hover:border-red-200">
+                            <input type="checkbox" id="crit-p-hemoptise" class="checkbox checkbox-sm checkbox-error sub-criteria is-urgent" />
+                            <span class="label-text text-sm text-red-950">🚨 <strong>Hemoptise ativa recente</strong> com expectoração hemoptoica evidente (<em>Critério de Alarme Urgente P1</em>)</span>
+                        </label>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-p-peso" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Perda ponderal inexplicada</strong> associada a sintomas respiratórios (suspeita neoplásica ou micobacteriose)</span>
+                        </label>
+                    </div>
+
+                    <!-- PAINEL 2: ASMA GRAVE -->
+                    <div id="criterios-asma" class="criteria-panel hidden space-y-3 bg-white p-4 rounded-xl shadow-sm border border-amber-100">
+                        <p class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Critérios de Avaliação — Asma Grave / Difícil Controle:</p>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-a-estagio" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Tratamento em Etapa 4 ou 5 do GINA mantido por &gt; 6 meses</strong> com corticoide inalatório em dose alta + LABA sem controle adequado dos sintomas</span>
+                        </label>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-red-50/70 p-2 rounded-lg border border-transparent hover:border-red-200">
+                            <input type="checkbox" id="crit-a-intubacao" class="checkbox checkbox-sm checkbox-error sub-criteria is-urgent" />
+                            <span class="label-text text-sm text-red-950">🚨 <strong>Histórico prévio de intubação orotraqueal</strong> ou internação em UTI por crise asmática aguda (<em>Critério Urgente P1</em>)</span>
+                        </label>
+                    </div>
+
+                    <!-- PAINEL 3: DPOC GRAVE -->
+                    <div id="criterios-dpoc" class="criteria-panel hidden space-y-3 bg-white p-4 rounded-xl shadow-sm border border-amber-100">
+                        <p class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Critérios de Avaliação — DPOC Grave:</p>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-d-exacerbacao" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Frequência de &ge; 2 exacerbações no último ano</strong> tratadas com corticoide sistêmico e/ou antibioticoterapia</span>
+                        </label>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-d-vef1" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>VEF1 &lt; 30% do predito</strong> na espirometria pós-broncodilatador (Classificação GOLD 4)</span>
+                        </label>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-red-50/70 p-2 rounded-lg border border-transparent hover:border-red-200">
+                            <input type="checkbox" id="crit-d-cor" class="checkbox checkbox-sm checkbox-error sub-criteria is-urgent" />
+                            <span class="label-text text-sm text-red-950">🚨 <strong>Evidência documentada de Cor Pulmonale</strong> ou Hipertensão Arterial Pulmonar secundária (<em>Critério Urgente P1</em>)</span>
+                        </label>
+                    </div>
+
+                    <!-- PAINEL 4: DISTÚRBIOS DO SONO -->
+                    <div id="criterios-sono" class="criteria-panel hidden space-y-3 bg-white p-4 rounded-xl shadow-sm border border-amber-100">
+                        <p class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Critérios de Avaliação — Distúrbios Respiratórios do Sono (SAOS):</p>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-s-epworth" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Escala de Sonolência de Epworth &gt; 10 pontos</strong> (sonolência excessiva diurna incapacitante)</span>
+                        </label>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-s-mallampati" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Avaliação de Mallampati Grau III ou IV</strong> (estreitamento evidente da via aérea superior)</span>
+                        </label>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-s-obesidade" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Obesidade (IMC &gt; 35 kg/m²)</strong> e/ou circunferência cervical aumentada (&gt; 43cm ♂ / &gt; 40cm ♀)</span>
+                        </label>
+                    </div>
+
+                    <!-- PAINEL 5: INTERSTICIAL -->
+                    <div id="criterios-intersticial" class="criteria-panel hidden space-y-3 bg-white p-4 rounded-xl shadow-sm border border-amber-100">
+                        <p class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Critérios de Avaliação — Doença Pulmonar Intersticial:</p>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-i-tcar" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>TCAR de tórax evidenciando padrão de pneumonia intersticial usual (PIU)</strong>, faveolamento ou vidro fosco</span>
+                        </label>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-i-crep" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Dispneia progressiva aos esforços com estertores crepitantes em velcro</strong> na ausculta pulmonar basal</span>
+                        </label>
+                    </div>
+
+                    <!-- PAINEL 6: HIPERTENSÃO PULMONAR -->
+                    <div id="criterios-hipertensao" class="criteria-panel hidden space-y-3 bg-white p-4 rounded-xl shadow-sm border border-amber-100">
+                        <p class="text-xs font-bold text-gray-700 uppercase tracking-wide mb-2">Critérios de Avaliação — Hipertensão Pulmonar:</p>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-h-eco" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Ecocardiograma transtorácico com PSAP estimada &gt; 40 mmHg</strong> ou sinais de sobrecarga de câmaras direitas</span>
+                        </label>
+                        <label class="cursor-pointer label gap-3 justify-start hover:bg-slate-50 p-2 rounded-lg">
+                            <input type="checkbox" id="crit-h-dispneia" class="checkbox checkbox-sm checkbox-warning sub-criteria" />
+                            <span class="label-text text-sm"><strong>Dispneia desproporcional inexplicada aos esforços</strong> sem disfunção ventricular esquerda evidente</span>
+                        </label>
+                    </div>
+
+                    <!-- Mensagem Informativa de Diretriz -->
+                    <div id="criterios-alerta" class="mt-4 alert bg-white border border-amber-300 text-gray-700 text-xs shadow-sm py-2.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-warning shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <span><strong>Diretriz do PET-Saúde:</strong> Solicitações sem critérios comprovados de atenção terciária são classificadas como <strong>P3</strong> e devolvidas com contrarreferência assistida para condução segura na UBS.</span>
+                    </div>
+                </section>
+
+                <!-- 6. Parecer Técnico da Regulação do HUB & Prioridade Calculada -->
+                <section class="bg-slate-50 p-5 sm:p-6 rounded-2xl border border-slate-200">
+                    <h3 class="text-base font-bold text-gray-800 uppercase tracking-wide border-b pb-2 mb-4 flex items-center justify-between">
+                        <span class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-blue-100 text-hub flex items-center justify-center text-xs">6</span>
+                            Parecer Automatizado da Regulação Interna do HUB
+                        </span>
+                        <span id="priority-badge" class="badge badge-aps gap-1 font-bold px-3 py-3 text-xs shadow-sm transition-all duration-300">
+                            P3 — Devolução Orientada (APS)
+                        </span>
+                    </h3>
+
+                    <div id="regulation-card" class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm transition-all">
+                        <div class="flex items-start gap-3">
+                            <span id="regulation-icon" class="text-2xl mt-0.5">ℹ️</span>
+                            <div class="space-y-1">
+                                <h4 id="regulation-title" class="text-sm font-bold text-gray-800">
+                                    Caso Elegível para Acompanhamento na Atenção Primária
+                                </h4>
+                                <p id="regulation-text" class="text-xs text-gray-600 leading-relaxed">
+                                    Os dados clínicos inseridos não preenchem critérios de gravidade ou refratariedade para vaga de atenção terciária no HUB. A recomendação da regulação é a manutenção do cuidado na UBS com contrarreferência assistida e suporte matricial.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Actions / Submissão -->
+                <div class="flex flex-col sm:flex-row justify-between items-center pt-6 border-t mt-6 gap-4">
+                    <div class="text-xs text-gray-500">
+                        <span class="font-semibold text-gray-700">Regulação Técnica:</span> Critérios validados conforme protocolo oficial GT 8 / SES-DF
+                    </div>
+                    <div class="flex flex-col items-end gap-1.5 w-full sm:w-auto">
+                        <button type="submit" id="btn-submit" class="btn btn-disabled bg-gray-300 text-gray-500 border-none w-full sm:w-auto transition-all duration-300" disabled>
+                            Gerar Encaminhamento Digital Estruturado
+                        </button>
+                        <span id="submit-help" class="text-xs text-error font-medium flex items-center gap-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg>
+                            Preencha os campos obrigatórios (*) e selecione a subespecialidade
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso de Envio -->
+    <dialog id="modal-sucesso" class="modal modal-bottom sm:modal-middle">
+        <div class="modal-box">
+            <div class="w-12 h-12 rounded-full bg-green-100 text-unb flex items-center justify-center mx-auto mb-3 text-2xl font-bold">✓</div>
+            <h3 class="font-bold text-lg text-center text-gray-800">Encaminhamento Gerado com Sucesso!</h3>
+            <p class="py-3 text-sm text-gray-600 text-center">
+                O encaminhamento digital foi processado e registrado na fila da regulação técnica do Hospital Universitário de Brasília (HUB).
+            </p>
+            <div id="modal-resumo" class="bg-gray-50 p-3 rounded-xl border border-gray-200 text-xs space-y-1.5 mb-4 text-gray-700">
+                <!-- Preenchido via JS -->
+            </div>
+            <div class="modal-action justify-center">
+                <button type="button" class="btn bg-unb hover:bg-green-700 text-white border-none px-6" onclick="document.getElementById('modal-sucesso').close()">
+                    Concluir e Voltar
+                </button>
+            </div>
+        </div>
+    </dialog>
+
+    <script>
+        // 1. Upload de Exames (Mostrar/Esconder campo de arquivo)
+        document.querySelectorAll('.exam-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', (e) => {
+                const targetId = e.target.getAttribute('data-target');
+                const fileInput = document.getElementById(targetId);
+                if (e.target.checked) {
+                    fileInput.classList.remove('hidden');
+                } else {
+                    fileInput.classList.add('hidden');
+                    fileInput.value = '';
+                }
+            });
+        });
+
+        // 2. Elementos Centrais
+        const spo2Input = document.getElementById('clinico-spo2');
+        const o2Input = document.getElementById('clinico-o2');
+        const subSelect = document.getElementById('subespecialidade');
+        const priorityBadge = document.getElementById('priority-badge');
+        const regulationCard = document.getElementById('regulation-card');
+        const regulationTitle = document.getElementById('regulation-title');
+        const regulationText = document.getElementById('regulation-text');
+        const regulationIcon = document.getElementById('regulation-icon');
+
+        const requiredFields = document.querySelectorAll('.required-field');
+        const submitBtn = document.getElementById('btn-submit');
+        const submitHelp = document.getElementById('submit-help');
+
+        // 3. Gerenciamento dos Painéis de Critérios
+        subSelect.addEventListener('change', function(e) {
+            // Oculta todos os painéis
+            document.querySelectorAll('.criteria-panel').forEach(p => p.classList.add('hidden'));
+
+            const targetPanelId = 'criterios-' + e.target.value;
+            const targetPanel = document.getElementById(targetPanelId);
+            if (targetPanel) {
+                targetPanel.classList.remove('hidden');
+            }
+            calcularRegulacao();
+            validateForm();
+        });
+
+        // 4. Lógica Completa de Cálculo de Prioridade e Parecer Técnico da Regulação
+        function calcularRegulacao() {
+            const spo2 = parseFloat(spo2Input.value);
+            const usesO2 = o2Input.checked;
+            
+            // Verifica se algum critério urgente foi marcado
+            const urgentChecked = document.querySelectorAll('.sub-criteria.is-urgent:checked').length > 0;
+            
+            // Verifica se algum critério da subespecialidade atual foi marcado
+            const anySubCriteriaChecked = document.querySelectorAll('.sub-criteria:checked').length > 0;
+
+            let nivel = 'P3';
+
+            // REGRA P1 (Urgente): SpO2 < 90 OU (O2 domiciliar E SpO2 < 92) OU Critério Urgente Específico
+            if (urgentChecked || (spo2 && spo2 < 90) || (usesO2 && spo2 && spo2 < 92)) {
+                nivel = 'P1';
+            } 
+            // REGRA P2 (Prioritário): Sem critério de alarme, mas preenche critérios da subespecialidade terciária
+            else if (subSelect.value && anySubCriteriaChecked) {
+                nivel = 'P2';
+            } 
+            // REGRA P3: Sem critérios de alta complexidade (Devolução orientada para APS)
+            else {
+                nivel = 'P3';
+            }
+
+            // Atualiza UI da Regulação
+            if (nivel === 'P1') {
+                priorityBadge.className = 'badge badge-urgent gap-1 font-bold px-3 py-3 text-xs shadow-sm transition-all duration-300';
+                priorityBadge.innerHTML = '🚨 P1 — Urgente (Atenção Imediata HUB)';
+                regulationIcon.textContent = '🚨';
+                regulationTitle.textContent = 'Indicação de Alta Gravidade / Risco Iminente';
+                regulationTitle.className = 'text-sm font-bold text-red-700';
+                regulationText.innerHTML = 'Foram identificados critérios de alarme respiratório (ex.: hemoptise ativa, hipoxemia severa SpO2 &lt; 90% ou histórico de intubação por crise asmática). <strong>Requer agendamento prioritário e avaliação médica imediata no HUB.</strong>';
+                regulationCard.className = 'bg-red-50/70 p-4 rounded-xl border border-red-200 shadow-sm transition-all';
+            } else if (nivel === 'P2') {
+                priorityBadge.className = 'badge badge-priority gap-1 font-bold px-3 py-3 text-xs shadow-sm transition-all duration-300';
+                priorityBadge.innerHTML = '🟡 P2 — Prioritário (Ambulatório Especializado HUB)';
+                regulationIcon.textContent = '📋';
+                regulationTitle.textContent = 'Indicação Elegível para Atenção Terciária Especializada';
+                regulationTitle.className = 'text-sm font-bold text-amber-800';
+                regulationText.innerHTML = 'O paciente cumpre os critérios técnicos definidos pelo protocolo do HUB (refratariedade terapêutica na APS ou critérios diagnósticos de subespecialidade). <strong>Encaminhamento validado para inserção na fila ambulatorial do HUB.</strong>';
+                regulationCard.className = 'bg-amber-50/70 p-4 rounded-xl border border-amber-200 shadow-sm transition-all';
+            } else {
+                priorityBadge.className = 'badge badge-aps gap-1 font-bold px-3 py-3 text-xs shadow-sm transition-all duration-300';
+                priorityBadge.innerHTML = '🟢 P3 — Devolução Orientada para UBS (APS)';
+                regulationIcon.textContent = '🩺';
+                regulationTitle.textContent = 'Caso Elegível para Acompanhamento na Atenção Primária';
+                regulationTitle.className = 'text-sm font-bold text-green-800';
+                regulationText.innerHTML = 'Os dados clínicos informados não preenchem critérios de gravidade ou refratariedade para vaga terciária no HUB. <strong>Recomendada a manutenção do cuidado na UBS com contrarreferência assistida e apoio do Telessaúde.</strong>';
+                regulationCard.className = 'bg-emerald-50/70 p-4 rounded-xl border border-emerald-200 shadow-sm transition-all';
+            }
+
+            return nivel;
+        }
+
+        // 5. Validação Condicional do Formulário
+        function validateForm() {
+            let isValid = true;
+            let missingReason = '';
+            
+            // Checar inputs e textarea required
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    isValid = false;
+                    missingReason = 'Preencha todos os campos obrigatórios (*)';
+                }
+            });
+
+            // Exige seleção de subespecialidade
+            if (!subSelect.value) {
+                isValid = false;
+                missingReason = 'Selecione a hipótese diagnóstica da subespecialidade';
+            }
+
+            // Atualiza UI do botão de envio
+            if (isValid) {
+                submitBtn.disabled = false;
+                submitBtn.className = 'btn bg-unb hover:bg-green-700 text-white font-bold border-none w-full sm:w-auto transition-all duration-300 shadow-md';
+                submitHelp.classList.add('hidden');
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.className = 'btn btn-disabled bg-gray-300 text-gray-500 font-bold border-none w-full sm:w-auto transition-all duration-300';
+                submitHelp.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" /></svg> ${missingReason}`;
+                submitHelp.classList.remove('hidden');
+            }
+        }
+
+        // Listeners para recálculo e validação
+        spo2Input.addEventListener('input', () => { calcularRegulacao(); validateForm(); });
+        o2Input.addEventListener('change', () => { calcularRegulacao(); validateForm(); });
+
+        requiredFields.forEach(field => {
+            field.addEventListener('input', validateForm);
+            field.addEventListener('change', validateForm);
+        });
+
+        document.querySelectorAll('.sub-criteria').forEach(check => {
+            check.addEventListener('change', () => {
+                calcularRegulacao();
+                validateForm();
+            });
+        });
+
+        // 6. Submissão do Encaminhamento
+        function submeterEncaminhamento() {
+            const nivel = calcularRegulacao();
+            const nome = document.getElementById('paciente-nome').value;
+            const sus = document.getElementById('paciente-sus').value;
+            const ubs = document.getElementById('paciente-ubs').value;
+            const sub = subSelect.options[subSelect.selectedIndex].text;
+
+            const modalResumo = document.getElementById('modal-resumo');
+            modalResumo.innerHTML = `
+                <p><strong>Paciente:</strong> ${nome} (SUS/HUB: ${sus})</p>
+                <p><strong>Origem:</strong> ${ubs}</p>
+                <p><strong>Hipótese:</strong> ${sub}</p>
+                <p><strong>Classificação Atribuída:</strong> <span class="font-bold">${nivel}</span></p>
+                <p><strong>Status do Fluxo:</strong> Transmitido eletronicamente para a Regulação Interna do HUB.</p>
+            `;
+            document.getElementById('modal-sucesso').showModal();
+        }
+
+        // 7. Cenários Didáticos Automáticos para Demonstração
+        function carregarCenario(tipo) {
+            limparFormulario();
+
+            if (tipo === 'p1') {
+                document.getElementById('paciente-nome').value = 'Maria Aparecida da Silva';
+                document.getElementById('paciente-sus').value = '898.0012.3456.7890';
+                document.getElementById('paciente-ubs').value = 'UBS 1 Asa Sul';
+                document.getElementById('paciente-crm').value = 'Dra. Roberta Santos - CRM-DF 24512';
+                document.getElementById('clinico-tempo').value = '12';
+                document.getElementById('clinico-spo2').value = '88';
+                document.getElementById('clinico-tabaco').value = '35';
+                document.getElementById('clinico-queixa').value = 'Dispneia progressiva aos mínimos esforços, tosse persistente e episódio recente de hemoptise com expectoração com sangue vivo. RX de tórax evidenciando consolidação em lobo superior.';
+                
+                document.getElementById('check-tc').checked = true;
+                document.getElementById('upload-tc').classList.remove('hidden');
+
+                subSelect.value = 'pneumo-geral';
+                subSelect.dispatchEvent(new Event('change'));
+                document.getElementById('crit-p-hemoptise').checked = true;
+                document.getElementById('crit-p-tosse').checked = true;
+                document.getElementById('crit-p-peso').checked = true;
+
+            } else if (tipo === 'p2') {
+                document.getElementById('paciente-nome').value = 'Carlos Eduardo de Oliveira';
+                document.getElementById('paciente-sus').value = '702.1154.9823.1102';
+                document.getElementById('paciente-ubs').value = 'UBS 1 Itapoã';
+                document.getElementById('paciente-crm').value = 'Dr. Marcos Valério - CRM-DF 19844';
+                document.getElementById('clinico-tempo').value = '24';
+                document.getElementById('clinico-spo2').value = '95';
+                document.getElementById('clinico-tabaco').value = '0';
+                document.getElementById('clinico-queixa').value = 'Asma grave refratária em uso contínuo de corticoide inalatório em dose alta associado a LABA (Etapa 5 GINA) por 8 meses, mantendo despertares noturnos e limitação de atividades diárias.';
+
+                document.getElementById('check-espiro').checked = true;
+                document.getElementById('upload-espiro').classList.remove('hidden');
+
+                subSelect.value = 'asma';
+                subSelect.dispatchEvent(new Event('change'));
+                document.getElementById('crit-a-estagio').checked = true;
+
+            } else if (tipo === 'p3') {
+                document.getElementById('paciente-nome').value = 'Sebastião Pereira Santos';
+                document.getElementById('paciente-sus').value = '801.3321.4456.9012';
+                document.getElementById('paciente-ubs').value = 'UBS 17 Ceilândia';
+                document.getElementById('paciente-crm').value = 'Dr. Thiago Neves - CRM-DF 31050';
+                document.getElementById('clinico-tempo').value = '2';
+                document.getElementById('clinico-spo2').value = '98';
+                document.getElementById('clinico-tabaco').value = '5';
+                document.getElementById('clinico-queixa').value = 'Tosse seca eventual há 2 semanas após resfriado comum. Solicitado parecer especializado por ansiedade familiar, sem outros sintomas associados.';
+
+                document.getElementById('check-rx').checked = true;
+                document.getElementById('upload-rx').classList.remove('hidden');
+
+                subSelect.value = 'pneumo-geral';
+                subSelect.dispatchEvent(new Event('change'));
+                // Sem critérios marcados propositalmente -> Gera P3
+            }
+
+            calcularRegulacao();
+            validateForm();
+        }
+
+        function limparFormulario() {
+            document.getElementById('form-pneumo').reset();
+            document.querySelectorAll('.exam-checkbox').forEach(c => c.checked = false);
+            document.querySelectorAll('input[type="file"]').forEach(f => { f.classList.add('hidden'); f.value = ''; });
+            document.querySelectorAll('.criteria-panel').forEach(p => p.classList.add('hidden'));
+            document.querySelectorAll('.sub-criteria').forEach(c => c.checked = false);
+            calcularRegulacao();
+            validateForm();
+        }
+
+        // Inicialização
+        calcularRegulacao();
+        validateForm();
+    </script>
+</body>
+</html>
