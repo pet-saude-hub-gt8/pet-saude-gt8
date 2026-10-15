@@ -235,7 +235,16 @@ hide:
         <div class="team-info">
           <span class="team-role">Monitora da Graduação</span>
           <h4 class="team-name">Flávia Lima dos Santos</h4>
-          <p class="team-sub">Graduação • UnB</p>
+          <p class="team-sub">Enfermagem • UnB</p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="team-avatar">HC</div>
+        <div class="team-info">
+          <span class="team-role">Monitor da Graduação</span>
+          <h4 class="team-name">Heitor Pinheiro Gonçalves das Chagas</h4>
+          <p class="team-sub">Engenharia de Software – FCTE / UnB</p>
         </div>
       </div>
 
@@ -253,7 +262,7 @@ hide:
         <div class="team-info">
           <span class="team-role">Monitor da Graduação</span>
           <h4 class="team-name">João Victor Macêdo da Cunha</h4>
-          <p class="team-sub">Graduação • UnB</p>
+          <p class="team-sub">Medicina • Faculdade de Medicina (FM/UnB)</p>
         </div>
       </div>
 
@@ -262,7 +271,7 @@ hide:
         <div class="team-info">
           <span class="team-role">Monitora da Graduação</span>
           <h4 class="team-name">Luanna Barros De Almeida</h4>
-          <p class="team-sub">Graduação • UnB</p>
+          <p class="team-sub">Medicina • Faculdade de Medicina (FM/UnB)</p>
         </div>
       </div>
 
@@ -298,7 +307,7 @@ hide:
         <div class="team-info">
           <span class="team-role">Monitor da Graduação</span>
           <h4 class="team-name">Franco Gabriel Barrenechea Bueno</h4>
-          <p class="team-sub">Graduação • UnB</p>
+          <p class="team-sub">Engenharia Mecatrônica • UnB</p>
         </div>
       </div>
     </div>
