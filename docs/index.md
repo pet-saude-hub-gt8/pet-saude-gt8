@@ -6,17 +6,13 @@ hide:
 
 <div class="hero-full">
   <div class="hero-container">
-    <!-- Coluna Esquerda: Textos e Botões -->
+    <!-- Coluna Esquerda: Texto -->
     <div class="hero-text-block">
       <span class="hero-kicker">PET-SAÚDE • INOVAÇÃO DIGITAL NO SUS</span>
       <h1 class="hero-title">GT 8 - Ambulatório de Saúde Integral no HUB</h1>
       <p class="hero-desc">
         Substituindo o preenchimento despadronizado em papel de parecer por formulários digitais didáticos e orientados por critérios clínicos. O objetivo é qualificar a contrarreferência, acelerar a regulação e integrar a atenção terciária com a Atenção Primária à Saúde.
       </p>
-      <div class="hero-buttons">
-        <a href="objetivos/" class="hero-btn hero-btn-primary">Conhecer os Objetivos →</a>
-        <a href="prototipo/" class="hero-btn hero-btn-orange">Acessar Protótipo Digital</a>
-      </div>
     </div>
 
     <!-- Coluna Direita: Card Hospital Parceiro -->
@@ -88,45 +84,6 @@ hide:
       </p>
     </div>
   </a>
-</div>
-
-<!-- ==========================================================================
-     CARD INTERATIVO: APRESENTAÇÃO DE SLIDES EM PDF (COMPACTO E CENTRALIZADO)
-     ========================================================================== -->
-<div class="presentation-section">
-  <div class="presentation-card">
-    <div class="presentation-card-header">
-      <div class="presentation-card-info">
-        <span class="presentation-badge">PET-SAÚDE • APRESENTAÇÃO OFICIAL</span>
-        <h3 class="presentation-title">Apresentação do GT 8 - Ambulatório de Saúde Integral</h3>
-        <p class="presentation-subtitle">Navegue pelos slides interativamente abaixo ou visualize em tela cheia.</p>
-      </div>
-      <div class="presentation-card-actions">
-        <a href="assets/pdf/apresentacao-pet-saude-gt8.pdf" target="_blank" rel="noopener noreferrer" class="presentation-btn presentation-btn-primary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-          Tela Cheia
-        </a>
-        <a href="assets/pdf/apresentacao-pet-saude-gt8.pdf" download="Apresentacao-PET-Saude-GT8.pdf" class="presentation-btn presentation-btn-secondary">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-          Baixar PDF
-        </a>
-      </div>
-    </div>
-
-    <div class="presentation-embed-wrapper">
-      <iframe 
-        src="assets/pdf/apresentacao-pet-saude-gt8.pdf#toolbar=1&navpanes=0&view=FitH" 
-        class="presentation-iframe" 
-        title="Apresentação do Projeto PET-Saúde GT 8"
-        loading="lazy">
-      </iframe>
-    </div>
-
-    <div class="presentation-fallback-bar">
-      <span>💡 Dica: Utilize a barra superior do visualizador para aproximar o zoom ou alternar slides.</span>
-      <a href="assets/pdf/apresentacao-pet-saude-gt8.pdf" target="_blank" rel="noopener noreferrer">Abrir arquivo direto →</a>
-    </div>
-  </div>
 </div>
 
 
