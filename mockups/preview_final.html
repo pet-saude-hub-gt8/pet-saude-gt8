@@ -1,0 +1,1814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PET-Saúde GT 8 | HUB - UnB — Pré-visualização Final Consolidada</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       RESET & TOKENS DE DESIGN (DESIGN SYSTEM MKDOCS MATERIAL)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary-navy: #0c3258;
+      --primary-navy-dark: #061122;
+      --brand-blue: #0284c7;
+      --brand-blue-light: #38bdf8;
+      --pet-orange: #ea5b2d;
+      --unb-green: #009a44;
+      --unb-green-vibrant: #10b981;
+      --bg-slate: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-slate);
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
+    }
+
+    /* ==========================================================================
+       BARRA DE NAVEGAÇÃO SUPERIOR DO PORTAL (5 ABAS OFICIAIS)
+       ========================================================================== */
+    .portal-header {
+      background: #0d3b66;
+      border-bottom: 1px solid #092c4c;
+      padding: 0.65rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .portal-header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+    }
+
+    .portal-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .portal-logo-box {
+      width: 36px;
+      height: 36px;
+      background: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--primary-navy);
+      font-size: 0.9rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .portal-title {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .portal-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .portal-nav-link {
+      background: none;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 0.2rem;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .portal-nav-link:hover {
+      color: #ffffff;
+    }
+
+    .portal-nav-link.active {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .portal-nav-link.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 2px;
+      background-color: var(--brand-blue-light);
+    }
+
+    /* ==========================================================================
+       BANNER DE PÁGINA
+       ========================================================================== */
+    .page-header-banner {
+      width: 100%;
+      background: radial-gradient(circle at 8% 25%, rgba(234, 91, 45, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 92% 75%, rgba(0, 154, 68, 0.12) 0%, transparent 45%),
+                  #0c3258 !important;
+      padding: 2.2rem 1.75rem;
+      margin-bottom: 2.2rem;
+      border-bottom: 3px solid transparent !important;
+      border-image: linear-gradient(90deg, #ea5b2d 0%, #009a44 48%, #0284c7 85%) 1 !important;
+      color: #ffffff;
+    }
+
+    .page-header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .page-header-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .page-header-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .page-header-title {
+      font-size: 2.15rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header-subtitle {
+      font-size: 1rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
+    .page-header-minicard {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 0.75rem 1.15rem;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    }
+
+    .page-header-minicard-logo {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-navy);
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+
+    .page-header-minicard-text {
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .minicard-sub {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .minicard-sub::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #009a44;
+    }
+
+    .page-main-container {
+      max-width: 1200px;
+      margin: 0 auto 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================================
+       LAYOUT DA ABA CONTRIBUIÇÃO (GRID COM SUMÁRIO TOC À DIREITA)
+       ========================================================================== */
+    .contrib-layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .contrib-main-content {
+      min-width: 0;
+    }
+
+    /* Sumário Lateral "Nesta página" (MkDocs Material style) */
+    .toc-sidebar {
+      position: sticky;
+      top: 80px;
+      background: transparent;
+      padding-left: 1rem;
+      border-left: 2px solid #e2e8f0;
+      margin-top: 5.5rem;
+    }
+
+    .toc-title {
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    .toc-nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .toc-link {
+      color: #475569;
+      text-decoration: none;
+      font-size: 0.82rem;
+      line-height: 1.35;
+      padding: 0.25rem 0;
+      transition: all 0.2s ease;
+      display: block;
+      border-left: 2px solid transparent;
+      margin-left: -1rem;
+      padding-left: calc(1rem - 2px);
+    }
+
+    .toc-link:hover {
+      color: var(--brand-blue);
+    }
+
+    .toc-link.is-active {
+      color: var(--brand-blue);
+      font-weight: 700;
+      border-left-color: var(--brand-blue);
+    }
+
+    /* Stepper Horizontal 1 -> 2 -> 3 */
+    .stepper-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .step-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.15rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .step-card:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+
+    .step-card.active {
+      border-color: var(--brand-blue);
+      background: #f0f9ff;
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.12);
+    }
+
+    .step-card.active::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid var(--brand-blue);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-num {
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: var(--brand-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      line-height: 1.3;
+    }
+
+    /* Badges de Status Geral */
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-status-concluido { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+    .badge-status-andamento { background: #fef9c3; color: #854d0e; border: 1px solid #fef08a; }
+    .badge-status-planejado { background: #f1f5f9; color: #64748b; border: 1px solid #cbd5e1; }
+
+    /* Seções dos Objetivos Específicos */
+    .objective-section {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      margin-bottom: 2.5rem;
+      padding: 1.85rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      scroll-margin-top: 90px;
+    }
+
+    .obj-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .obj-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--brand-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .obj-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+
+    .obj-desc {
+      font-size: 0.95rem;
+      color: #334155;
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+    }
+
+    /* Resultados Esperados em Bullet Points Simples */
+    .obj-results-box {
+      margin-bottom: 1.5rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .obj-results-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--primary-navy);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.45rem;
+    }
+
+    .obj-results-bullets {
+      margin-left: 1.25rem;
+      font-size: 0.9rem;
+      color: #334155;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    /* ==========================================================================
+       TABELAS (LIMPAS, SEM POLUIÇÃO VISUAL)
+       ========================================================================== */
+    .clean-table-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+
+    .clean-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .clean-table th {
+      background: #0f2747;
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid #1a3a63;
+    }
+
+    .clean-table th.header-group {
+      background: #081d38;
+      text-align: center;
+      font-size: 0.82rem;
+      border-bottom: 2px solid var(--brand-blue-light);
+    }
+
+    .clean-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: middle;
+    }
+
+    .clean-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .member-cell {
+      font-weight: 600;
+      color: var(--primary-navy);
+      background: #ffffff;
+    }
+
+    .pill-role-preceptor {
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .pill-role-monitor {
+      background: #ecfdf5;
+      color: #007a36;
+      border: 1px solid #a7f3d0;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .status-cell-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .tag-disponivel {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      cursor: pointer;
+    }
+
+    .tag-elaboracao {
+      background: #fffbeb;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+
+    .tag-definir {
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Legenda Discreta no Rodapé da Tabela */
+    .table-legend-footer {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+      padding: 0.45rem 0.25rem;
+      font-size: 0.76rem;
+      color: #64748b;
+      margin-top: 0.4rem;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot-disponivel { background: var(--unb-green-vibrant); }
+    .dot-elaboracao { background: #f59e0b; }
+    .dot-definir { background: #94a3b8; }
+
+    /* Bloco de Notas Consolidado */
+    .table-note-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.1rem 1.35rem;
+      margin-top: 1.25rem;
+      font-size: 0.86rem;
+      color: #475569;
+      line-height: 1.5;
+    }
+
+    .note-title {
+      font-weight: 700;
+      color: var(--primary-navy);
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .note-list {
+      margin-left: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .note-link {
+      color: var(--brand-blue);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .note-link:hover {
+      text-decoration: underline;
+      color: #0369a1;
+    }
+
+    /* Estado Vazio Puro (Etapas 2 e 3) */
+    .empty-simple-card {
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      color: #64748b;
+    }
+
+    .empty-simple-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ==========================================================================
+       ABA RESULTADOS (RESULTADOS C - NESTED TABS POR OBJETIVO)
+       ========================================================================== */
+    .rc-etapas-nav {
+      display: flex;
+      gap: 0.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .rc-etapa-tab {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 0.7rem 1.35rem;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .rc-etapa-tab:hover {
+      border-color: #cbd5e1;
+    }
+
+    .rc-etapa-tab.active {
+      background: var(--primary-navy);
+      color: #ffffff;
+      border-color: var(--primary-navy);
+      box-shadow: 0 4px 12px rgba(12, 50, 88, 0.2);
+    }
+
+    .rc-obj-subtabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 1.5rem;
+    }
+
+    .rc-obj-tab-btn {
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 0.65rem 1.25rem;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .rc-obj-tab-btn:hover {
+      color: var(--brand-blue);
+    }
+
+    .rc-obj-tab-btn.active {
+      color: var(--brand-blue);
+      border-bottom-color: var(--brand-blue);
+      font-weight: 800;
+    }
+
+    .res-table-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      margin-bottom: 0.5rem;
+    }
+
+    .res-table-header {
+      background: #f8fafc;
+      padding: 1.15rem 1.35rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .res-table-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .res-table-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--brand-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .res-table-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      margin: 0;
+    }
+
+    .res-table-summary {
+      font-size: 0.86rem;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .res-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .res-table th {
+      background: #0f2747;
+      color: #ffffff;
+      padding: 0.75rem 1.15rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-right: 1px solid #1a3a63;
+    }
+
+    .res-table th:last-child {
+      border-right: none;
+    }
+
+    .res-table th.res-super-header {
+      background: #081d38;
+      text-align: center;
+      font-size: 0.82rem;
+      border-bottom: 2px solid var(--brand-blue-light);
+    }
+
+    .res-table td {
+      padding: 0.8rem 1.15rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+      vertical-align: middle;
+    }
+
+    .res-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .res-spec-name {
+      font-weight: 700;
+      color: var(--primary-navy);
+    }
+
+    .res-table-footer {
+      background: #f8fafc;
+      padding: 0.7rem 1.15rem;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    /* ==========================================================================
+       PAINEL LATERAL FLUTUANTE DE DECISÕES (OFFCANVAS)
+       ========================================================================== */
+    .btn-floating-decisions {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      background: #0c3258;
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 9999px;
+      padding: 0.65rem 1.25rem;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-floating-decisions:hover {
+      background: var(--brand-blue);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(2, 132, 199, 0.45);
+    }
+
+    .decisions-drawer-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 22, 43, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: none;
+    }
+
+    .decisions-drawer-backdrop.active {
+      display: block;
+    }
+
+    .decisions-drawer {
+      position: fixed;
+      top: 0;
+      right: -560px;
+      width: 100%;
+      max-width: 540px;
+      height: 100vh;
+      background: #ffffff;
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+      z-index: 2001;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .decisions-drawer.active {
+      right: 0;
+    }
+
+    .drawer-header {
+      background: #0c3258;
+      color: #ffffff;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--brand-blue-light);
+    }
+
+    .drawer-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+      font-size: 0.9rem;
+      color: #334155;
+      line-height: 1.55;
+    }
+
+    .drawer-body h4 {
+      color: var(--primary-navy);
+      font-size: 0.98rem;
+      font-weight: 800;
+      margin: 1.25rem 0 0.5rem 0;
+    }
+
+    .drawer-body h4:first-child {
+      margin-top: 0;
+    }
+
+    .drawer-body ul {
+      margin-left: 1.2rem;
+      margin-bottom: 1rem;
+    }
+
+    .drawer-body li {
+      margin-bottom: 0.4rem;
+    }
+
+    .drawer-badge {
+      background: #f1f5f9;
+      color: var(--primary-navy);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      border: 1px solid #cbd5e1;
+    }
+
+    /* Placeholders das outras abas */
+    .simple-portal-placeholder {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #64748b;
+    }
+
+    /* Responsividade */
+    @media (max-width: 992px) {
+      .contrib-layout-grid {
+        grid-template-columns: 1fr;
+      }
+      .toc-sidebar {
+        display: none;
+      }
+      .stepper-nav { grid-template-columns: 1fr; }
+      .page-header-container { flex-direction: column; align-items: flex-start; }
+      .rc-obj-subtabs { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       BARRA DE NAVEGAÇÃO DO PORTAL (5 ABAS OFICIAIS)
+       ========================================================================== -->
+  <header class="portal-header">
+    <div class="portal-header-container">
+      <div class="portal-brand">
+        <div class="portal-logo-box">PET</div>
+        <span class="portal-title">PET-Saúde GT 8 | HUB - UnB</span>
+      </div>
+
+      <nav class="portal-nav-menu">
+        <button class="portal-nav-link" onclick="switchNavTab('inicio', this)">Início</button>
+        <button class="portal-nav-link" onclick="switchNavTab('objetivos', this)">Objetivos</button>
+        <button class="portal-nav-link" onclick="switchNavTab('equipe', this)">Equipe</button>
+        <button class="portal-nav-link active" onclick="switchNavTab('contribuicao', this)">Contribuição</button>
+        <button class="portal-nav-link" onclick="switchNavTab('resultados', this)">Resultados</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       PÁGINAS PLACEHOLDERS (INÍCIO, OBJETIVOS, EQUIPE)
+       ========================================================================== -->
+  <section class="portal-page-section" id="page-inicio" style="display: none;">
+    <div class="page-header-banner">
+      <div class="page-header-container">
+        <div class="page-header-left">
+          <span class="page-header-kicker">PET-SAÚDE • INOVAÇÃO DIGITAL NO SUS</span>
+          <h1 class="page-header-title">GT 8 - Ambulatório de Saúde Integral no HUB</h1>
+          <p class="page-header-subtitle">Página inicial institucional com apresentação dos objetivos e equipe do projeto.</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-main-container">
+      <div class="simple-portal-placeholder">
+        <h3>Página Inicial Institucional</h3>
+        <p>A página inicial já está com os botões e os slides removidos conforme o ajuste anterior.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="portal-page-section" id="page-objetivos" style="display: none;">
+    <div class="page-header-banner">
+      <div class="page-header-container">
+        <div class="page-header-left">
+          <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+          <h1 class="page-header-title">Objetivos do Projeto</h1>
+          <p class="page-header-subtitle">Metas gerais, específicas e cenários de prática do GT 8.</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-main-container">
+      <div class="simple-portal-placeholder">
+        <h3>Objetivos Gerais do GT 8</h3>
+        <p>Conteúdo da aba Objetivos mantido como no MkDocs atual.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="portal-page-section" id="page-equipe" style="display: none;">
+    <div class="page-header-banner">
+      <div class="page-header-container">
+        <div class="page-header-left">
+          <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+          <h1 class="page-header-title">Equipe do Projeto</h1>
+          <p class="page-header-subtitle">Docentes, preceptores e monitores com cursos atualizados.</p>
+        </div>
+      </div>
+    </div>
+    <div class="page-main-container">
+      <div class="simple-portal-placeholder">
+        <h3>Equipe Completa</h3>
+        <p>Aba Equipe com todos os monitores e cursos atualizados (incluindo Heitor Chagas).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PÁGINA: CONTRIBUIÇÃO (COM TOC LATERAL STICKY E BULLETS SIMPLES)
+       ========================================================================== -->
+  <section class="portal-page-section" id="page-contribuicao">
+    
+    <div class="page-header-banner">
+      <div class="page-header-container">
+        <div class="page-header-left">
+          <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+          <h1 class="page-header-title">Contribuição do GT 8</h1>
+          <p class="page-header-subtitle">
+            Plano operacional distribuído pelas 3 etapas do projeto e catálogo de formulários e protótipos de encaminhamento.
+          </p>
+        </div>
+        <div class="page-header-minicard">
+          <div class="page-header-minicard-logo">HUB</div>
+          <div class="page-header-minicard-text">
+            <span class="minicard-sub">Hospital Parceiro</span>
+            <span>HUB / UnB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-main-container">
+
+      <!-- Stepper Horizontal 1 -> 2 -> 3 -->
+      <div class="stepper-nav">
+        <div class="step-card active" onclick="contribSelectStep(1, this)">
+          <div class="step-header">
+            <span class="step-num">01 · ETAPA 1</span>
+            <span class="badge-status badge-status-concluido">Concluído</span>
+          </div>
+          <h4 class="step-title">Diagnóstico & Estruturação</h4>
+        </div>
+
+        <div class="step-card" onclick="contribSelectStep(2, this)">
+          <div class="step-header">
+            <span class="step-num">02 · ETAPA 2</span>
+            <span class="badge-status badge-status-andamento">Em Breve</span>
+          </div>
+          <h4 class="step-title">Integração & Fluxos</h4>
+        </div>
+
+        <div class="step-card" onclick="contribSelectStep(3, this)">
+          <div class="step-header">
+            <span class="step-num">03 · ETAPA 3</span>
+            <span class="badge-status badge-status-planejado">Em Breve</span>
+          </div>
+          <h4 class="step-title">Consolidação & Homologação</h4>
+        </div>
+      </div>
+
+      <!-- LAYOUT EM GRID: CONTEÚDO PRINCIPAL + SUMÁRIO LATERAL STICKY -->
+      <div class="contrib-layout-grid">
+        
+        <!-- COLUNA PRINCIPAL DA ETAPA -->
+        <div class="contrib-main-content">
+          
+          <!-- PAINEL ETAPA 1 -->
+          <div id="contrib-panel-etapa-1">
+
+            <!-- OBJETIVO ESPECÍFICO 01 -->
+            <div class="objective-section" id="obj-01">
+              <div class="obj-header">
+                <span class="obj-badge">Objetivo Específico 01</span>
+                <span class="badge-status badge-status-concluido">Entregue</span>
+              </div>
+              <h3 class="obj-title">Sistemas de Informação HUB e UBSs</h3>
+              <p class="obj-desc">
+                Aprimorar e/ou construir propostas de sistemas de informação entre o ambulatório de Saúde Integral do HUB e as Unidades Básicas de Saúde, utilizando ferramentas de saúde integral.
+              </p>
+
+              <!-- Resultados Esperados em Bullet Points Simples -->
+              <div class="obj-results-box">
+                <div class="obj-results-title">Resultados Esperados:</div>
+                <ul class="obj-results-bullets">
+                  <li>Mapeamento de Processos</li>
+                  <li>Diagnóstico Situacional (ferramentas e protocolos)</li>
+                  <li>Proposta de aprimoramento</li>
+                </ul>
+              </div>
+
+              <!-- TABELA A DE RESPONSÁVEIS (OBJETIVO 01) -->
+              <div class="clean-table-card">
+                <table class="clean-table">
+                  <thead>
+                    <tr>
+                      <th rowspan="2" style="width: 14%;">Cargo</th>
+                      <th rowspan="2" style="width: 22%;">Integrante</th>
+                      <th colspan="2" class="header-group">Resultado / Especialidade</th>
+                    </tr>
+                    <tr>
+                      <th style="width: 32%;">Formulário de Encaminhamento</th>
+                      <th style="width: 32%;">Protótipo Digital</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Luanna (3 especialidades) -->
+                    <tr>
+                      <td rowspan="3"><span class="pill-role-monitor">Monitora</span></td>
+                      <td rowspan="3" class="member-cell">Luanna Barros</td>
+                      <td>Pneumologia</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td>Gastroenterologia</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td>Coloproctologia</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+
+                    <!-- Mayara (1 especialidade) -->
+                    <tr>
+                      <td><span class="pill-role-monitor">Monitora</span></td>
+                      <td class="member-cell">Mayara Marques</td>
+                      <td>Nutrição adulto</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+
+                    <!-- Franco (2 especialidades) -->
+                    <tr>
+                      <td rowspan="2"><span class="pill-role-monitor">Monitor</span></td>
+                      <td rowspan="2" class="member-cell">Franco Bueno</td>
+                      <td>Cardiologia</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td>Ginecologia</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+
+                    <!-- Fernanda (A definir) -->
+                    <tr>
+                      <td><span class="pill-role-preceptor">Preceptora</span></td>
+                      <td class="member-cell">Fernanda Santana</td>
+                      <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                      <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    </tr>
+
+                    <!-- Lucas (2 especialidades) -->
+                    <tr>
+                      <td rowspan="2"><span class="pill-role-preceptor">Preceptor</span></td>
+                      <td rowspan="2" class="member-cell">Lucas Alves</td>
+                      <td>Ginecologia</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td>Cirurgia geral</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Legenda Discreta no Rodapé da Tabela -->
+              <div class="table-legend-footer">
+                <span class="legend-item"><span class="legend-dot dot-disponivel"></span> Disponível</span>
+                <span class="legend-item"><span class="legend-dot dot-elaboracao"></span> Em elaboração</span>
+                <span class="legend-item"><span class="legend-dot dot-definir"></span> A definir</span>
+              </div>
+
+              <!-- Nota Unificada do Compilado -->
+              <div class="table-note-box">
+                <div class="note-title">📝 Diretrizes & Compilado do Objetivo 01:</div>
+                <ul class="note-list">
+                  <li>Disponibilizar os documentos encontrados (com referência), o processo atual e a rastreabilidade.</li>
+                  <li>Disponibilizar o documento com as anotações sobre os resultados encontrados.</li>
+                  <li>
+                    <a href="https://docs.google.com/document/d/114v-ZuzqFLFD60hO1DKsan3i5f0yNYwqGF_O8JFxN6s/edit?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="note-link">
+                      📄 Compilado do trabalho realizado (Google Docs) ↗
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- OBJETIVO ESPECÍFICO 02 (ESTRUTURA HÍBRIDA DA RLS) -->
+            <div class="objective-section" id="obj-02">
+              <div class="obj-header">
+                <span class="obj-badge">Objetivo Específico 02</span>
+                <span class="badge-status badge-status-concluido">RLS Concluída</span>
+              </div>
+              <h3 class="obj-title">Revisão Rápida (RLS) sobre Fluxos no Brasil</h3>
+              <p class="obj-desc">
+                Realizar uma revisão rápida sobre sistema de fluxos de referência e contrarreferência no Brasil.
+              </p>
+
+              <!-- Resultados Esperados em Bullet Points Simples -->
+              <div class="obj-results-box">
+                <div class="obj-results-title">Resultados Esperados:</div>
+                <ul class="obj-results-bullets">
+                  <li>RLS</li>
+                  <li>Indicadores de avaliação</li>
+                </ul>
+              </div>
+
+              <!-- TABELA DA RLS (OBJETIVO 02) -->
+              <div class="clean-table-card">
+                <table class="clean-table">
+                  <thead>
+                    <tr>
+                      <th rowspan="2" style="width: 14%;">Cargo</th>
+                      <th rowspan="2" style="width: 26%;">Integrante</th>
+                      <th colspan="2" class="header-group">Rascunho do Artigo</th>
+                    </tr>
+                    <tr>
+                      <th style="width: 30%;">Artigo</th>
+                      <th style="width: 30%;">Registro das Pesquisas</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Monitores (rowspan 4) -->
+                    <tr>
+                      <td rowspan="4"><span class="pill-role-monitor">Monitores</span></td>
+                      <td class="member-cell">
+                        Paula Lira <span style="font-size: 0.74rem; color: #64748b; font-weight: normal;">(Revisora)</span>
+                      </td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td class="member-cell">Plabio Lucas</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td class="member-cell">Flávia Lima</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td class="member-cell">Hugo de Verson</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+
+                    <!-- Preceptores (rowspan 2) -->
+                    <tr>
+                      <td rowspan="2"><span class="pill-role-preceptor">Preceptores</span></td>
+                      <td class="member-cell">Pedro Ruas</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td class="member-cell">Sabrina Feitosa</td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                      <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Legenda Discreta no Rodapé da Tabela -->
+              <div class="table-legend-footer">
+                <span class="legend-item"><span class="legend-dot dot-disponivel"></span> Disponível</span>
+                <span class="legend-item"><span class="legend-dot dot-elaboracao"></span> Em elaboração</span>
+                <span class="legend-item"><span class="legend-dot dot-definir"></span> A definir</span>
+              </div>
+
+              <!-- Bloco de Notas Consolidado da RLS -->
+              <div class="table-note-box">
+                <div class="note-title">📚 Diretrizes & Esboço da Revisão Rápida (RLS):</div>
+                <div style="margin-bottom: 0.6rem;">
+                  <strong>Requisitos obrigatórios do rascunho:</strong>
+                  <ol style="margin-left: 1.25rem; margin-top: 0.25rem;">
+                    <li>Questões de pesquisa</li>
+                    <li>Base de dados</li>
+                    <li>Estratégia de busca</li>
+                    <li>Critérios de inclusão e exclusão</li>
+                  </ol>
+                  <div style="margin-top: 0.25rem;">• Rastreabilidade metódica do levantamento bibliográfico.</div>
+                </div>
+                <div style="margin-bottom: 0.6rem;">
+                  <strong>Diretriz de armazenamento:</strong> Artigos encontrados devem ser armazenados com a referência do autor.
+                </div>
+                <div>
+                  <!-- TODO: URL oficial do Esboço da RSL -->
+                  <a href="#" onclick="alert('Link para o documento oficial de Esboço da RSL!'); return false;" class="note-link">
+                    📄 Acessar Esboço da RSL ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- OBJETIVO ESPECÍFICO 03 -->
+            <div class="objective-section" id="obj-03">
+              <div class="obj-header">
+                <span class="obj-badge">Objetivo Específico 03</span>
+                <span class="badge-status badge-status-andamento">Em Validação</span>
+              </div>
+              <h3 class="obj-title">Protocolo de Atendimento e Encaminhamento</h3>
+              <p class="obj-desc">
+                Construir o protocolo de atendimento e de encaminhamento do Ambulatório de Saúde Integral.
+              </p>
+
+              <!-- Resultados Esperados em Bullet Points Simples -->
+              <div class="obj-results-box">
+                <div class="obj-results-title">Resultados Esperados:</div>
+                <ul class="obj-results-bullets">
+                  <li>Protocolo de atendimento</li>
+                  <li>Protocolo de encaminhamento padronizado</li>
+                </ul>
+              </div>
+
+              <!-- TABELA DE RESPONSÁVEIS (OBJETIVO 03) -->
+              <div class="clean-table-card">
+                <table class="clean-table">
+                  <thead>
+                    <tr>
+                      <th rowspan="2" style="width: 14%;">Cargo</th>
+                      <th rowspan="2" style="width: 22%;">Integrante</th>
+                      <th colspan="2" class="header-group">Resultado / Especialidade</th>
+                    </tr>
+                    <tr>
+                      <th style="width: 32%;">Formulário de Encaminhamento</th>
+                      <th style="width: 32%;">Protótipo Digital</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><span class="pill-role-preceptor">Preceptor</span></td>
+                      <td class="member-cell">Flávio Torres</td>
+                      <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                      <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="pill-role-preceptor">Preceptor</span></td>
+                      <td class="member-cell">Pedro Ruas</td>
+                      <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                      <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    </tr>
+                    <tr>
+                      <td><span class="pill-role-monitor">Monitor</span></td>
+                      <td class="member-cell">João Victor Macêdo</td>
+                      <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                      <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Legenda Discreta no Rodapé da Tabela -->
+              <div class="table-legend-footer">
+                <span class="legend-item"><span class="legend-dot dot-disponivel"></span> Disponível</span>
+                <span class="legend-item"><span class="legend-dot dot-elaboracao"></span> Em elaboração</span>
+                <span class="legend-item"><span class="legend-dot dot-definir"></span> A definir</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- PAINEL ETAPA 2 (ESTADO EM BREVE) -->
+          <div id="contrib-panel-etapa-2" style="display: none;">
+            <div class="empty-simple-card">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">⏳</span>
+              <h3 class="empty-simple-title">Etapa 2: Integração & Fluxos</h3>
+              <p>Em breve.</p>
+            </div>
+          </div>
+
+          <!-- PAINEL ETAPA 3 (ESTADO EM BREVE) -->
+          <div id="contrib-panel-etapa-3" style="display: none;">
+            <div class="empty-simple-card">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🎯</span>
+              <h3 class="empty-simple-title">Etapa 3: Consolidação & Homologação</h3>
+              <p>Em breve.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- COLUNA DIREITA: SUMÁRIO TOC LATERAL STICKY (MkDocs Material style) -->
+        <aside class="toc-sidebar" id="contrib-toc-sidebar">
+          <span class="toc-title">Nesta página</span>
+          <nav class="toc-nav-list" id="toc-nav-list">
+            <a href="#obj-01" class="toc-link is-active" onclick="smoothScrollTo('obj-01'); return false;">Objetivo Específico 01</a>
+            <a href="#obj-02" class="toc-link" onclick="smoothScrollTo('obj-02'); return false;">Objetivo Específico 02</a>
+            <a href="#obj-03" class="toc-link" onclick="smoothScrollTo('obj-03'); return false;">Objetivo Específico 03</a>
+          </nav>
+        </aside>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       PÁGINA: RESULTADOS (RESULTADOS C - NESTED TABS POR OBJETIVO)
+       ========================================================================== -->
+  <section class="portal-page-section" id="page-resultados" style="display: none;">
+    
+    <div class="page-header-banner">
+      <div class="page-header-container">
+        <div class="page-header-left">
+          <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+          <h1 class="page-header-title">Resultados e Entregas</h1>
+          <p class="page-header-subtitle">
+            Catálogo direto de formulários de encaminhamento e protótipos digitais por especialidade e objetivo.
+          </p>
+        </div>
+        <div class="page-header-minicard">
+          <div class="page-header-minicard-logo">HUB</div>
+          <div class="page-header-minicard-text">
+            <span class="minicard-sub">Hospital Parceiro</span>
+            <span>HUB / UnB</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-main-container">
+
+      <!-- Seletor de Etapas -->
+      <div class="rc-etapas-nav">
+        <button class="rc-etapa-tab active" onclick="resSelectEtapa(1, this)">01 · Etapa 1 (Ativa)</button>
+        <button class="rc-etapa-tab" onclick="resSelectEtapa(2, this)">02 · Etapa 2</button>
+        <button class="rc-etapa-tab" onclick="resSelectEtapa(3, this)">03 · Etapa 3</button>
+      </div>
+
+      <!-- CONTEÚDO ETAPA 1 (SEM RESUMO NUMÉRICO POLUÍDO) -->
+      <div id="res-panel-etapa-1">
+
+        <!-- Sub-abas por Objetivo (Resultados C) -->
+        <div class="rc-obj-subtabs">
+          <button class="rc-obj-tab-btn active" onclick="resSelectObj(1, this)">
+            🎯 Objetivo 01 · Sistemas & Formulários
+          </button>
+          <button class="rc-obj-tab-btn" onclick="resSelectObj(2, this)">
+            📚 Objetivo 02 · Revisão Rápida (RLS)
+          </button>
+          <button class="rc-obj-tab-btn" onclick="resSelectObj(3, this)">
+            🩺 Objetivo 03 · Protocolo Clínico
+          </button>
+        </div>
+
+        <!-- TABELA DO OBJETIVO 01 NA ABA RESULTADOS (7 ESPECIALIDADES ALFABÉTICAS) -->
+        <div id="res-pane-obj-1">
+          <div class="res-table-card">
+            <div class="res-table-header">
+              <div class="res-table-title-wrap">
+                <span class="res-table-badge">Objetivo Específico 01</span>
+                <h3 class="res-table-title">Sistemas de Informação HUB e UBSs</h3>
+                <p class="res-table-summary">Mapeamento de processos e construção de formulários didáticos digitais.</p>
+              </div>
+            </div>
+
+            <table class="res-table">
+              <thead>
+                <tr>
+                  <th colspan="2" class="res-super-header">Resultado / Especialidade</th>
+                </tr>
+                <tr>
+                  <th style="width: 50%;">Formulário de Encaminhamento</th>
+                  <th style="width: 50%;">Protótipo Digital</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- 1. Cardiologia -->
+                <tr>
+                  <td><div class="res-spec-name">Cardiologia</div></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- 2. Cirurgia geral -->
+                <tr>
+                  <td><div class="res-spec-name">Cirurgia geral</div></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- 3. Coloproctologia -->
+                <tr>
+                  <td><div class="res-spec-name">Coloproctologia</div></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- 4. Gastroenterologia -->
+                <tr>
+                  <td><div class="res-spec-name">Gastroenterologia</div></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- 5. Ginecologia (Linha única desduplicada) -->
+                <tr>
+                  <td><div class="res-spec-name">Ginecologia</div></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- 6. Nutrição adulto -->
+                <tr>
+                  <td><div class="res-spec-name">Nutrição adulto</div></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- 7. Pneumologia -->
+                <tr>
+                  <td><div class="res-spec-name">Pneumologia</div></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Rodapé Discreto com Contador de Pendência -->
+            <div class="res-table-footer">
+              <span>Ordenação alfabética (A-Z).</span>
+              <span>📌 1 especialidade a definir</span>
+            </div>
+          </div>
+
+          <!-- Legenda Discreta Abaixo da Tabela -->
+          <div class="table-legend-footer">
+            <span class="legend-item"><span class="legend-dot dot-disponivel"></span> 🟢 Disponível</span>
+            <span class="legend-item"><span class="legend-dot dot-elaboracao"></span> 🟡 Em elaboração</span>
+            <span class="legend-item"><span class="legend-dot dot-definir"></span> ⚪ A definir</span>
+          </div>
+        </div>
+
+        <!-- TABELA DO OBJETIVO 02 NA ABA RESULTADOS (RASCUNHO DO ARTIGO - SEM INTEGRANTES) -->
+        <div id="res-pane-obj-2" style="display: none;">
+          <div class="res-table-card">
+            <div class="res-table-header">
+              <div class="res-table-title-wrap">
+                <span class="res-table-badge">Objetivo Específico 02</span>
+                <h3 class="res-table-title">Revisão Rápida (RLS) sobre Fluxos no Brasil</h3>
+                <p class="res-table-summary">Síntese de evidências científicas de referência e contrarreferência no Brasil.</p>
+              </div>
+            </div>
+
+            <!-- Tabela com Cabeçalho Agrupado 'Rascunho do Artigo' e Subcolunas 'Artigo' e 'Registro das Pesquisas' (Zero Integrantes) -->
+            <table class="res-table">
+              <thead>
+                <tr>
+                  <th colspan="2" class="res-super-header">Rascunho do Artigo</th>
+                </tr>
+                <tr>
+                  <th style="width: 50%;">Artigo</th>
+                  <th style="width: 50%;">Registro das Pesquisas</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+              </tbody>
+            </table>
+
+            <!-- Rodapé com Link para Esboço da RSL -->
+            <div class="res-table-footer">
+              <span>Entrega vinculada ao rascunho metodológico do artigo da RLS.</span>
+              <div>
+                <!-- TODO: URL oficial do Esboço da RSL -->
+                <a href="#" onclick="alert('Link para o documento oficial de Esboço da RSL!'); return false;" class="note-link">
+                  📄 Acessar Esboço da RSL ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Legenda Discreta Abaixo da Tabela -->
+          <div class="table-legend-footer">
+            <span class="legend-item"><span class="legend-dot dot-disponivel"></span> 🟢 Disponível</span>
+            <span class="legend-item"><span class="legend-dot dot-elaboracao"></span> 🟡 Em elaboração</span>
+            <span class="legend-item"><span class="legend-dot dot-definir"></span> ⚪ A definir</span>
+          </div>
+        </div>
+
+        <!-- CONTEÚDO DO OBJETIVO 03 NA ABA RESULTADOS -->
+        <div id="res-pane-obj-3" style="display: none;">
+          <div class="res-table-card">
+            <div class="res-table-header">
+              <div class="res-table-title-wrap">
+                <span class="res-table-badge">Objetivo Específico 03</span>
+                <h3 class="res-table-title">Protocolo de Atendimento e Encaminhamento</h3>
+                <p class="res-table-summary">Normatização dos critérios de acolhimento do Ambulatório de Saúde Integral.</p>
+              </div>
+            </div>
+
+            <div style="padding: 2.2rem 1.5rem; text-align: center; color: #64748b; background: #fafafa;">
+              <p style="font-size: 0.95rem; margin-bottom: 0.85rem;">
+                🩺 <strong>Minuta de Protocolo Clínico Geral:</strong> Os critérios clínicos regulatórios gerais estão em fase de homologação técnica junto ao corpo clínico do HUB.
+              </p>
+              <span class="status-cell-tag tag-elaboracao" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe; font-size: 0.85rem; padding: 0.45rem 0.9rem;">
+                Minuta v0.9 em análise pelo corpo clínico
+              </span>
+            </div>
+
+            <div class="res-table-footer">
+              <span>Critérios gerais de regulação assistencial.</span>
+              <span>Especialidades ambulatoriais vinculadas ao Objetivo 01</span>
+            </div>
+          </div>
+
+          <div class="table-legend-footer">
+            <span class="legend-item"><span class="legend-dot dot-disponivel"></span> 🟢 Disponível</span>
+            <span class="legend-item"><span class="legend-dot dot-elaboracao"></span> 🟡 Em elaboração</span>
+            <span class="legend-item"><span class="legend-dot dot-definir"></span> ⚪ A definir</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PAINEL ETAPA 2 (ESTADO EM BREVE) -->
+      <div id="res-panel-etapa-2" style="display: none;">
+        <div class="empty-simple-card">
+          <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">⏳</span>
+          <h3 class="empty-simple-title">Etapa 2: Integração & Fluxos</h3>
+          <p>Em breve.</p>
+        </div>
+      </div>
+
+      <!-- PAINEL ETAPA 3 (ESTADO EM BREVE) -->
+      <div id="res-panel-etapa-3" style="display: none;">
+        <div class="empty-simple-card">
+          <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🎯</span>
+          <h3 class="empty-simple-title">Etapa 3: Consolidação & Homologação</h3>
+          <p>Em breve.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       RODAPÉ DO PORTAL
+       ========================================================================== -->
+  <footer style="text-align: center; padding: 2.5rem 1rem; color: #64748b; font-size: 0.85rem; border-top: 1px solid #e2e8f0; background: #ffffff;">
+    PET-Saúde: Informação e Saúde Digital • Grupo de Trabalho 08 (HUB - UnB)<br>
+    Portal de Documentação Técnica e Operacional de Contrarreferência Ambulatorial.
+  </footer>
+
+  <!-- ==========================================================================
+       BOTÃO FLUTUANTE & GAVETA LATERAL DE DECISÕES
+       ========================================================================== -->
+  <button class="btn-floating-decisions" onclick="toggleDecisionsDrawer()">
+    <span>📋</span> Decisões Consolidadas
+  </button>
+
+  <div class="decisions-drawer-backdrop" id="drawer-backdrop" onclick="toggleDecisionsDrawer()"></div>
+  <aside class="decisions-drawer" id="decisions-drawer">
+    <div class="drawer-header">
+      <div style="font-weight: 800; font-size: 1.05rem; display: flex; align-items: center; gap: 0.5rem;">
+        <span>📋</span> Decisões de Arquitetura e UX
+      </div>
+      <button style="background: none; border: none; color: #ffffff; font-size: 1.5rem; cursor: pointer;" onclick="toggleDecisionsDrawer()">×</button>
+    </div>
+    <div class="drawer-body">
+      <h4>1. Navegação Principal (<span class="drawer-badge">mkdocs.yml</span>)</h4>
+      <ul>
+        <li>5 abas oficiais: <strong>Início</strong>, <strong>Objetivos</strong>, <strong>Equipe</strong>, <strong>Contribuição</strong> e <strong>Resultados</strong>.</li>
+        <li>As rotas antigas <em>"Encaminhamentos"</em> e <em>"Protótipo"</em> foram unificadas.</li>
+      </ul>
+
+      <h4>2. Aba Contribuição</h4>
+      <ul>
+        <li><strong>Stepper Horizontal</strong> (Etapa 1 → 2 → 3).</li>
+        <li><strong>Sumário lateral à direita (TOC sticky)</strong>: acompanha a rolagem destacando o Objetivo Específico ativo da Etapa 1. Oculto nas etapas "Em breve".</li>
+        <li>Etapas 2 e 3 exibem estritamente o estado <strong>"Em breve"</strong>.</li>
+        <li>Zero poluição visual: eliminados botões CTA globais, modais, cards de preview e badges desnecessários.</li>
+        <li><strong>Resultados Esperados</strong>: lista com marcadores simples (bullet points <code>&lt;ul&gt;</code>), sem chips coloridos.</li>
+        <li><strong>Objetivo 01</strong>: Tabela A (uma linha por especialidade; Cargo e Integrante com <em>rowspan</em>; cabeçalho agrupado <em>Resultado / Especialidade</em>).</li>
+        <li><strong>Objetivo 02 (Opção Híbrida)</strong>: Tabela da RLS com Cargo (Monitores e Preceptores), Integrantes (Paula Lira Revisora, Plabio, Flávia, Hugo, Pedro, Sabrina) e cabeçalho agrupado <em>Rascunho do Artigo</em> (subcolunas <em>Artigo</em> e <em>Registro das Pesquisas</em>). Nota consolidada com requisitos, diretriz de armazenamento e link do Esboço.</li>
+        <li><strong>Legenda</strong>: pequena, discreta e posicionada no rodapé da tabela.</li>
+      </ul>
+
+      <h4>3. Aba Resultados</h4>
+      <ul>
+        <li><strong>Resultados C</strong>: Filtro de Etapa no topo e <strong>Sub-abas por Objetivo</strong> (uma tabela por vez).</li>
+        <li><strong>Zero integrantes</strong>: foco estrito nas entregas e produtos técnicos, sem listar nomes de membros ou cargos na aba Resultados.</li>
+        <li><strong>Objetivo 01</strong>: exibe somente as 7 especialidades médicas reais desduplicadas (Cardiologia, Cirurgia geral, Coloproctologia, Gastroenterologia, Ginecologia, Nutrição adulto, Pneumologia) em ordem alfabética (A-Z) com Formulário e Protótipo (🟡 Em elaboração).</li>
+        <li><strong>Objetivo 02</strong>: Tabela com cabeçalho agrupado <em>Rascunho do Artigo</em> e subcolunas <em>Artigo</em> e <em>Registro das Pesquisas</em> (🟡 Em elaboração), com link compacto para o Esboço da RLS no rodapé.</li>
+        <li>Contador de pendência discreto no rodapé: <em>"📌 1 especialidade a definir"</em>.</li>
+        <li>Legenda pequena e em linha única abaixo de cada tabela.</li>
+      </ul>
+
+      <h4>4. Status Oficial</h4>
+      <ul>
+        <li><span class="drawer-badge">🟢 Disponível</span> · <span class="drawer-badge">🟡 Em elaboração</span> · <span class="drawer-badge">⚪ A definir</span>.</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- ==========================================================================
+       SCRIPTS DE NAVEGAÇÃO & OBSERVER DE TOC
+       ========================================================================== -->
+  <script>
+    // Alternância entre as 5 abas principais do portal
+    function switchNavTab(tabKey, btn) {
+      document.querySelectorAll(".portal-nav-link").forEach(l => l.classList.remove("active"));
+      btn.classList.add("active");
+      
+      document.querySelectorAll(".portal-page-section").forEach(sec => sec.style.display = "none");
+      document.getElementById(`page-${tabKey}`).style.display = "block";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Controles do Stepper da aba Contribuição (Etapas 1, 2 e 3)
+    function contribSelectStep(stepNum, card) {
+      card.parentElement.querySelectorAll(".step-card").forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+      
+      const isE1 = stepNum === 1;
+      document.getElementById("contrib-panel-etapa-1").style.display = isE1 ? 'block' : 'none';
+      document.getElementById("contrib-panel-etapa-2").style.display = stepNum === 2 ? 'block' : 'none';
+      document.getElementById("contrib-panel-etapa-3").style.display = stepNum === 3 ? 'block' : 'none';
+      
+      // Oculta o sumário lateral se não for a Etapa 1
+      const toc = document.getElementById("contrib-toc-sidebar");
+      if (toc) {
+        toc.style.display = isE1 ? 'block' : 'none';
+      }
+    }
+
+    // Controles de Etapa da aba Resultados
+    function resSelectEtapa(etapaNum, btn) {
+      btn.parentElement.querySelectorAll(".rc-etapa-tab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("res-panel-etapa-1").style.display = etapaNum === 1 ? 'block' : 'none';
+      document.getElementById("res-panel-etapa-2").style.display = etapaNum === 2 ? 'block' : 'none';
+      document.getElementById("res-panel-etapa-3").style.display = etapaNum === 3 ? 'block' : 'none';
+    }
+
+    // Controles de Sub-abas por Objetivo da aba Resultados
+    function resSelectObj(objNum, btn) {
+      btn.parentElement.querySelectorAll(".rc-obj-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("res-pane-obj-1").style.display = objNum === 1 ? 'block' : 'none';
+      document.getElementById("res-pane-obj-2").style.display = objNum === 2 ? 'block' : 'none';
+      document.getElementById("res-pane-obj-3").style.display = objNum === 3 ? 'block' : 'none';
+    }
+
+    // Rolagem suave com compensação de header sticky
+    function smoothScrollTo(targetId) {
+      const el = document.getElementById(targetId);
+      if (el) {
+        const yOffset = -90;
+        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+
+    // IntersectionObserver para destacar o link ativo no sumário lateral TOC
+    document.addEventListener("DOMContentLoaded", () => {
+      const observerOptions = {
+        root: null,
+        rootMargin: "-90px 0px -60% 0px",
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute("id");
+            document.querySelectorAll(".toc-link").forEach(link => {
+              link.classList.toggle("is-active", link.getAttribute("href") === `#${id}`);
+            });
+          }
+        });
+      }, observerOptions);
+
+      const objSections = document.querySelectorAll(".objective-section");
+      objSections.forEach(sec => observer.observe(sec));
+    });
+
+    // Drawer de Decisões
+    function toggleDecisionsDrawer() {
+      const drawer = document.getElementById("decisions-drawer");
+      const backdrop = document.getElementById("drawer-backdrop");
+      const isActive = drawer.classList.contains("active");
+      if (isActive) {
+        drawer.classList.remove("active");
+        backdrop.classList.remove("active");
+      } else {
+        drawer.classList.add("active");
+        backdrop.classList.add("active");
+      }
+    }
+  </script>
+</body>
+</html>
