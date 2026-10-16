@@ -61,8 +61,8 @@ A documentação do projeto está dividida em páginas modulares:
 | **[Início](https://pet-saude-hub-gt8.github.io/pet-saude-gt8/)** | Visão geral do projeto, atalhos de navegação e visualizador interativo embutido da apresentação oficial de slides em PDF. |
 | **[Objetivos](https://pet-saude-hub-gt8.github.io/pet-saude-gt8/objetivos/)** | Matriz de objetivos gerais e específicos, metas divididas por fases (Etapa 1: Diagnóstico; Etapa 2: Intervenção; Etapa 3: Avaliação) e diagnóstico situacional. |
 | **[Equipe](https://pet-saude-hub-gt8.github.io/pet-saude-gt8/equipe/)** | Cards detalhados da composição interprofissional: tutores acadêmicos, preceptores de serviço e estudantes bolsistas/voluntários. |
-| **[Encaminhamentos](https://pet-saude-hub-gt8.github.io/pet-saude-gt8/encaminhamentos/)** | Mapeamento das rotas assistenciais, matriz de prioridades regulatórias (Vermelho, Amarelo, Verde, Azul) e repositório de formulários institucionais. |
-| **[Protótipo Digital](https://pet-saude-hub-gt8.github.io/pet-saude-gt8/prototipo/)** | Demonstração do protótipo digital do formulário didático guiado por protocolo clínico para contrarreferência no HUB. |
+| **[Contribuição](https://pet-saude-hub-gt8.github.io/pet-saude-gt8/contribuicao/)** | Plano operacional estruturado em 3 etapas (Etapa 1: Diagnóstico; Etapa 2: Integração; Etapa 3: Consolidação), sumário lateral dinâmico e matriz de entregas e responsáveis. |
+| **[Resultados](https://pet-saude-hub-gt8.github.io/pet-saude-gt8/resultados/)** | Catálogo consolidado de produtos técnicos, formulários homologados por especialidade, status do rascunho da RLS e minutas clínicas (sem identificação de integrantes). |
 
 ---
 
@@ -163,11 +163,11 @@ pet-saude-gt8/
 │   │   └── extra.js            # Lógicas de acessibilidade (Alto Contraste, Fontes A+/A-)
 │   ├── stylesheets/
 │   │   └── extra.css           # Design System completo (Light, Dark, High-Contrast)
-│   ├── encaminhamentos.md      # Fluxos de referência e regulação
+│   ├── contribuicao.md         # Plano operacional por etapas e matriz de entregas
 │   ├── equipe.md               # Composição e tutoria do GT 8
 │   ├── index.md                # Página inicial e apresentação interativa
 │   ├── objetivos.md            # Metas por fases e diagnóstico situacional
-│   └── prototipo.md            # Protótipo do formulário digital
+│   └── resultados.md           # Catálogo de produtos e entregas técnicas
 ├── overrides/                  # Sobrescritas do tema MkDocs Material
 ├── mkdocs.yml                  # Configurações do site e navegação
 ├── requirements.txt            # Dependências Python (mkdocs, material, etc.)

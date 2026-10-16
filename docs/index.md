@@ -58,29 +58,29 @@ hide:
   </a>
 
   <!-- Card 03 -->
-  <a href="encaminhamentos/" class="hub-card-item">
+  <a href="contribuicao/" class="hub-card-item">
     <div class="hub-card-top">
       <span class="hub-card-number">03</span>
-      <span class="hub-card-tag">Fluxos</span>
+      <span class="hub-card-tag">Etapas</span>
     </div>
     <div>
-      <h3 class="hub-card-title">Encaminhamentos</h3>
+      <h3 class="hub-card-title">Contribuição do GT 8</h3>
       <p class="hub-card-desc">
-        Saiba mais sobre como são feitos os encaminhamentos entre o HUB e a atenção primária à saúde.
+        Acompanhe o plano operacional em 3 etapas, os objetivos específicos, responsáveis e formulários por especialidade.
       </p>
     </div>
   </a>
 
   <!-- Card 04 -->
-  <a href="prototipo/" class="hub-card-item">
+  <a href="resultados/" class="hub-card-item">
     <div class="hub-card-top">
       <span class="hub-card-number">04</span>
-      <span class="hub-card-tag">Solução</span>
+      <span class="hub-card-tag">Entregas</span>
     </div>
     <div>
-      <h3 class="hub-card-title">Protótipo Digital</h3>
+      <h3 class="hub-card-title">Resultados e Entregas</h3>
       <p class="hub-card-desc">
-        Explore o formulário didático criado para organizar o preenchimento e garantir o atendimento de quem realmente tem prioridade.
+        Consulte o catálogo direto de produtos técnicos, formulários homologados, artigos e protocolos clínicos desenvolvidos.
       </p>
     </div>
   </a>
