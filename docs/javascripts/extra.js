@@ -276,169 +276,127 @@ window.preencherExemplo = preencherExemplo;
 window.resetarFormulario = resetarFormulario;
 
 /**
- * Alterna a pasta ativa no layout de Encaminhamentos
- * @param {string} folderId - ID da pasta ('etapa-1', 'etapa-2', 'etapa-3', 'modelos')
- * @param {string} [targetAnchorId] - ID opcional da âncora interna para scroll
+ * Alterna as Etapas 1, 2 e 3 na aba Contribuição
+ * @param {number} stepNum - Número da etapa (1, 2 ou 3)
+ * @param {HTMLElement} [cardEl] - Elemento do card clicado
  */
-function switchFolderPanel(folderId, targetAnchorId) {
-  const panels = document.querySelectorAll('.folder-content-panel');
-  if (!panels.length) return;
-
-  // Ativa o painel correspondente e oculta os demais
-  let targetPanel = null;
-  panels.forEach(panel => {
-    if (panel.getAttribute('data-folder') === folderId) {
-      panel.classList.add('active');
-      targetPanel = panel;
-    } else {
-      panel.classList.remove('active');
-    }
-  });
-
-  if (!targetPanel) return;
-
-  // Atualiza estado visual das pastas na sidebar
-  const folders = document.querySelectorAll('.tree-folder');
-  let activeFolderEl = null;
-  folders.forEach(folder => {
-    if (folder.getAttribute('data-folder-id') === folderId) {
-      folder.classList.add('active-folder');
-      folder.classList.add('open');
-      const icon = folder.querySelector('.folder-icon');
-      if (icon) icon.textContent = '📂';
-      activeFolderEl = folder;
-    } else {
-      folder.classList.remove('active-folder');
-    }
-  });
-
-  // Atualiza banner de contexto
-  if (activeFolderEl) {
-    const folderNameEl = activeFolderEl.querySelector('.folder-name');
-    const folderBadgeEl = activeFolderEl.querySelector('.status-badge');
-    const titleEl = document.getElementById('folder-current-title');
-    const badgeWrapEl = document.getElementById('folder-current-badge-wrap');
-
-    if (titleEl && folderNameEl) {
-      titleEl.textContent = folderNameEl.textContent.trim();
-    }
-    if (badgeWrapEl) {
-      if (folderBadgeEl) {
-        badgeWrapEl.innerHTML = folderBadgeEl.outerHTML;
-      } else {
-        badgeWrapEl.innerHTML = '';
-      }
-    }
+function contribSelectStep(stepNum, cardEl) {
+  const cards = document.querySelectorAll('.stepper-nav .step-card');
+  if (cards.length) {
+    cards.forEach((c, idx) => {
+      c.classList.toggle('active', (idx + 1) === stepNum);
+    });
   }
 
-  // Scroll suave para a âncora desejada dentro do painel
-  if (targetAnchorId) {
-    const cleanId = targetAnchorId.replace('#', '');
-    const anchorEl = document.getElementById(cleanId);
-    if (anchorEl) {
-      setTimeout(() => {
-        anchorEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 60);
-      return;
-    }
-  }
+  const isE1 = stepNum === 1;
+  const p1 = document.getElementById('contrib-panel-etapa-1');
+  const p2 = document.getElementById('contrib-panel-etapa-2');
+  const p3 = document.getElementById('contrib-panel-etapa-3');
 
-  // Se não tem âncora específica, rola até o topo da área de documentos
-  const banner = document.querySelector('.active-folder-banner');
-  if (banner) {
-    const topOffset = banner.getBoundingClientRect().top + window.scrollY - 85;
-    if (window.scrollY > topOffset) {
-      window.scrollTo({ top: topOffset, behavior: 'smooth' });
-    }
+  if (p1) p1.style.display = isE1 ? 'block' : 'none';
+  if (p2) p2.style.display = stepNum === 2 ? 'block' : 'none';
+  if (p3) p3.style.display = stepNum === 3 ? 'block' : 'none';
+
+  const toc = document.getElementById('contrib-toc-sidebar');
+  if (toc) {
+    toc.style.display = isE1 ? 'block' : 'none';
   }
 }
-
-window.switchFolderPanel = switchFolderPanel;
 
 /**
- * Manipulador interativo para a árvore de pastas em Encaminhamentos
+ * Alterna as Etapas na aba Resultados
+ * @param {number} etapaNum - Número da etapa (1, 2 ou 3)
+ * @param {HTMLElement} [btnEl] - Botão clicado
  */
-function initFolderTree() {
-  const folders = document.querySelectorAll('.tree-folder');
-  if (!folders.length) return;
-
-  folders.forEach(folder => {
-    const header = folder.querySelector('.tree-folder-header');
-    if (!header || header.dataset.hasListener) return;
-    header.dataset.hasListener = 'true';
-
-    header.addEventListener('click', (e) => {
-      const folderId = folder.getAttribute('data-folder-id');
-      const isAlreadyActive = folder.classList.contains('active-folder');
-
-      if (!isAlreadyActive && folderId) {
-        // Se clicar em outra pasta, ativa o painel dela
-        switchFolderPanel(folderId);
-        // Ativa o primeiro arquivo por padrão
-        const firstFile = folder.querySelector('.tree-file');
-        if (firstFile) {
-          document.querySelectorAll('.tree-file').forEach(f => f.classList.remove('active'));
-          firstFile.classList.add('active');
-        }
-      } else {
-        // Se já estiver ativa, apenas alterna expandir/recolher
-        folder.classList.toggle('open');
-        const icon = header.querySelector('.folder-icon');
-        if (icon) {
-          icon.textContent = folder.classList.contains('open') ? '📂' : '📁';
-        }
-      }
+function resSelectEtapa(etapaNum, btnEl) {
+  const buttons = document.querySelectorAll('.rc-etapa-tab');
+  if (buttons.length) {
+    buttons.forEach((b, idx) => {
+      b.classList.toggle('active', (idx + 1) === etapaNum);
     });
-  });
-
-  const files = document.querySelectorAll('.tree-file');
-  files.forEach(file => {
-    if (file.dataset.hasListener) return;
-    file.dataset.hasListener = 'true';
-
-    file.addEventListener('click', (e) => {
-      const parentFolder = file.closest('.tree-folder');
-      const folderId = parentFolder ? parentFolder.getAttribute('data-folder-id') : null;
-      const targetAnchor = file.getAttribute('href');
-
-      if (folderId) {
-        switchFolderPanel(folderId, targetAnchor);
-      }
-      files.forEach(f => f.classList.remove('active'));
-      file.classList.add('active');
-    });
-  });
-
-  // Se houver âncora na URL ao carregar a página, abre a pasta correspondente
-  if (window.location.hash) {
-    const targetEl = document.querySelector(window.location.hash);
-    if (targetEl) {
-      const parentPanel = targetEl.closest('.folder-content-panel');
-      if (parentPanel) {
-        const folderId = parentPanel.getAttribute('data-folder');
-        if (folderId) {
-          switchFolderPanel(folderId, window.location.hash);
-          const activeFile = document.querySelector(`.tree-file[href="${window.location.hash}"]`);
-          if (activeFile) {
-            files.forEach(f => f.classList.remove('active'));
-            activeFile.classList.add('active');
-          }
-          return;
-        }
-      }
-    }
   }
 
-  // Inicializa com a primeira pasta ('etapa-1') se nenhuma estiver ativa
-  const currentActivePanel = document.querySelector('.folder-content-panel.active');
-  if (!currentActivePanel) {
-    switchFolderPanel('etapa-1');
+  const p1 = document.getElementById('res-panel-etapa-1');
+  const p2 = document.getElementById('res-panel-etapa-2');
+  const p3 = document.getElementById('res-panel-etapa-3');
+
+  if (p1) p1.style.display = etapaNum === 1 ? 'block' : 'none';
+  if (p2) p2.style.display = etapaNum === 2 ? 'block' : 'none';
+  if (p3) p3.style.display = etapaNum === 3 ? 'block' : 'none';
+}
+
+/**
+ * Alterna os Objetivos (sub-abas) na aba Resultados
+ * @param {number} objNum - Número do objetivo (1, 2 ou 3)
+ * @param {HTMLElement} [btnEl] - Botão clicado
+ */
+function resSelectObj(objNum, btnEl) {
+  const buttons = document.querySelectorAll('.rc-obj-tab-btn');
+  if (buttons.length) {
+    buttons.forEach((b, idx) => {
+      b.classList.toggle('active', (idx + 1) === objNum);
+    });
+  }
+
+  const o1 = document.getElementById('res-pane-obj-1');
+  const o2 = document.getElementById('res-pane-obj-2');
+  const o3 = document.getElementById('res-pane-obj-3');
+
+  if (o1) o1.style.display = objNum === 1 ? 'block' : 'none';
+  if (o2) o2.style.display = objNum === 2 ? 'block' : 'none';
+  if (o3) o3.style.display = objNum === 3 ? 'block' : 'none';
+}
+
+/**
+ * Rolagem suave com compensação para cabeçalho sticky
+ * @param {string} targetId - ID do elemento destino (sem #)
+ */
+function smoothScrollTo(targetId) {
+  const el = document.getElementById(targetId);
+  if (el) {
+    const yOffset = -90;
+    const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
+    window.scrollTo({ top: y, behavior: 'smooth' });
   }
 }
+
+/**
+ * Inicializa o IntersectionObserver para o sumário lateral da aba Contribuição
+ */
+function initTocObserver() {
+  const objSections = document.querySelectorAll('.objective-section');
+  const tocLinks = document.querySelectorAll('.toc-link');
+  if (!objSections.length || !tocLinks.length) return;
+
+  const observerOptions = {
+    root: null,
+    rootMargin: "-90px 0px -60% 0px",
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        tocLinks.forEach(link => {
+          link.classList.toggle('is-active', link.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, observerOptions);
+
+  objSections.forEach(sec => observer.observe(sec));
+}
+
+// Expõe as novas funções no escopo global
+window.contribSelectStep = contribSelectStep;
+window.resSelectEtapa = resSelectEtapa;
+window.resSelectObj = resSelectObj;
+window.smoothScrollTo = smoothScrollTo;
 
 function initPageScripts() {
   checkPageLayout();
-  initFolderTree();
+  initTocObserver();
 }
 
 // Disparo inicial e subscrição a mudanças de página no MkDocs Material
@@ -451,4 +409,5 @@ if (document.readyState === 'loading') {
 if (typeof document$ !== 'undefined') {
   document$.subscribe(initPageScripts);
 }
+
 
