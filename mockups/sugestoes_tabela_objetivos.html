@@ -1,0 +1,1977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sugestões de Tabela de Objetivos • PET-Saúde GT 8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       RESET & DESIGN SYSTEM
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary-navy: #0c3258;
+      --primary-navy-dark: #061122;
+      --brand-blue: #0284c7;
+      --brand-blue-light: #38bdf8;
+      --pet-orange: #ea5b2d;
+      --pet-orange-hover: #d94817;
+      --unb-green: #009a44;
+      --unb-green-vibrant: #10b981;
+      --bg-slate: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0b1526;
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       TOP SELECTOR BAR (FIXO) & PAINEL DE CONTROLE
+       ========================================================================== */
+    .decision-hub-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 21, 38, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.85rem 1.5rem;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .decision-bar-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .decision-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .decision-brand-badge {
+      background: linear-gradient(135deg, var(--pet-orange), #f97316);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .decision-brand-title {
+      color: #ffffff;
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .decision-brand-title span {
+      color: var(--brand-blue-light);
+      font-weight: 400;
+    }
+
+    .decision-selector-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.3rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-tab-option {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1.1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-tab-option:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-tab-option.active {
+      background: var(--brand-blue);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.45);
+    }
+
+    .btn-compare {
+      background: rgba(234, 91, 45, 0.15);
+      border: 1px solid rgba(234, 91, 45, 0.35);
+      color: #fdba74;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-compare:hover, .btn-compare.active {
+      background: var(--pet-orange);
+      color: #ffffff;
+      border-color: var(--pet-orange);
+      box-shadow: 0 2px 10px rgba(234, 91, 45, 0.45);
+    }
+
+    /* Painel Explicativo Superior */
+    .decision-info-panel {
+      max-width: 1400px;
+      margin: 1.2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .info-card {
+      background: linear-gradient(145deg, #0e1e36, #091527);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .info-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-ta { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-tb { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-tc { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+
+    .info-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .info-desc {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      margin-bottom: 0.75rem;
+    }
+
+    .pros-cons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .tag-pro, .tag-con {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .tag-pro { background: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25); }
+    .tag-con { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.25); }
+
+    .recommendation-badge {
+      background: rgba(2, 132, 199, 0.15);
+      border: 1px solid rgba(2, 132, 199, 0.35);
+      padding: 0.85rem 1.1rem;
+      border-radius: 10px;
+      text-align: right;
+      color: #bae6fd;
+      font-size: 0.82rem;
+      max-width: 400px;
+    }
+
+    .recommendation-badge strong {
+      display: block;
+      color: #38bdf8;
+      font-size: 0.88rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ==========================================================================
+       CONTAINERS DE PREVIEW DO MKDOCS
+       ========================================================================== */
+    .preview-stage {
+      max-width: 1400px;
+      margin: 0 auto 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .table-suggestion-container {
+      background: var(--bg-slate);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .table-suggestion-container.visible {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MODO COMPARATIVO LADO A LADO */
+    .compare-grid-mode {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .compare-grid-mode .table-suggestion-container {
+      display: block !important;
+      font-size: 0.8rem;
+    }
+
+    /* ==========================================================================
+       NAVBAR SIMULADA DO MKDOCS MATERIAL
+       ========================================================================== */
+    .mock-header {
+      background: #0d3b66;
+      border-bottom: 1px solid #092c4c;
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+    }
+
+    .mock-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .mock-logo-box {
+      width: 34px;
+      height: 34px;
+      background: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--primary-navy);
+      font-size: 0.85rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .mock-site-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .mock-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .mock-nav-tab {
+      background: none;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.4rem 0.2rem;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .mock-nav-tab:hover {
+      color: #ffffff;
+    }
+
+    .mock-nav-tab.active {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .mock-nav-tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 2px;
+      background-color: var(--brand-blue-light);
+    }
+
+    .mock-nav-tab.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Banner de Página */
+    .page-header-banner {
+      width: 100%;
+      background: radial-gradient(circle at 8% 25%, rgba(234, 91, 45, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 92% 75%, rgba(0, 154, 68, 0.12) 0%, transparent 45%),
+                  #0c3258 !important;
+      padding: 2rem 1.75rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid transparent !important;
+      border-image: linear-gradient(90deg, #ea5b2d 0%, #009a44 48%, #0284c7 85%) 1 !important;
+      color: #ffffff;
+    }
+
+    .page-header-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .page-header-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .page-header-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .page-header-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header-subtitle {
+      font-size: 1rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
+    .page-header-minicard {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 0.75rem 1.1rem;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    }
+
+    .page-header-minicard-logo {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-navy);
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+
+    .page-header-minicard-text {
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .minicard-sub {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .minicard-sub::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #009a44;
+    }
+
+    .page-main-container {
+      max-width: 1140px;
+      margin: 0 auto 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================================
+       STEPPER HORIZONTAL DAS ETAPAS (1 -> 2 -> 3)
+       ========================================================================== */
+    .stepper-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .step-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.15rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .step-card:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+
+    .step-card.active {
+      border-color: var(--brand-blue);
+      background: #f0f9ff;
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.12);
+    }
+
+    .step-card.active::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid var(--brand-blue);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+
+    .step-num {
+      font-weight: 800;
+      font-size: 0.8rem;
+      color: var(--brand-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .step-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      line-height: 1.3;
+    }
+
+    /* Badges de Status Geral */
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-status-concluido { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+    .badge-status-andamento { background: #fef9c3; color: #854d0e; border: 1px solid #fef08a; }
+    .badge-status-planejado { background: #f1f5f9; color: #64748b; border: 1px solid #cbd5e1; }
+
+    /* ==========================================================================
+       ESTILOS DOS OBJETIVOS (ESTRUTURA EM 4 PARTES)
+       ========================================================================== */
+    .objective-section {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      margin-bottom: 2rem;
+      padding: 1.75rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      border-left: 5px solid var(--brand-blue);
+    }
+
+    .obj-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .obj-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: #f0f9ff;
+      color: var(--brand-blue);
+      border: 1px solid #bae6fd;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+    }
+
+    .obj-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      line-height: 1.3;
+      margin-bottom: 0.6rem;
+    }
+
+    .obj-desc {
+      font-size: 0.95rem;
+      color: #334155;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      background: #f8fafc;
+      padding: 0.85rem 1.15rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--brand-blue-light);
+    }
+
+    .obj-results-box {
+      margin-bottom: 1.5rem;
+    }
+
+    .obj-results-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.5rem;
+    }
+
+    .obj-results-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .obj-result-chip {
+      background: #f1f5f9;
+      color: #1e293b;
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid #e2e8f0;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .obj-result-chip::before {
+      content: "✔";
+      color: var(--unb-green);
+      font-weight: bold;
+    }
+
+    /* Legenda de Status de Formulário / Protótipo */
+    .status-legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 0.65rem 1rem;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .legend-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot-disponivel { background: var(--unb-green-vibrant); box-shadow: 0 0 6px rgba(16, 185, 129, 0.6); }
+    .dot-elaboracao { background: #f59e0b; }
+    .dot-definir { background: #94a3b8; }
+
+    /* Selos de Status nas Células */
+    .status-cell-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .tag-disponivel {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      cursor: pointer;
+    }
+
+    .tag-disponivel:hover {
+      background: var(--unb-green);
+      color: #ffffff;
+    }
+
+    .tag-elaboracao {
+      background: #fffbeb;
+      color: #92400e;
+      border: 1px solid #fde68a;
+    }
+
+    .tag-definir {
+      background: #f1f5f9;
+      color: #64748b;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* Nota Unificada abaixo da Tabela */
+    .table-note-box {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.15rem 1.4rem;
+      margin-top: 1.25rem;
+      font-size: 0.86rem;
+      color: #475569;
+    }
+
+    .note-title {
+      font-weight: 700;
+      color: var(--primary-navy);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .note-list {
+      margin-left: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .note-link {
+      color: var(--brand-blue);
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    .note-link:hover {
+      text-decoration: underline;
+      color: #0369a1;
+    }
+
+    /* Estado Em Breve (Etapas 2 e 3) */
+    .empty-simple-card {
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      color: #64748b;
+    }
+
+    .empty-simple-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Pills de Integrantes */
+    .pill-role-preceptor {
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    .pill-role-monitor {
+      background: #ecfdf5;
+      color: #007a36;
+      border: 1px solid #a7f3d0;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    /* ==========================================================================
+       TABELA A: UMA LINHA POR ESPECIALIDADE (ROWSPAN DE CARGO E INTEGRANTE)
+       ========================================================================== */
+    .ta-table-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .ta-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .ta-table th {
+      background: #0f2747;
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid #1a3a63;
+    }
+
+    .ta-table th.ta-header-group {
+      background: #081d38;
+      text-align: center;
+      font-size: 0.82rem;
+      border-bottom: 2px solid var(--brand-blue-light);
+    }
+
+    .ta-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: middle;
+    }
+
+    .ta-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .ta-member-cell {
+      font-weight: 600;
+      color: var(--primary-navy);
+      background: #ffffff;
+    }
+
+    .ta-spec-cell {
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    /* ==========================================================================
+       TABELA B: AGRUPADA POR CARGO (SEÇÕES PRECEPTORES & MONITORES)
+       ========================================================================== */
+    .tb-table-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .tb-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .tb-table th {
+      background: #0f2747;
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid #1a3a63;
+    }
+
+    .tb-table th.tb-header-group {
+      background: #081d38;
+      text-align: center;
+      border-bottom: 2px solid var(--brand-blue-light);
+    }
+
+    .tb-group-row td {
+      background: #f1f5f9 !important;
+      color: var(--primary-navy) !important;
+      font-weight: 800 !important;
+      font-size: 0.82rem !important;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.6rem 1rem !important;
+      border-top: 2px solid #cbd5e1;
+      border-bottom: 1px solid #cbd5e1;
+    }
+
+    .tb-table td {
+      padding: 0.75rem 1rem;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: middle;
+    }
+
+    .tb-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .tb-spec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+
+    .tb-spec-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #f8fafc;
+      padding: 0.4rem 0.65rem;
+      border-radius: 6px;
+      border: 1px solid #e2e8f0;
+    }
+
+    /* ==========================================================================
+       TABELA C: COMPACTA (1 LINHA POR INTEGRANTE COM SUBCOLUNAS ESPELHADAS)
+       ========================================================================== */
+    .tc-table-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      overflow-x: auto;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .tc-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .tc-table th {
+      background: #0f2747;
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid #1a3a63;
+    }
+
+    .tc-table th.tc-header-group {
+      background: #081d38;
+      text-align: center;
+      border-bottom: 2px solid var(--brand-blue-light);
+    }
+
+    .tc-table td {
+      padding: 0.85rem 1rem;
+      border: 1px solid #e2e8f0;
+      color: #334155;
+      vertical-align: top;
+    }
+
+    .tc-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .tc-paired-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .tc-paired-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      min-height: 28px;
+    }
+
+    .tc-spec-badge {
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: #1e293b;
+    }
+
+    /* Responsividade */
+    @media (max-width: 992px) {
+      .compare-grid-mode { grid-template-columns: 1fr; }
+      .stepper-nav { grid-template-columns: 1fr; }
+      .info-card { grid-template-columns: 1fr; }
+      .recommendation-badge { text-align: left; max-width: 100%; }
+      .page-header-container { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP SELECTOR BAR (BARRA FIXA DE DECISÃO)
+       ========================================================================== -->
+  <header class="decision-hub-header">
+    <div class="decision-bar-container">
+      <div class="decision-brand">
+        <span class="decision-brand-badge">Tech Lead • Arquitetura de Dados</span>
+        <div class="decision-brand-title">PET-Saúde GT 8 <span>| Organização da Tabela de Responsáveis</span></div>
+      </div>
+
+      <div class="decision-selector-group">
+        <button class="btn-tab-option active" onclick="switchTableOption('A')" id="btn-opt-a">
+          <span>📑</span> Tabela A · Linha por Especialidade
+        </button>
+        <button class="btn-tab-option" onclick="switchTableOption('B')" id="btn-opt-b">
+          <span>👥</span> Tabela B · Agrupada por Cargo
+        </button>
+        <button class="btn-tab-option" onclick="switchTableOption('C')" id="btn-opt-c">
+          <span>⚡</span> Tabela C · 1 Linha por Integrante
+        </button>
+        <button class="btn-compare" onclick="toggleCompareMode()" id="btn-compare">
+          <span>⊞</span> Comparar Lado a Lado
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       BLOCO EXPLICATIVO DA OPÇÃO ATIVA
+       ========================================================================== -->
+  <section class="decision-info-panel">
+    <div class="info-card" id="info-card-box">
+      <!-- Inserido dinamicamente via JS -->
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ÁREA DE VISUALIZAÇÃO DOS MOCKUPS (MKDOCS SIMULADO)
+       ========================================================================== -->
+  <main class="preview-stage" id="preview-stage-wrap">
+
+    <!-- ========================================================================
+         SUGESTÃO TABELA A: UMA LINHA POR ESPECIALIDADE (ROWSPAN)
+         ======================================================================== -->
+    <div class="table-suggestion-container visible" id="container-ta">
+      
+      <!-- Top Navbar Simulada -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab active">Contribuição</button>
+          <button class="mock-nav-tab disabled">Resultados</button>
+        </div>
+      </nav>
+
+      <!-- Banner Sem Botão de Protótipo -->
+      <div class="page-header-banner">
+        <div class="page-header-container">
+          <div class="page-header-left">
+            <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+            <h1 class="page-header-title">Contribuição do GT 8</h1>
+            <p class="page-header-subtitle">
+              Plano de ação operacional por etapa e catálogo de formulários e protótipos de encaminhamento ambulatorial.
+            </p>
+          </div>
+          <div class="page-header-minicard">
+            <div class="page-header-minicard-logo">HUB</div>
+            <div class="page-header-minicard-text">
+              <span class="minicard-sub">Hospital Parceiro</span>
+              <span>HUB / UnB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-main-container">
+        
+        <!-- Stepper Horizontal 1 -> 2 -> 3 -->
+        <div class="stepper-nav">
+          <div class="step-card active" onclick="switchStepTab('ta', 1, this)">
+            <div class="step-header">
+              <span class="step-num">01 · ETAPA 1</span>
+              <span class="badge-status badge-status-concluido">Concluído</span>
+            </div>
+            <h4 class="step-title">Diagnóstico & Estruturação</h4>
+          </div>
+
+          <div class="step-card" onclick="switchStepTab('ta', 2, this)">
+            <div class="step-header">
+              <span class="step-num">02 · ETAPA 2</span>
+              <span class="badge-status badge-status-andamento">Em Breve</span>
+            </div>
+            <h4 class="step-title">Integração & Fluxos</h4>
+          </div>
+
+          <div class="step-card" onclick="switchStepTab('ta', 3, this)">
+            <div class="step-header">
+              <span class="step-num">03 · ETAPA 3</span>
+              <span class="badge-status badge-status-planejado">Em Breve</span>
+            </div>
+            <h4 class="step-title">Consolidação & Homologação</h4>
+          </div>
+        </div>
+
+        <!-- PAINEL ETAPA 1 (TABELA A) -->
+        <div id="ta-panel-etapa-1">
+          
+          <!-- OBJETIVO ESPECÍFICO 01 -->
+          <div class="objective-section">
+            <div class="obj-header">
+              <span class="obj-badge">Objetivo Específico 01</span>
+              <span class="badge-status badge-status-concluido">Entregue</span>
+            </div>
+            <h3 class="obj-title">Sistemas de Informação HUB e UBSs</h3>
+            <p class="obj-desc">
+              Aprimorar e/ou construir propostas de sistemas de informação entre o ambulatório de Saúde Integral do HUB e as Unidades Básicas de Saúde, utilizando ferramentas de saúde integral.
+            </p>
+
+            <div class="obj-results-box">
+              <div class="obj-results-title">Resultados Esperados:</div>
+              <div class="obj-results-list">
+                <span class="obj-result-chip">Mapeamento de Processos</span>
+                <span class="obj-result-chip">Diagnóstico Situacional (ferramentas e protocolos)</span>
+                <span class="obj-result-chip">Proposta de aprimoramento</span>
+              </div>
+            </div>
+
+            <!-- Legenda de Status -->
+            <div class="status-legend-bar">
+              <span style="font-weight: 700; color: var(--primary-navy);">Legenda de Status:</span>
+              <div class="legend-item"><span class="legend-dot dot-disponivel"></span> <strong>Disponível:</strong> Formulário ou protótipo funcional para teste (ex.: Endocrinologia)</div>
+              <div class="legend-item"><span class="legend-dot dot-elaboracao"></span> <strong>Em elaboração:</strong> Em desenvolvimento pelo integrante</div>
+              <div class="legend-item"><span class="legend-dot dot-definir"></span> <strong>A definir:</strong> Especialidade aguardando alocação</div>
+            </div>
+
+            <!-- TABELA A DE RESPONSÁVEIS -->
+            <div class="ta-table-card">
+              <table class="ta-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="width: 14%;">Cargo</th>
+                    <th rowspan="2" style="width: 22%;">Integrante</th>
+                    <th colspan="2" class="ta-header-group">Resultado / Especialidade</th>
+                  </tr>
+                  <tr>
+                    <th style="width: 32%;">Formulário de Encaminhamento</th>
+                    <th style="width: 32%;">Protótipo Digital</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Luanna (3 especialidades) -->
+                  <tr>
+                    <td rowspan="3"><span class="pill-role-monitor">Monitora</span></td>
+                    <td rowspan="3" class="ta-member-cell">Luanna Barros</td>
+                    <td><strong>Pneumologia</strong></td>
+                    <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Gastroenterologia</strong></td>
+                    <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Coloproctologia</strong></td>
+                    <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+
+                  <!-- Mayara (1 especialidade) -->
+                  <tr>
+                    <td><span class="pill-role-monitor">Monitora</span></td>
+                    <td class="ta-member-cell">Mayara Marques</td>
+                    <td><strong>Nutrição adulto</strong></td>
+                    <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+
+                  <!-- Franco (2 especialidades) -->
+                  <tr>
+                    <td rowspan="2"><span class="pill-role-monitor">Monitor</span></td>
+                    <td rowspan="2" class="ta-member-cell">Franco Bueno</td>
+                    <td><strong>Cardiologia</strong></td>
+                    <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Ginecologia</strong></td>
+                    <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+
+                  <!-- Fernanda (A definir) -->
+                  <tr>
+                    <td><span class="pill-role-preceptor">Preceptora</span></td>
+                    <td class="ta-member-cell">Fernanda Santana</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+
+                  <!-- Lucas (2 especialidades) -->
+                  <tr>
+                    <td rowspan="2"><span class="pill-role-preceptor">Preceptor</span></td>
+                    <td rowspan="2" class="ta-member-cell">Lucas Alves</td>
+                    <td><strong>Ginecologia</strong></td>
+                    <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Cirurgia geral</strong></td>
+                    <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Nota Unificada com Link do Google Docs -->
+            <div class="table-note-box">
+              <div class="note-title">📝 Diretrizes & Compilado do Objetivo 01:</div>
+              <ul class="note-list">
+                <li>Disponibilizar os documentos encontrados (com referência), o processo atual e a rastreabilidade.</li>
+                <li>Disponibilizar o documento com as anotações sobre os resultados encontrados.</li>
+                <li>
+                  <a href="https://docs.google.com/document/d/114v-ZuzqFLFD60hO1DKsan3i5f0yNYwqGF_O8JFxN6s/edit?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="note-link">
+                    📄 Compilado do trabalho realizado (Google Docs) ↗
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- OBJETIVO ESPECÍFICO 02 -->
+          <div class="objective-section">
+            <div class="obj-header">
+              <span class="obj-badge">Objetivo Específico 02</span>
+              <span class="badge-status badge-status-concluido">RLS Concluída</span>
+            </div>
+            <h3 class="obj-title">Revisão Rápida (RLS) sobre Fluxos no Brasil</h3>
+            <p class="obj-desc">
+              Realizar revisão rápida (RLS) sobre fluxos de referência e contrarreferência no Brasil.
+            </p>
+            <div class="obj-results-box">
+              <div class="obj-results-title">Resultados Esperados:</div>
+              <div class="obj-results-list">
+                <span class="obj-result-chip">RLS consolidada</span>
+                <span class="obj-result-chip">Indicadores de avaliação</span>
+              </div>
+            </div>
+
+            <div class="ta-table-card">
+              <table class="ta-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="width: 14%;">Cargo</th>
+                    <th rowspan="2" style="width: 22%;">Integrante</th>
+                    <th colspan="2" class="ta-header-group">Resultado / Especialidade</th>
+                  </tr>
+                  <tr>
+                    <th style="width: 32%;">Formulário de Encaminhamento</th>
+                    <th style="width: 32%;">Protótipo Digital</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="pill-role-preceptor">Preceptora</span></td>
+                    <td class="ta-member-cell">Sabrina Feitosa</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="pill-role-preceptor">Preceptor</span></td>
+                    <td class="ta-member-cell">Pedro Ruas</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="pill-role-monitor">Monitora</span></td>
+                    <td class="ta-member-cell">Paula Iara</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="pill-role-monitor">Monitor</span></td>
+                    <td class="ta-member-cell">Plabio Lucas</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="pill-role-monitor">Monitora</span></td>
+                    <td class="ta-member-cell">Flávia Lima</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="pill-role-monitor">Monitor</span></td>
+                    <td class="ta-member-cell">Hugo de Verson</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- OBJETIVO ESPECÍFICO 03 -->
+          <div class="objective-section">
+            <div class="obj-header">
+              <span class="obj-badge">Objetivo Específico 03</span>
+              <span class="badge-status badge-status-andamento">Em Validação</span>
+            </div>
+            <h3 class="obj-title">Protocolo de Atendimento e Encaminhamento</h3>
+            <p class="obj-desc">
+              Construir o protocolo de atendimento e de encaminhamento do Ambulatório de Saúde Integral.
+            </p>
+            <div class="obj-results-box">
+              <div class="obj-results-title">Resultados Esperados:</div>
+              <div class="obj-results-list">
+                <span class="obj-result-chip">Protocolo de atendimento</span>
+                <span class="obj-result-chip">Protocolo de encaminhamento padronizado</span>
+              </div>
+            </div>
+
+            <div class="ta-table-card">
+              <table class="ta-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="width: 14%;">Cargo</th>
+                    <th rowspan="2" style="width: 22%;">Integrante</th>
+                    <th colspan="2" class="ta-header-group">Resultado / Especialidade</th>
+                  </tr>
+                  <tr>
+                    <th style="width: 32%;">Formulário de Encaminhamento</th>
+                    <th style="width: 32%;">Protótipo Digital</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="pill-role-preceptor">Preceptor</span></td>
+                    <td class="ta-member-cell">Flávio Torres</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="pill-role-preceptor">Preceptor</span></td>
+                    <td class="ta-member-cell">Pedro Ruas</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                  <tr>
+                    <td><span class="pill-role-monitor">Monitor</span></td>
+                    <td class="ta-member-cell">João Victor Macêdo</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- PAINEL ETAPA 2 (ESTADO EM BREVE) -->
+        <div id="ta-panel-etapa-2" style="display: none;">
+          <div class="empty-simple-card">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">⏳</span>
+            <h3 class="empty-simple-title">Etapa 2: Integração & Fluxos</h3>
+            <p>Em breve.</p>
+          </div>
+        </div>
+
+        <!-- PAINEL ETAPA 3 (ESTADO EM BREVE) -->
+        <div id="ta-panel-etapa-3" style="display: none;">
+          <div class="empty-simple-card">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🎯</span>
+            <h3 class="empty-simple-title">Etapa 3: Consolidação & Homologação</h3>
+            <p>Em breve.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         SUGESTÃO TABELA B: AGRUPADA POR CARGO (SEÇÕES PRECEPTORES & MONITORES)
+         ======================================================================== -->
+    <div class="table-suggestion-container" id="container-tb">
+      
+      <!-- Top Navbar Simulada -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab active">Contribuição</button>
+          <button class="mock-nav-tab disabled">Resultados</button>
+        </div>
+      </nav>
+
+      <div class="page-header-banner">
+        <div class="page-header-container">
+          <div class="page-header-left">
+            <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+            <h1 class="page-header-title">Contribuição do GT 8</h1>
+            <p class="page-header-subtitle">
+              Plano de ação operacional agrupado por papéis pedagógicos e assistenciais.
+            </p>
+          </div>
+          <div class="page-header-minicard">
+            <div class="page-header-minicard-logo">HUB</div>
+            <div class="page-header-minicard-text">
+              <span class="minicard-sub">Hospital Parceiro</span>
+              <span>HUB / UnB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-main-container">
+        
+        <div class="stepper-nav">
+          <div class="step-card active" onclick="switchStepTab('tb', 1, this)">
+            <div class="step-header">
+              <span class="step-num">01 · ETAPA 1</span>
+              <span class="badge-status badge-status-concluido">Concluído</span>
+            </div>
+            <h4 class="step-title">Diagnóstico & Estruturação</h4>
+          </div>
+          <div class="step-card" onclick="switchStepTab('tb', 2, this)">
+            <div class="step-header">
+              <span class="step-num">02 · ETAPA 2</span>
+              <span class="badge-status badge-status-andamento">Em Breve</span>
+            </div>
+            <h4 class="step-title">Integração & Fluxos</h4>
+          </div>
+          <div class="step-card" onclick="switchStepTab('tb', 3, this)">
+            <div class="step-header">
+              <span class="step-num">03 · ETAPA 3</span>
+              <span class="badge-status badge-status-planejado">Em Breve</span>
+            </div>
+            <h4 class="step-title">Consolidação & Homologação</h4>
+          </div>
+        </div>
+
+        <div id="tb-panel-etapa-1">
+          <div class="objective-section">
+            <div class="obj-header">
+              <span class="obj-badge">Objetivo Específico 01</span>
+              <span class="badge-status badge-status-concluido">Entregue</span>
+            </div>
+            <h3 class="obj-title">Sistemas de Informação HUB e UBSs</h3>
+            <p class="obj-desc">
+              Aprimorar e/ou construir propostas de sistemas de informação entre o ambulatório de Saúde Integral do HUB e as Unidades Básicas de Saúde, utilizando ferramentas de saúde integral.
+            </p>
+
+            <div class="obj-results-box">
+              <div class="obj-results-title">Resultados Esperados:</div>
+              <div class="obj-results-list">
+                <span class="obj-result-chip">Mapeamento de Processos</span>
+                <span class="obj-result-chip">Diagnóstico Situacional (ferramentas e protocolos)</span>
+                <span class="obj-result-chip">Proposta de aprimoramento</span>
+              </div>
+            </div>
+
+            <div class="status-legend-bar">
+              <span style="font-weight: 700; color: var(--primary-navy);">Legenda de Status:</span>
+              <div class="legend-item"><span class="legend-dot dot-disponivel"></span> <strong>Disponível:</strong> Formulário e Protótipo ativos</div>
+              <div class="legend-item"><span class="legend-dot dot-elaboracao"></span> <strong>Em elaboração:</strong> Em desenvolvimento</div>
+              <div class="legend-item"><span class="legend-dot dot-definir"></span> <strong>A definir:</strong> Aguardando designação</div>
+            </div>
+
+            <!-- TABELA B AGRUPADA POR CARGO -->
+            <div class="tb-table-card">
+              <table class="tb-table">
+                <thead>
+                  <tr>
+                    <th style="width: 25%;">Integrante</th>
+                    <th colspan="2" class="tb-header-group">Resultado / Especialidade</th>
+                  </tr>
+                  <tr>
+                    <th>Nome</th>
+                    <th style="width: 38%;">Formulário de Encaminhamento</th>
+                    <th style="width: 37%;">Protótipo Digital</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- GRUPO PRECEPTORES -->
+                  <tr class="tb-group-row">
+                    <td colspan="3">🩺 Preceptores do Projeto</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Fernanda Santana</strong></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Lucas Alves</strong></td>
+                    <td colspan="2" style="padding: 0.5rem 1rem;">
+                      <div class="tb-spec-list">
+                        <div class="tb-spec-item">
+                          <span><strong>Ginecologia</strong></span>
+                          <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                        </div>
+                        <div class="tb-spec-item">
+                          <span><strong>Cirurgia geral</strong></span>
+                          <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- GRUPO MONITORES -->
+                  <tr class="tb-group-row">
+                    <td colspan="3">🎓 Monitores da Graduação</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Luanna Barros</strong></td>
+                    <td colspan="2" style="padding: 0.5rem 1rem;">
+                      <div class="tb-spec-list">
+                        <div class="tb-spec-item">
+                          <span><strong>Pneumologia</strong></span>
+                          <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                        </div>
+                        <div class="tb-spec-item">
+                          <span><strong>Gastroenterologia</strong></span>
+                          <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                        </div>
+                        <div class="tb-spec-item">
+                          <span><strong>Coloproctologia</strong></span>
+                          <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Mayara Marques</strong></td>
+                    <td colspan="2" style="padding: 0.5rem 1rem;">
+                      <div class="tb-spec-list">
+                        <div class="tb-spec-item">
+                          <span><strong>Nutrição adulto</strong></span>
+                          <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>Franco Bueno</strong></td>
+                    <td colspan="2" style="padding: 0.5rem 1rem;">
+                      <div class="tb-spec-list">
+                        <div class="tb-spec-item">
+                          <span><strong>Cardiologia</strong></span>
+                          <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                        </div>
+                        <div class="tb-spec-item">
+                          <span><strong>Ginecologia</strong></span>
+                          <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-note-box">
+              <div class="note-title">📝 Diretrizes & Compilado do Objetivo 01:</div>
+              <ul class="note-list">
+                <li>Disponibilizar os documentos encontrados (com referência), o processo atual e a rastreabilidade.</li>
+                <li>Disponibilizar o documento com as anotações sobre os resultados encontrados.</li>
+                <li>
+                  <a href="https://docs.google.com/document/d/114v-ZuzqFLFD60hO1DKsan3i5f0yNYwqGF_O8JFxN6s/edit?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="note-link">
+                    📄 Compilado do trabalho realizado (Google Docs) ↗
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="tb-panel-etapa-2" style="display: none;">
+          <div class="empty-simple-card">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">⏳</span>
+            <h3 class="empty-simple-title">Etapa 2: Integração & Fluxos</h3>
+            <p>Em breve.</p>
+          </div>
+        </div>
+
+        <div id="tb-panel-etapa-3" style="display: none;">
+          <div class="empty-simple-card">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🎯</span>
+            <h3 class="empty-simple-title">Etapa 3: Consolidação & Homologação</h3>
+            <p>Em breve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================================
+         SUGESTÃO TABELA C: COMPACTA (1 LINHA POR INTEGRANTE COM SUBCOLUNAS ESPELHADAS)
+         ======================================================================== -->
+    <div class="table-suggestion-container" id="container-tc">
+      
+      <!-- Top Navbar Simulada -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab active">Contribuição</button>
+          <button class="mock-nav-tab disabled">Resultados</button>
+        </div>
+      </nav>
+
+      <div class="page-header-banner">
+        <div class="page-header-container">
+          <div class="page-header-left">
+            <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+            <h1 class="page-header-title">Contribuição do GT 8</h1>
+            <p class="page-header-subtitle">
+              Matriz compacta com uma linha por integrante e visualização alinhada das especialidades.
+            </p>
+          </div>
+          <div class="page-header-minicard">
+            <div class="page-header-minicard-logo">HUB</div>
+            <div class="page-header-minicard-text">
+              <span class="minicard-sub">Hospital Parceiro</span>
+              <span>HUB / UnB</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-main-container">
+        
+        <div class="stepper-nav">
+          <div class="step-card active" onclick="switchStepTab('tc', 1, this)">
+            <div class="step-header">
+              <span class="step-num">01 · ETAPA 1</span>
+              <span class="badge-status badge-status-concluido">Concluído</span>
+            </div>
+            <h4 class="step-title">Diagnóstico & Estruturação</h4>
+          </div>
+          <div class="step-card" onclick="switchStepTab('tc', 2, this)">
+            <div class="step-header">
+              <span class="step-num">02 · ETAPA 2</span>
+              <span class="badge-status badge-status-andamento">Em Breve</span>
+            </div>
+            <h4 class="step-title">Integração & Fluxos</h4>
+          </div>
+          <div class="step-card" onclick="switchStepTab('tc', 3, this)">
+            <div class="step-header">
+              <span class="step-num">03 · ETAPA 3</span>
+              <span class="badge-status badge-status-planejado">Em Breve</span>
+            </div>
+            <h4 class="step-title">Consolidação & Homologação</h4>
+          </div>
+        </div>
+
+        <div id="tc-panel-etapa-1">
+          <div class="objective-section">
+            <div class="obj-header">
+              <span class="obj-badge">Objetivo Específico 01</span>
+              <span class="badge-status badge-status-concluido">Entregue</span>
+            </div>
+            <h3 class="obj-title">Sistemas de Informação HUB e UBSs</h3>
+            <p class="obj-desc">
+              Aprimorar e/ou construir propostas de sistemas de informação entre o ambulatório de Saúde Integral do HUB e as Unidades Básicas de Saúde, utilizando ferramentas de saúde integral.
+            </p>
+
+            <div class="obj-results-box">
+              <div class="obj-results-title">Resultados Esperados:</div>
+              <div class="obj-results-list">
+                <span class="obj-result-chip">Mapeamento de Processos</span>
+                <span class="obj-result-chip">Diagnóstico Situacional (ferramentas e protocolos)</span>
+                <span class="obj-result-chip">Proposta de aprimoramento</span>
+              </div>
+            </div>
+
+            <div class="status-legend-bar">
+              <span style="font-weight: 700; color: var(--primary-navy);">Legenda de Status:</span>
+              <div class="legend-item"><span class="legend-dot dot-disponivel"></span> <strong>Disponível:</strong> Formulário e Protótipo prontos</div>
+              <div class="legend-item"><span class="legend-dot dot-elaboracao"></span> <strong>Em elaboração:</strong> Em desenvolvimento</div>
+              <div class="legend-item"><span class="legend-dot dot-definir"></span> <strong>A definir:</strong> Sem alocação definida</div>
+            </div>
+
+            <!-- TABELA C COMPACTA (1 LINHA POR INTEGRANTE) -->
+            <div class="tc-table-card">
+              <table class="tc-table">
+                <thead>
+                  <tr>
+                    <th rowspan="2" style="width: 14%;">Cargo</th>
+                    <th rowspan="2" style="width: 22%;">Integrante</th>
+                    <th colspan="2" class="tc-header-group">Resultado / Especialidade</th>
+                  </tr>
+                  <tr>
+                    <th style="width: 32%;">Formulário de Encaminhamento</th>
+                    <th style="width: 32%;">Protótipo Digital</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- Luanna -->
+                  <tr>
+                    <td><span class="pill-role-monitor">Monitora</span></td>
+                    <td style="font-weight: 700; color: var(--primary-navy);">Luanna Barros</td>
+                    <td>
+                      <div class="tc-paired-list">
+                        <div class="tc-paired-row"><span class="tc-spec-badge">Pneumologia</span></div>
+                        <div class="tc-paired-row"><span class="tc-spec-badge">Gastroenterologia</span></div>
+                        <div class="tc-paired-row"><span class="tc-spec-badge">Coloproctologia</span></div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="tc-paired-list">
+                        <div class="tc-paired-row"><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></div>
+                        <div class="tc-paired-row"><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></div>
+                        <div class="tc-paired-row"><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Mayara -->
+                  <tr>
+                    <td><span class="pill-role-monitor">Monitora</span></td>
+                    <td style="font-weight: 700; color: var(--primary-navy);">Mayara Marques</td>
+                    <td>
+                      <div class="tc-paired-list">
+                        <div class="tc-paired-row"><span class="tc-spec-badge">Nutrição adulto</span></div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="tc-paired-list">
+                        <div class="tc-paired-row"><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Franco -->
+                  <tr>
+                    <td><span class="pill-role-monitor">Monitor</span></td>
+                    <td style="font-weight: 700; color: var(--primary-navy);">Franco Bueno</td>
+                    <td>
+                      <div class="tc-paired-list">
+                        <div class="tc-paired-row"><span class="tc-spec-badge">Cardiologia</span></div>
+                        <div class="tc-paired-row"><span class="tc-spec-badge">Ginecologia</span></div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="tc-paired-list">
+                        <div class="tc-paired-row"><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></div>
+                        <div class="tc-paired-row"><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <!-- Fernanda -->
+                  <tr>
+                    <td><span class="pill-role-preceptor">Preceptora</span></td>
+                    <td style="font-weight: 700; color: var(--primary-navy);">Fernanda Santana</td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                    <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+                  </tr>
+
+                  <!-- Lucas -->
+                  <tr>
+                    <td><span class="pill-role-preceptor">Preceptor</span></td>
+                    <td style="font-weight: 700; color: var(--primary-navy);">Lucas Alves</td>
+                    <td>
+                      <div class="tc-paired-list">
+                        <div class="tc-paired-row"><span class="tc-spec-badge">Ginecologia</span></div>
+                        <div class="tc-paired-row"><span class="tc-spec-badge">Cirurgia geral</span></div>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="tc-paired-list">
+                        <div class="tc-paired-row"><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></div>
+                        <div class="tc-paired-row"><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-note-box">
+              <div class="note-title">📝 Diretrizes & Compilado do Objetivo 01:</div>
+              <ul class="note-list">
+                <li>Disponibilizar os documentos encontrados (com referência), o processo atual e a rastreabilidade.</li>
+                <li>Disponibilizar o documento com as anotações sobre os resultados encontrados.</li>
+                <li>
+                  <a href="https://docs.google.com/document/d/114v-ZuzqFLFD60hO1DKsan3i5f0yNYwqGF_O8JFxN6s/edit?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="note-link">
+                    📄 Compilado do trabalho realizado (Google Docs) ↗
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div id="tc-panel-etapa-2" style="display: none;">
+          <div class="empty-simple-card">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">⏳</span>
+            <h3 class="empty-simple-title">Etapa 2: Integração & Fluxos</h3>
+            <p>Em breve.</p>
+          </div>
+        </div>
+
+        <div id="tc-panel-etapa-3" style="display: none;">
+          <div class="empty-simple-card">
+            <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🎯</span>
+            <h3 class="empty-simple-title">Etapa 3: Consolidação & Homologação</h3>
+            <p>Em breve.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer style="text-align: center; padding: 2.5rem 1rem; color: #64748b; font-size: 0.85rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+    PET-Saúde: Informação e Saúde Digital • Grupo de Trabalho 08 (HUB - UnB)<br>
+    Mockup de Arquitetura da Informação: 3 Modelos de Tabela de Responsáveis e Especialidades.
+  </footer>
+
+  <!-- ==========================================================================
+       SCRIPTS: ALTERNÂNCIA DE SUGESTÕES E TABS
+       ========================================================================== -->
+  <script>
+    const tableOptionsMeta = {
+      'A': {
+        badge: "Recomendada pelo Tech Lead",
+        badgeClass: "badge-ta",
+        title: "Tabela A: Uma Linha por Especialidade (Rowspan Clássico)",
+        desc: "Cada especialidade ocupa sua própria linha física na tabela. Cargo e Integrante utilizam células mescladas (rowspan). Formulário e Protótipo ficam perfeitamente alinhados lado a lado para cada especialidade.",
+        pros: [
+          "Alinhamento perfeito: Formulário e Protótipo de cada especialidade ficam na mesma linha física",
+          "Altamente legível para auditoria e prestação de contas",
+          "Conexão 1:1 clara entre a especialidade e seus artefatos"
+        ],
+        cons: [
+          "A tabela fica verticalmente mais alta quando um integrante possui 3 ou mais especialidades"
+        ],
+        rec: "<strong>A mais indicada:</strong> Garante precisão visual máxima. Quando o protótipo de Pneumologia estiver 'Disponível', seu link/botão fica exatamente ao lado da linha de Pneumologia."
+      },
+      'B': {
+        badge: "Agrupamento Institucional",
+        badgeClass: "badge-tb",
+        title: "Tabela B: Agrupada por Cargo (Preceptores & Monitores)",
+        desc: "Divide a tabela em blocos hierárquicos com cabeçalhos de seção para 'Preceptores' e 'Monitores'. As especialidades de cada integrante aparecem como sub-cards/itens compactos dentro da célula.",
+        pros: [
+          "Destaca a separação pedagógica entre preceptor e monitor",
+          "Permite que o integrante ocupe apenas um bloco visual",
+          "Cards internos facilitam a distinção das especialidades"
+        ],
+        cons: [
+          "Mistura tabela com sub-listas dentro de células, dificultando a exportação em PDF"
+        ],
+        rec: "<strong>Boa para ênfase acadêmica:</strong> Útil se a coordenação do projeto priorizar a visualização por categoria de bolsistas vs profissionais de serviço."
+      },
+      'C': {
+        badge: "Compacta & Rápida",
+        badgeClass: "badge-tc",
+        title: "Tabela C: Compacta (1 Linha por Integrante)",
+        desc: "Cada integrante ocupa estritamente uma linha na tabela. As especialidades e os respectivos status de protótipo são dispostos em listas verticais espelhadas nas subcolunas.",
+        pros: [
+          "Altura mais compacta: menor quantidade total de linhas na página",
+          "Varredura rápida: encontra-se qualquer integrante imediatamente",
+          "Não utiliza rowspan complexo"
+        ],
+        cons: [
+          "Exige sincronização de altura das linhas nas duas colunas espelhadas"
+        ],
+        rec: "<strong>Boa para tabelas extensas:</strong> Recomendada se houver muitos integrantes e o objetivo for economizar espaço vertical."
+      }
+    };
+
+    let activeTableOption = 'A';
+    let isCompare = false;
+
+    function updateInfo(optKey) {
+      const data = tableOptionsMeta[optKey];
+      const box = document.getElementById("info-card-box");
+      box.innerHTML = `
+        <div>
+          <div class="info-header">
+            <span class="info-badge ${data.badgeClass}">${data.badge}</span>
+            <h2 class="info-title">${data.title}</h2>
+          </div>
+          <p class="info-desc">${data.desc}</p>
+          <div class="pros-cons-grid">
+            ${data.pros.map(p => `<span class="tag-pro">✔ ${p}</span>`).join('')}
+            ${data.cons.map(c => `<span class="tag-con">⚠ ${c}</span>`).join('')}
+          </div>
+        </div>
+        <div class="recommendation-badge">
+          <strong>Avaliação do Tech Lead:</strong>
+          ${data.rec}
+        </div>
+      `;
+    }
+
+    function switchTableOption(optKey) {
+      isCompare = false;
+      activeTableOption = optKey;
+
+      document.querySelectorAll(".btn-tab-option").forEach(b => b.classList.remove("active"));
+      document.getElementById(`btn-opt-${optKey.toLowerCase()}`).classList.add("active");
+      document.getElementById("btn-compare").classList.remove("active");
+
+      const stage = document.getElementById("preview-stage-wrap");
+      stage.classList.remove("compare-grid-mode");
+
+      document.querySelectorAll(".table-suggestion-container").forEach(c => c.classList.remove("visible"));
+      document.getElementById(`container-t${optKey.toLowerCase()}`).classList.add("visible");
+
+      updateInfo(optKey);
+    }
+
+    function toggleCompareMode() {
+      isCompare = !isCompare;
+      const stage = document.getElementById("preview-stage-wrap");
+      const compareBtn = document.getElementById("btn-compare");
+
+      if (isCompare) {
+        stage.classList.add("compare-grid-mode");
+        compareBtn.classList.add("active");
+        document.querySelectorAll(".btn-tab-option").forEach(b => b.classList.remove("active"));
+        document.getElementById("info-card-box").innerHTML = `
+          <div>
+            <div class="info-header">
+              <span class="info-badge badge-ta">Modo Comparativo</span>
+              <h2 class="info-title">Comparação Direta: Tabela A vs Tabela B vs Tabela C</h2>
+            </div>
+            <p class="info-desc">
+              Analise como cada formato lida com a mesclagem de especialidades e o alinhamento das subcolunas <strong>Formulário de Encaminhamento</strong> e <strong>Protótipo Digital</strong>.
+            </p>
+          </div>
+          <div class="recommendation-badge">
+            <strong>Recomendação Principal:</strong>
+            A <strong>Tabela A</strong> é a mais clara para o usuário final, pois cada especialidade tem sua linha independente e precisa.
+          </div>
+        `;
+      } else {
+        switchTableOption(activeTableOption);
+      }
+    }
+
+    // Alternância das Etapas no Stepper (1, 2 ou 3)
+    function switchStepTab(tablePrefix, stepNum, card) {
+      card.parentElement.querySelectorAll(".step-card").forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+      document.getElementById(`${tablePrefix}-panel-etapa-1`).style.display = stepNum === 1 ? 'block' : 'none';
+      document.getElementById(`${tablePrefix}-panel-etapa-2`).style.display = stepNum === 2 ? 'block' : 'none';
+      document.getElementById(`${tablePrefix}-panel-etapa-3`).style.display = stepNum === 3 ? 'block' : 'none';
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      updateInfo('A');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Variações de Etapas & Protótipo • PET-Saúde GT 8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       RESET & TOKENS DE DESIGN
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary-navy: #0c3258;
+      --primary-navy-dark: #061122;
+      --brand-blue: #0284c7;
+      --brand-blue-light: #38bdf8;
+      --pet-orange: #ea5b2d;
+      --pet-orange-hover: #d94817;
+      --pet-orange-glow: rgba(234, 91, 45, 0.35);
+      --unb-green: #009a44;
+      --unb-green-vibrant: #10b981;
+      --bg-slate: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0b1526;
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       TOP SELECTOR BAR (FIXO) & PAINEL DE CONTROLE
+       ========================================================================== */
+    .decision-hub-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 21, 38, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.85rem 1.5rem;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .decision-bar-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .decision-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .decision-brand-badge {
+      background: linear-gradient(135deg, var(--pet-orange), #f97316);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .decision-brand-title {
+      color: #ffffff;
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .decision-brand-title span {
+      color: var(--brand-blue-light);
+      font-weight: 400;
+    }
+
+    .decision-selector-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.3rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-variation {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1.1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-variation:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-variation.active {
+      background: var(--brand-blue);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.45);
+    }
+
+    .btn-compare {
+      background: rgba(234, 91, 45, 0.15);
+      border: 1px solid rgba(234, 91, 45, 0.35);
+      color: #fdba74;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-compare:hover, .btn-compare.active {
+      background: var(--pet-orange);
+      color: #ffffff;
+      border-color: var(--pet-orange);
+      box-shadow: 0 2px 10px rgba(234, 91, 45, 0.45);
+    }
+
+    /* Painel Explicativo Superior */
+    .decision-info-panel {
+      max-width: 1400px;
+      margin: 1.2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .info-card {
+      background: linear-gradient(145deg, #0e1e36, #091527);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .info-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-va { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-vb { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-vc { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+
+    .info-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .info-desc {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      margin-bottom: 0.75rem;
+    }
+
+    .pros-cons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .tag-pro, .tag-con, .tag-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .tag-pro { background: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25); }
+    .tag-con { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.25); }
+    .tag-cta { background: rgba(234, 91, 45, 0.15); color: #fdba74; border: 1px solid rgba(234, 91, 45, 0.35); font-weight: 600; }
+
+    .recommendation-badge {
+      background: rgba(2, 132, 199, 0.15);
+      border: 1px solid rgba(2, 132, 199, 0.35);
+      padding: 0.85rem 1.1rem;
+      border-radius: 10px;
+      text-align: right;
+      color: #bae6fd;
+      font-size: 0.82rem;
+      max-width: 380px;
+    }
+
+    .recommendation-badge strong {
+      display: block;
+      color: #38bdf8;
+      font-size: 0.88rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ==========================================================================
+       CONTAINERS & PREVIEW
+       ========================================================================== */
+    .preview-stage {
+      max-width: 1400px;
+      margin: 0 auto 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .variation-container {
+      background: var(--bg-slate);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: none;
+      animation: fadeIn 0.3s ease;
+      position: relative;
+    }
+
+    .variation-container.visible {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MODO COMPARATIVO LADO A LADO */
+    .compare-grid-mode {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .compare-grid-mode .variation-container {
+      display: block !important;
+      font-size: 0.82rem;
+    }
+
+    .compare-grid-mode .page-header-title {
+      font-size: 1.4rem !important;
+    }
+
+    /* ==========================================================================
+       NAVBAR SIMULADA DO MKDOCS MATERIAL
+       ========================================================================== */
+    .mock-header {
+      background: #0d3b66;
+      border-bottom: 1px solid #092c4c;
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+    }
+
+    .mock-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .mock-logo-box {
+      width: 34px;
+      height: 34px;
+      background: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--primary-navy);
+      font-size: 0.85rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .mock-site-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .mock-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .mock-nav-tab {
+      background: none;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.4rem 0.2rem;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .mock-nav-tab:hover {
+      color: #ffffff;
+    }
+
+    .mock-nav-tab.active {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .mock-nav-tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 2px;
+      background-color: var(--brand-blue-light);
+    }
+
+    .mock-nav-tab.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Banner Padrão das Páginas */
+    .page-header-banner {
+      width: 100%;
+      background: radial-gradient(circle at 8% 25%, rgba(234, 91, 45, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 92% 75%, rgba(0, 154, 68, 0.12) 0%, transparent 45%),
+                  #0c3258 !important;
+      padding: 2rem 1.75rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid transparent !important;
+      border-image: linear-gradient(90deg, #ea5b2d 0%, #009a44 48%, #0284c7 85%) 1 !important;
+      color: #ffffff;
+    }
+
+    .page-header-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .page-header-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .page-header-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .page-header-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header-subtitle {
+      font-size: 1rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
+    .page-header-minicard {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 0.75rem 1.1rem;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    }
+
+    .page-header-minicard-logo {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-navy);
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+
+    .page-header-minicard-text {
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .minicard-sub {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .minicard-sub::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #009a44;
+    }
+
+    .page-main-container {
+      max-width: 1140px;
+      margin: 0 auto 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Badges de Status das Etapas */
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-status-concluido { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+    .badge-status-andamento { background: #fef9c3; color: #854d0e; border: 1px solid #fef08a; }
+    .badge-status-planejado { background: #f1f5f9; color: #64748b; border: 1px solid #cbd5e1; }
+    .badge-status-validacao { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+
+    /* Pills de Equipe */
+    .member-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .member-pill {
+      display: inline-block;
+      padding: 0.22rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .member-pill-preceptor { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+    .member-pill-monitor { background: #ecfdf5; color: #007a36; border: 1px solid #a7f3d0; }
+
+    /* ==========================================================================
+       ESTILOS GERAIS DO BOTÃO CTA DO PROTÓTIPO (PULSE & GLOW)
+       ========================================================================== */
+    .btn-cta-prototipo {
+      background: linear-gradient(135deg, #ea5b2d, #ff6b3d);
+      color: #ffffff !important;
+      border: 1px solid #ff7d47;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      padding: 0.75rem 1.6rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 18px var(--pet-orange-glow);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    .btn-cta-prototipo:hover {
+      background: linear-gradient(135deg, #d94817, #ea5b2d);
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 25px rgba(234, 91, 45, 0.5);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: inline-block;
+      animation: pulseGlow 1.8s infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 255, 255, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+    }
+
+    /* Selo no Objetivo 1 */
+    .badge-product-link {
+      background: rgba(234, 91, 45, 0.1);
+      border: 1px solid rgba(234, 91, 45, 0.3);
+      color: #c2410c;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .badge-product-link:hover {
+      background: var(--pet-orange);
+      color: #ffffff;
+      border-color: var(--pet-orange);
+      transform: translateY(-1px);
+    }
+
+    /* ==========================================================================
+       VARIAÇÃO A: STEPPER HORIZONTAL DE ETAPAS (1 -> 2 -> 3)
+       CTA NO BANNER SUPERIOR
+       ========================================================================== */
+    .va-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .va-stepper-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .va-step-card {
+      background: #ffffff;
+      border: 2px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .va-step-card:hover {
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+    }
+
+    .va-step-card.active {
+      border-color: var(--brand-blue);
+      background: #f0f9ff;
+      box-shadow: 0 6px 20px rgba(2, 132, 199, 0.12);
+    }
+
+    .va-step-card.active::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid var(--brand-blue);
+    }
+
+    .va-step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .va-step-num {
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--brand-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .va-step-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      line-height: 1.3;
+    }
+
+    /* Accordions dos Objetivos na Variação A */
+    .va-obj-accordion {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    }
+
+    .va-acc-header {
+      padding: 1.2rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+      border-left: 5px solid var(--brand-blue);
+      transition: background 0.2s;
+    }
+
+    .va-acc-header:hover {
+      background: #f8fafc;
+    }
+
+    .va-obj-accordion.open .va-acc-header {
+      background: #f8fafc;
+    }
+
+    .va-acc-body {
+      display: none;
+      padding: 1.5rem;
+      border-top: 1px solid #f1f5f9;
+      background: #ffffff;
+    }
+
+    .va-obj-accordion.open .va-acc-body {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    /* Card de Estado Vazio (Etapas 2 e 3) */
+    .empty-state-card {
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: 14px;
+      padding: 3rem 2rem;
+      text-align: center;
+      color: #64748b;
+    }
+
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+      opacity: 0.7;
+    }
+
+    .empty-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .empty-desc {
+      font-size: 0.95rem;
+      max-width: 580px;
+      margin: 0 auto 1.5rem auto;
+      line-height: 1.5;
+    }
+
+    .empty-roadmap-list {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      text-align: left;
+      background: #f8fafc;
+      padding: 1rem 1.5rem;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+      font-size: 0.85rem;
+    }
+
+    /* ==========================================================================
+       VARIAÇÃO B: TIMELINE VERTICAL CONTÍNUA (GRANDES MARCOS)
+       CTA EM BANNER CARD NO TOPO DO CONTEÚDO
+       ========================================================================== */
+    .vb-top-cta-banner {
+      background: linear-gradient(135deg, #0c3258, #071e36);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 14px;
+      padding: 1.5rem 1.75rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      box-shadow: 0 10px 30px rgba(12, 50, 88, 0.25);
+      color: #ffffff;
+    }
+
+    .vb-timeline-wrapper {
+      position: relative;
+      padding-left: 2.5rem;
+    }
+
+    .vb-timeline-wrapper::before {
+      content: "";
+      position: absolute;
+      left: 15px;
+      top: 15px;
+      bottom: 25px;
+      width: 4px;
+      background: #e2e8f0;
+      border-radius: 2px;
+    }
+
+    .vb-milestone {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+
+    .vb-milestone-marker {
+      position: absolute;
+      left: -2.5rem;
+      top: 0;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 4px solid var(--brand-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--brand-blue);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      z-index: 2;
+    }
+
+    .vb-milestone.concluido .vb-milestone-marker {
+      border-color: var(--unb-green);
+      color: var(--unb-green);
+    }
+
+    .vb-milestone.planejado .vb-milestone-marker {
+      border-color: #94a3b8;
+      color: #94a3b8;
+      background: #f8fafc;
+    }
+
+    .vb-milestone-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .vb-milestone-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    /* Sub-objetivos dentro do Marco 1 */
+    .vb-subgoals-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .vb-subgoal-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      position: relative;
+    }
+
+    /* ==========================================================================
+       VARIAÇÃO C: ROADMAP VISUAL EM 3 COLUNAS + FLOATING CTA / OFFCANVAS
+       ========================================================================== */
+    .vc-roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      align-items: start;
+    }
+
+    .vc-column {
+      background: #f1f5f9;
+      border-radius: 14px;
+      padding: 1.25rem;
+      border: 1px solid #e2e8f0;
+    }
+
+    .vc-col-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid #e2e8f0;
+    }
+
+    .vc-col-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+    }
+
+    .vc-obj-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.1rem;
+      margin-bottom: 0.85rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-left: 4px solid var(--brand-blue);
+    }
+
+    .vc-obj-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+      border-color: #cbd5e1;
+    }
+
+    .vc-obj-card-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      margin-bottom: 0.6rem;
+      line-height: 1.35;
+    }
+
+    /* Floating Action Widget (CTA Flutuante da Variação C) */
+    .vc-floating-dock {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(12, 50, 88, 0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 0.6rem 0.5rem 1rem;
+      border-radius: 9999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .vc-floating-text {
+      color: #ffffff;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       MODAL EM TELA CHEIA PARA O PROTÓTIPO DIGITAL
+       ========================================================================== */
+    .proto-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(8, 22, 43, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .proto-modal-backdrop.active {
+      display: flex;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .proto-modal-container {
+      background: #ffffff;
+      width: 100%;
+      max-width: 1060px;
+      height: 90vh;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .proto-modal-header {
+      background: #0c3258;
+      color: #ffffff;
+      padding: 1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid var(--pet-orange);
+    }
+
+    .proto-modal-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-close-modal {
+      background: rgba(255, 255, 255, 0.15);
+      border: none;
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .btn-close-modal:hover {
+      background: #ef4444;
+    }
+
+    .proto-modal-iframe-frame {
+      flex: 1;
+      background: #f8fafc;
+      overflow-y: auto;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .proto-sim-card {
+      max-width: 780px;
+      width: 100%;
+      background: #ffffff;
+      border: 2px dashed #0284c7;
+      border-radius: 14px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+    }
+
+    /* Painel Lateral Offcanvas (Variação C) */
+    .vc-offcanvas-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      z-index: 1500;
+      display: none;
+    }
+
+    .vc-offcanvas-backdrop.active {
+      display: block;
+    }
+
+    .vc-offcanvas-panel {
+      position: fixed;
+      top: 0;
+      right: -520px;
+      width: 100%;
+      max-width: 500px;
+      height: 100vh;
+      background: #ffffff;
+      box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+      z-index: 1501;
+      transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .vc-offcanvas-panel.active {
+      right: 0;
+    }
+
+    /* Responsividade */
+    @media (max-width: 992px) {
+      .compare-grid-mode { grid-template-columns: 1fr; }
+      .va-stepper-nav { grid-template-columns: 1fr; }
+      .vc-roadmap-grid { grid-template-columns: 1fr; }
+      .info-card { grid-template-columns: 1fr; }
+      .recommendation-badge { text-align: left; max-width: 100%; }
+      .page-header-container { flex-direction: column; align-items: flex-start; }
+      .va-header-actions { width: 100%; justify-content: space-between; }
+      .vb-top-cta-banner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP SELECTOR BAR (BARRA FIXA DE DECISÃO)
+       ========================================================================== -->
+  <header class="decision-hub-header">
+    <div class="decision-bar-container">
+      <div class="decision-brand">
+        <span class="decision-brand-badge">Tech Lead • Decisão de UX</span>
+        <div class="decision-brand-title">PET-Saúde GT 8 <span>| Organização das Etapas 1, 2 e 3</span></div>
+      </div>
+
+      <div class="decision-selector-group">
+        <button class="btn-variation active" onclick="switchVariation('A')" id="btn-va">
+          <span>🔄</span> Variação A · Stepper Horizontal
+        </button>
+        <button class="btn-variation" onclick="switchVariation('B')" id="btn-vb">
+          <span>📍</span> Variação B · Timeline Vertical
+        </button>
+        <button class="btn-variation" onclick="switchVariation('C')" id="btn-vc">
+          <span>📊</span> Variação C · Roadmap em Colunas
+        </button>
+        <button class="btn-compare" onclick="toggleCompareMode()" id="btn-compare">
+          <span>⊞</span> Comparar Lado a Lado
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       BLOCO EXPLICATIVO DA VARIAÇÃO ATIVA
+       ========================================================================== -->
+  <section class="decision-info-panel">
+    <div class="info-card" id="info-card-box">
+      <!-- Inserido dinamicamente via JS -->
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ÁREA DE MOCKUPS (SIMULAÇÃO MKDOCS)
+       ========================================================================== -->
+  <main class="preview-stage" id="preview-stage-wrap">
+
+    <!-- ========================================================================
+         VARIAÇÃO A: STEPPER HORIZONTAL DE ETAPAS (1 -> 2 -> 3)
+         POSIÇÃO DO CTA DO PROTÓTIPO: NO BANNER DO CABEÇALHO (DIREITA)
+         ======================================================================== -->
+    <div class="variation-container visible" id="var-a">
+      
+      <!-- Navbar Simulada -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab active" onclick="switchMainTab('A', 'contribuicao', this)">Contribuição</button>
+          <button class="mock-nav-tab" onclick="switchMainTab('A', 'resultados', this)">Resultados</button>
+        </div>
+      </nav>
+
+      <!-- PÁGINA: CONTRIBUIÇÃO (VARIAÇÃO A) -->
+      <div id="va-page-contribuicao">
+        
+        <!-- Banner de Cabeçalho com CTA de Destaque integrado -->
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Contribuição do GT 8</h1>
+              <p class="page-header-subtitle">
+                Plano de ação distribuído pelas 3 etapas do projeto e acesso prioritário ao protótipo digital.
+              </p>
+            </div>
+            
+            <div class="va-header-actions">
+              <!-- CTA DO PROTÓTIPO EM DESTAQUE NO BANNER -->
+              <button class="btn-cta-prototipo" onclick="openProtoModal()">
+                <span>🩺</span> Abrir Protótipo Digital
+                <span class="pulse-dot"></span>
+              </button>
+
+              <div class="page-header-minicard">
+                <div class="page-header-minicard-logo">HUB</div>
+                <div class="page-header-minicard-text">
+                  <span class="minicard-sub">Hospital Parceiro</span>
+                  <span>HUB / UnB</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+
+          <!-- Stepper Horizontal das 3 Etapas -->
+          <div class="va-stepper-nav">
+            <!-- Etapa 1 -->
+            <div class="va-step-card active" onclick="vaSelectStep(1, this)">
+              <div class="va-step-header">
+                <span class="va-step-num">01 · ETAPA 1</span>
+                <span class="badge-status badge-status-concluido">Concluído</span>
+              </div>
+              <h4 class="va-step-title">Diagnóstico & Estruturação</h4>
+            </div>
+
+            <!-- Etapa 2 -->
+            <div class="va-step-card" onclick="vaSelectStep(2, this)">
+              <div class="va-step-header">
+                <span class="va-step-num">02 · ETAPA 2</span>
+                <span class="badge-status badge-status-andamento">Em Andamento</span>
+              </div>
+              <h4 class="va-step-title">Integração & Fluxos</h4>
+            </div>
+
+            <!-- Etapa 3 -->
+            <div class="va-step-card" onclick="vaSelectStep(3, this)">
+              <div class="va-step-header">
+                <span class="va-step-num">03 · ETAPA 3</span>
+                <span class="badge-status badge-status-planejado">Planejado</span>
+              </div>
+              <h4 class="va-step-title">Consolidação & Homologação</h4>
+            </div>
+          </div>
+
+          <!-- PAINEL ETAPA 1 (ATIVO) -->
+          <div id="va-panel-etapa-1">
+            
+            <!-- Objetivo 1 -->
+            <div class="va-obj-accordion open" id="va-acc-1">
+              <div class="va-acc-header" onclick="vaToggleAcc('va-acc-1')">
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                  <span style="font-weight: 800; color: var(--brand-blue); font-size: 0.9rem;">01</span>
+                  <div>
+                    <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--primary-navy); margin: 0;">
+                      Aprimorar e/ou construir propostas de sistemas de informação entre o ambulatório do HUB e as UBSs
+                    </h4>
+                    <span style="font-size: 0.8rem; color: #64748b;">Mapeamento de processos, diagnóstico situacional e proposta de indicadores</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <span class="badge-status badge-status-concluido">Entregue</span>
+                  <span style="font-size: 1.1rem; color: var(--brand-blue);">▼</span>
+                </div>
+              </div>
+              <div class="va-acc-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.25rem;">
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Resultados Esperados</h5>
+                    <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: #334155; display: flex; flex-direction: column; gap: 0.35rem;">
+                      <li>Mapeamento de Processos assistenciais do percurso terciário</li>
+                      <li>Diagnóstico Situacional de ferramentas e formulários de parecer</li>
+                      <li>Proposta de aprimoramento e indicadores de devolução</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Preceptores</h5>
+                    <div class="member-pill-list" style="margin-bottom: 0.6rem;">
+                      <span class="member-pill member-pill-preceptor">Fernanda Santana</span>
+                      <span class="member-pill member-pill-preceptor">Lucas Alves</span>
+                    </div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Monitores</h5>
+                    <div class="member-pill-list">
+                      <span class="member-pill member-pill-monitor">Luanna Barros (Medicina)</span>
+                      <span class="member-pill member-pill-monitor">Mayara Marques (Eng. Software)</span>
+                      <span class="member-pill member-pill-monitor">Franco Bueno (Mecatrônica)</span>
+                      <span class="member-pill member-pill-monitor">Heitor Chagas (Eng. Software)</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Selo de vínculo direto com o Protótipo -->
+                <div style="display: flex; align-items: center; justify-content: space-between; background: #fff7ed; border: 1px solid #fed7aa; padding: 0.75rem 1rem; border-radius: 8px;">
+                  <span style="font-size: 0.85rem; color: #9a3412; font-weight: 600;">
+                    ⭐ O <strong>Protótipo Digital de Triagem</strong> foi construído e validado como produto direto deste objetivo.
+                  </span>
+                  <button class="badge-product-link" onclick="openProtoModal()">
+                    Abrir Protótipo Digital →
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Objetivo 2 -->
+            <div class="va-obj-accordion" id="va-acc-2">
+              <div class="va-acc-header" onclick="vaToggleAcc('va-acc-2')">
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                  <span style="font-weight: 800; color: var(--brand-blue); font-size: 0.9rem;">02</span>
+                  <div>
+                    <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--primary-navy); margin: 0;">
+                      Realizar revisão rápida (RLS) sobre fluxos de referência e contrarreferência no Brasil
+                    </h4>
+                    <span style="font-size: 0.8rem; color: #64748b;">Síntese das melhores evidências nacionais e internacionais de regulação</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <span class="badge-status badge-status-concluido">RLS Concluída</span>
+                  <span style="font-size: 1.1rem; color: var(--brand-blue);">▼</span>
+                </div>
+              </div>
+              <div class="va-acc-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Resultados Esperados</h5>
+                    <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: #334155; display: flex; flex-direction: column; gap: 0.35rem;">
+                      <li>RLS consolidada sobre mecanismos de referência e contrarreferência</li>
+                      <li>Indicadores para avaliação de fluxos assistenciais</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Preceptores</h5>
+                    <div class="member-pill-list" style="margin-bottom: 0.6rem;">
+                      <span class="member-pill member-pill-preceptor">Sabrina Feitosa</span>
+                      <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+                    </div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Monitores</h5>
+                    <div class="member-pill-list">
+                      <span class="member-pill member-pill-monitor">Paula Iara (Farmácia)</span>
+                      <span class="member-pill member-pill-monitor">Plabio Lucas (Medicina)</span>
+                      <span class="member-pill member-pill-monitor">Flávia Lima (Enfermagem)</span>
+                      <span class="member-pill member-pill-monitor">Hugo de Verson (Medicina)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Objetivo 3 -->
+            <div class="va-obj-accordion" id="va-acc-3">
+              <div class="va-acc-header" onclick="vaToggleAcc('va-acc-3')">
+                <div style="display: flex; align-items: center; gap: 0.85rem;">
+                  <span style="font-weight: 800; color: var(--brand-blue); font-size: 0.9rem;">03</span>
+                  <div>
+                    <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--primary-navy); margin: 0;">
+                      Construir o protocolo de atendimento e de encaminhamento do Ambulatório de Saúde Integral
+                    </h4>
+                    <span style="font-size: 0.8rem; color: #64748b;">Padronização de critérios clínicos e acolhimento dos encaminhamentos</span>
+                  </div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <span class="badge-status badge-status-validacao">Em Validação</span>
+                  <span style="font-size: 1.1rem; color: var(--brand-blue);">▼</span>
+                </div>
+              </div>
+              <div class="va-acc-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Resultados Esperados</h5>
+                    <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: #334155; display: flex; flex-direction: column; gap: 0.35rem;">
+                      <li>Protocolo de atendimento multiprofissional</li>
+                      <li>Protocolo de encaminhamento padronizado do HUB</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Preceptores</h5>
+                    <div class="member-pill-list" style="margin-bottom: 0.6rem;">
+                      <span class="member-pill member-pill-preceptor">Flávio Torres</span>
+                      <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+                    </div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Monitores</h5>
+                    <div class="member-pill-list">
+                      <span class="member-pill member-pill-monitor">João Victor Macêdo (Medicina)</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- PAINEL ETAPA 2 (ESTADO EM BREVE) -->
+          <div id="va-panel-etapa-2" style="display: none;">
+            <div class="empty-state-card">
+              <span class="empty-icon">⏳</span>
+              <h3 class="empty-title">Etapa 2: Integração & Fluxos (Em Andamento)</h3>
+              <p class="empty-desc">
+                Esta etapa está ativa na rotina do GT 8. Os objetivos específicos e as metas detalhadas estão sendo refinados pela equipe de preceptoria e tutoria junto aos cenários de prática.
+              </p>
+              <div class="empty-roadmap-list">
+                <span>📌 <strong>Escopo previsto da Etapa 2:</strong></span>
+                <span>• Articulação com o Grupo de Trabalho (GT SES/HUB)</span>
+                <span>• Testes de campo do protótipo digital nas UBSs piloto</span>
+                <span>• Mapeamento de fluxos integrados da Atenção Primária</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAINEL ETAPA 3 (ESTADO PLANEJADO) -->
+          <div id="va-panel-etapa-3" style="display: none;">
+            <div class="empty-state-card">
+              <span class="empty-icon">🎯</span>
+              <h3 class="empty-title">Etapa 3: Consolidação & Homologação (Planejado)</h3>
+              <p class="empty-desc">
+                Fase final do projeto. A matriz de entregas e os responsáveis serão publicados à medida que os ciclos de validação da Etapa 2 forem concluídos.
+              </p>
+              <div class="empty-roadmap-list">
+                <span>📌 <strong>Escopo previsto da Etapa 3:</strong></span>
+                <span>• Homologação final dos protocolos clínicos junto à gestão do HUB</span>
+                <span>• Avaliação de impacto nas devoluções de pareceres (P3)</span>
+                <span>• Publicação de manuais operacionais definitivos</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PÁGINA: RESULTADOS (VARIAÇÃO A) -->
+      <div id="va-page-resultados" style="display: none;">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Resultados do Projeto</h1>
+              <p class="page-header-subtitle">Status executivo de entregas e indicadores de qualificação da contrarreferência.</p>
+            </div>
+          </div>
+        </div>
+        <div class="page-main-container">
+          <div style="background: #ffffff; padding: 2rem; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center;">
+            <h3 style="color: var(--primary-navy); margin-bottom: 0.5rem;">Painel de Resultados e Indicadores</h3>
+            <p style="color: #64748b;">Consolidado de KPIs da Etapa 1 e cronograma de homologação.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         VARIAÇÃO B: TIMELINE VERTICAL CONTÍNUA (GRANDES MARCOS)
+         POSIÇÃO DO CTA DO PROTÓTIPO: HERO CARD NO TOPO DO CONTEÚDO
+         ======================================================================== -->
+    <div class="variation-container" id="var-b">
+      
+      <!-- Navbar Simulada -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab active" onclick="switchMainTab('B', 'contribuicao', this)">Contribuição</button>
+          <button class="mock-nav-tab" onclick="switchMainTab('B', 'resultados', this)">Resultados</button>
+        </div>
+      </nav>
+
+      <!-- PÁGINA: CONTRIBUIÇÃO (VARIAÇÃO B) -->
+      <div id="vb-page-contribuicao">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Contribuição do GT 8</h1>
+              <p class="page-header-subtitle">
+                Linha do tempo evolutiva das 3 etapas do projeto e mapa operacional de entregas.
+              </p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+          
+          <!-- CTA DO PROTÓTIPO: HERO BANNER EM DESTAQUE NO TOPO DO CONTEÚDO -->
+          <div class="vb-top-cta-banner">
+            <div>
+              <span style="font-size: 0.75rem; text-transform: uppercase; font-weight: 800; color: #38bdf8; letter-spacing: 1px;">
+                SOLUÇÃO TECNOLÓGICA PRINCIPAL • ETAPA 1
+              </span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; margin: 0.35rem 0 0.5rem 0;">
+                Protótipo Digital de Triagem e Contrarreferência
+              </h3>
+              <p style="font-size: 0.9rem; color: #cbd5e1; max-width: 650px; margin: 0;">
+                Formulário didático criado pelo GT 8 para padronizar pareceres clínicos, acelerar a regulação e integrar o HUB às UBSs.
+              </p>
+            </div>
+            <button class="btn-cta-prototipo" onclick="openProtoModal()" style="font-size: 0.95rem; padding: 0.85rem 1.8rem;">
+              <span>🩺</span> Acessar Protótipo Digital
+              <span class="pulse-dot"></span>
+            </button>
+          </div>
+
+          <!-- LINHA DO TEMPO VERTICAL CONTÍNUA -->
+          <div class="vb-timeline-wrapper">
+            
+            <!-- MARCO 1: ETAPA 1 -->
+            <div class="vb-milestone concluido">
+              <div class="vb-milestone-marker">01</div>
+              <div class="vb-milestone-header">
+                <div>
+                  <h3 class="vb-milestone-title">
+                    Etapa 1: Diagnóstico & Estruturação
+                  </h3>
+                  <span style="font-size: 0.84rem; color: #64748b;">Mapeamento de fluxos, levantamento de evidências e criação do protótipo digital.</span>
+                </div>
+                <span class="badge-status badge-status-concluido">Concluído</span>
+              </div>
+
+              <!-- Sub-objetivos da Etapa 1 -->
+              <div class="vb-subgoals-list">
+                <!-- Objetivo 1 -->
+                <div class="vb-subgoal-card" style="border-left: 4px solid var(--unb-green);">
+                  <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                    <h4 style="font-size: 1rem; font-weight: 700; color: var(--primary-navy); margin: 0;">
+                      Obj. 1: Sistemas de Informação entre Ambulatório HUB e UBSs
+                    </h4>
+                    <span class="badge-product-link" onclick="openProtoModal()">
+                      ⭐ Produto: Protótipo Digital →
+                    </span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: #475569; margin-bottom: 0.6rem;">
+                    <strong>Resultados:</strong> Mapeamento de Processos • Diagnóstico Situacional • Proposta de Indicadores.
+                  </p>
+                  <div style="display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; border-top: 1px solid #f1f5f9; padding-top: 0.6rem;">
+                    <div><strong>Preceptores:</strong> Fernanda Santana, Lucas Alves</div>
+                    <div><strong>Monitores:</strong> Luanna Barros, Mayara Marques, Franco Bueno, Heitor Chagas</div>
+                  </div>
+                </div>
+
+                <!-- Objetivo 2 -->
+                <div class="vb-subgoal-card" style="border-left: 4px solid var(--brand-blue);">
+                  <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                    <h4 style="font-size: 1rem; font-weight: 700; color: var(--primary-navy); margin: 0;">
+                      Obj. 2: Revisão Rápida (RLS) sobre Fluxos no Brasil
+                    </h4>
+                    <span class="badge-status badge-status-concluido">RLS Concluída</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: #475569; margin-bottom: 0.6rem;">
+                    <strong>Resultados:</strong> RLS Consolidada com síntese de evidências • Indicadores de Avaliação.
+                  </p>
+                  <div style="display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; border-top: 1px solid #f1f5f9; padding-top: 0.6rem;">
+                    <div><strong>Preceptores:</strong> Sabrina Feitosa, Pedro Ruas</div>
+                    <div><strong>Monitores:</strong> Paula Iara, Plabio Lucas, Flávia Lima, Hugo de Verson</div>
+                  </div>
+                </div>
+
+                <!-- Objetivo 3 -->
+                <div class="vb-subgoal-card" style="border-left: 4px solid #f59e0b;">
+                  <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                    <h4 style="font-size: 1rem; font-weight: 700; color: var(--primary-navy); margin: 0;">
+                      Obj. 3: Protocolo de Atendimento e Encaminhamento do Ambulatório
+                    </h4>
+                    <span class="badge-status badge-status-validacao">Em Validação</span>
+                  </div>
+                  <p style="font-size: 0.85rem; color: #475569; margin-bottom: 0.6rem;">
+                    <strong>Resultados:</strong> Protocolo de atendimento multiprofissional • Padronização de devoluções.
+                  </p>
+                  <div style="display: flex; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; border-top: 1px solid #f1f5f9; padding-top: 0.6rem;">
+                    <div><strong>Preceptores:</strong> Flávio Torres, Pedro Ruas</div>
+                    <div><strong>Monitores:</strong> João Victor Macêdo</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- MARCO 2: ETAPA 2 (EM ANDAMENTO) -->
+            <div class="vb-milestone andamento">
+              <div class="vb-milestone-marker" style="border-color: #eab308; color: #854d0e;">02</div>
+              <div class="vb-milestone-header">
+                <div>
+                  <h3 class="vb-milestone-title">
+                    Etapa 2: Integração & Fluxos
+                  </h3>
+                  <span style="font-size: 0.84rem; color: #64748b;">Fase de articulação institucional e validação prática.</span>
+                </div>
+                <span class="badge-status badge-status-andamento">Em Andamento</span>
+              </div>
+              <div style="background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 12px; padding: 1.25rem; color: #64748b; font-size: 0.88rem;">
+                ⏳ <strong>Objetivos em definição pelo Grupo de Trabalho:</strong> Testes de integração do formulário nas UBSs e alinhamento dos fluxos de regulação SES/HUB.
+              </div>
+            </div>
+
+            <!-- MARCO 3: ETAPA 3 (PLANEJADO) -->
+            <div class="vb-milestone planejado">
+              <div class="vb-milestone-marker">03</div>
+              <div class="vb-milestone-header">
+                <div>
+                  <h3 class="vb-milestone-title">
+                    Etapa 3: Consolidação & Homologação
+                  </h3>
+                  <span style="font-size: 0.84rem; color: #64748b;">Fase final de avaliação de impacto e publicação.</span>
+                </div>
+                <span class="badge-status badge-status-planejado">Planejado</span>
+              </div>
+              <div style="background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 12px; padding: 1.25rem; color: #64748b; font-size: 0.88rem;">
+                🎯 <strong>Fase futura:</strong> Homologação oficial dos manuais e protocolo de regulação pelo colegiado do HUB.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PÁGINA: RESULTADOS (VARIAÇÃO B) -->
+      <div id="vb-page-resultados" style="display: none;">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Resultados e Indicadores</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         VARIAÇÃO C: ROADMAP VISUAL EM COLUNAS (KANBAN ROADMAP)
+         POSIÇÃO DO CTA DO PROTÓTIPO: BOTÃO FLUTUANTE FIXO (DOCK / FAB)
+         ======================================================================== -->
+    <div class="variation-container" id="var-c">
+      
+      <!-- Navbar Simulada -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab active" onclick="switchMainTab('C', 'contribuicao', this)">Contribuição</button>
+          <button class="mock-nav-tab" onclick="switchMainTab('C', 'resultados', this)">Resultados</button>
+        </div>
+      </nav>
+
+      <!-- PÁGINA: CONTRIBUIÇÃO (VARIAÇÃO C) -->
+      <div id="vc-page-contribuicao">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Contribuição do GT 8</h1>
+              <p class="page-header-subtitle">
+                Quadro visual de evolução das 3 etapas com detalhamento sob demanda.
+              </p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+          
+          <!-- Quadro Kanban Roadmap em 3 Colunas -->
+          <div class="vc-roadmap-grid">
+            
+            <!-- COLUNA 1: ETAPA 1 -->
+            <div class="vc-column">
+              <div class="vc-col-header">
+                <div>
+                  <div style="font-size: 0.72rem; font-weight: 800; color: var(--brand-blue); text-transform: uppercase;">ETAPA 01</div>
+                  <h4 class="vc-col-title">Diagnóstico & Estruturação</h4>
+                </div>
+                <span class="badge-status badge-status-concluido">Concluído</span>
+              </div>
+
+              <!-- Card Objetivo 1 -->
+              <div class="vc-obj-card" onclick="vcOpenDrawer(1)">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span style="font-size: 0.7rem; font-weight: 800; color: var(--brand-blue);">OBJETIVO 01</span>
+                  <span class="badge-status badge-status-concluido" style="font-size: 0.65rem; padding: 0.15rem 0.4rem;">Entregue</span>
+                </div>
+                <h5 class="vc-obj-card-title">Sistemas de Informação HUB e UBSs</h5>
+                <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.6rem;">
+                  Mapeamento de processos e prototipagem digital.
+                </p>
+                <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 0.5rem;">
+                  <span style="font-size: 0.75rem; color: var(--pet-orange); font-weight: 700;">⭐ Protótipo Vinculado</span>
+                  <span style="font-size: 0.75rem; color: var(--brand-blue); font-weight: 600;">Ver detalhes →</span>
+                </div>
+              </div>
+
+              <!-- Card Objetivo 2 -->
+              <div class="vc-obj-card" onclick="vcOpenDrawer(2)">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span style="font-size: 0.7rem; font-weight: 800; color: var(--brand-blue);">OBJETIVO 02</span>
+                  <span class="badge-status badge-status-concluido" style="font-size: 0.65rem; padding: 0.15rem 0.4rem;">RLS</span>
+                </div>
+                <h5 class="vc-obj-card-title">Revisão Rápida (RLS)</h5>
+                <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.6rem;">
+                  Síntese de evidências de referência e contrarreferência.
+                </p>
+                <div style="text-align: right; border-top: 1px solid #f1f5f9; padding-top: 0.5rem;">
+                  <span style="font-size: 0.75rem; color: var(--brand-blue); font-weight: 600;">Ver detalhes →</span>
+                </div>
+              </div>
+
+              <!-- Card Objetivo 3 -->
+              <div class="vc-obj-card" onclick="vcOpenDrawer(3)">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.35rem;">
+                  <span style="font-size: 0.7rem; font-weight: 800; color: var(--brand-blue);">OBJETIVO 03</span>
+                  <span class="badge-status badge-status-validacao" style="font-size: 0.65rem; padding: 0.15rem 0.4rem;">Validação</span>
+                </div>
+                <h5 class="vc-obj-card-title">Protocolo de Atendimento</h5>
+                <p style="font-size: 0.8rem; color: #64748b; margin-bottom: 0.6rem;">
+                  Padronização de acolhimento e critérios de regulação.
+                </p>
+                <div style="text-align: right; border-top: 1px solid #f1f5f9; padding-top: 0.5rem;">
+                  <span style="font-size: 0.75rem; color: var(--brand-blue); font-weight: 600;">Ver detalhes →</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- COLUNA 2: ETAPA 2 -->
+            <div class="vc-column" style="opacity: 0.9;">
+              <div class="vc-col-header">
+                <div>
+                  <div style="font-size: 0.72rem; font-weight: 800; color: #854d0e; text-transform: uppercase;">ETAPA 02</div>
+                  <h4 class="vc-col-title">Integração & Fluxos</h4>
+                </div>
+                <span class="badge-status badge-status-andamento">Em Andamento</span>
+              </div>
+              <div style="background: #ffffff; border: 2px dashed #cbd5e1; border-radius: 10px; padding: 2rem 1rem; text-align: center; color: #64748b;">
+                <span style="font-size: 1.8rem; display: block; margin-bottom: 0.4rem;">🔄</span>
+                <strong style="color: var(--primary-navy); font-size: 0.9rem;">Em Estruturação</strong>
+                <p style="font-size: 0.8rem; margin-top: 0.4rem;">
+                  Objetivos em refinamento pelo GT. Os cards serão publicados nesta coluna conforme a evolução.
+                </p>
+              </div>
+            </div>
+
+            <!-- COLUNA 3: ETAPA 3 -->
+            <div class="vc-column" style="opacity: 0.8;">
+              <div class="vc-col-header">
+                <div>
+                  <div style="font-size: 0.72rem; font-weight: 800; color: #64748b; text-transform: uppercase;">ETAPA 03</div>
+                  <h4 class="vc-col-title">Consolidação & Homologação</h4>
+                </div>
+                <span class="badge-status badge-status-planejado">Planejado</span>
+              </div>
+              <div style="background: #ffffff; border: 2px dashed #cbd5e1; border-radius: 10px; padding: 2rem 1rem; text-align: center; color: #64748b;">
+                <span style="font-size: 1.8rem; display: block; margin-bottom: 0.4rem;">🎯</span>
+                <strong style="color: var(--primary-navy); font-size: 0.9rem;">Fase Planejada</strong>
+                <p style="font-size: 0.8rem; margin-top: 0.4rem;">
+                  Homologação final e avaliação das devoluções P3.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- BOTÃO FLUTUANTE (FLOATING ACTION WIDGET) DA VARIAÇÃO C -->
+          <div class="vc-floating-dock">
+            <span class="vc-floating-text">💡 Destaque Tecnológico</span>
+            <button class="btn-cta-prototipo" onclick="openProtoModal()" style="padding: 0.6rem 1.25rem; font-size: 0.85rem;">
+              <span>🩺</span> Abrir Protótipo Digital
+              <span class="pulse-dot"></span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PÁGINA: RESULTADOS (VARIAÇÃO C) -->
+      <div id="vc-page-resultados" style="display: none;">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Resultados e Indicadores</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAINEL OFFCANVAS LATERAL PARA DETALHES DO OBJETIVO (VARIAÇÃO C) -->
+      <div class="vc-offcanvas-backdrop" id="vc-drawer-backdrop" onclick="vcCloseDrawer()"></div>
+      <div class="vc-offcanvas-panel" id="vc-drawer-panel">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid #e2e8f0; padding-bottom: 1rem;">
+          <span style="font-size: 0.75rem; font-weight: 800; color: var(--brand-blue);" id="drawer-obj-tag">OBJETIVO ESPECÍFICO</span>
+          <button style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #64748b;" onclick="vcCloseDrawer()">×</button>
+        </div>
+        <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 1rem;" id="drawer-obj-title">
+          Título do Objetivo
+        </h3>
+        <div id="drawer-obj-content"></div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ==========================================================================
+       MODAL UNIVERSAL DO PROTÓTIPO DIGITAL (TESTÁVEL EM TODAS AS VARIAÇÕES)
+       ========================================================================== -->
+  <div class="proto-modal-backdrop" id="proto-modal">
+    <div class="proto-modal-container">
+      <div class="proto-modal-header">
+        <div class="proto-modal-title">
+          <span>🩺</span> Protótipo Digital do GT 8 • Formulário de Contrarreferência Ambulatorial
+        </div>
+        <button class="btn-close-modal" onclick="closeProtoModal()">✕</button>
+      </div>
+      <div class="proto-modal-iframe-frame">
+        <div class="proto-sim-card">
+          <span style="font-size: 3rem; display: block; margin-bottom: 0.5rem;">💻</span>
+          <h2 style="font-size: 1.6rem; color: var(--primary-navy); font-weight: 800; margin-bottom: 0.5rem;">
+            Ambiente do Protótipo (assets/prototipo_app.html)
+          </h2>
+          <p style="color: #64748b; font-size: 1rem; max-width: 600px; margin: 0 auto 1.5rem auto;">
+            Quando implementado no MkDocs, este modal ou área dedicada renderizará o formulário web completo e interativo em tela cheia com altura dinâmica.
+          </p>
+          <div style="display: flex; justify-content: center; gap: 1rem;">
+            <button class="btn-cta-prototipo" onclick="alert('No portal MkDocs, abrirá o arquivo prototipo_app.html em nova aba!')">
+              Abrir em Nova Aba ↗
+            </button>
+            <button style="background: #f1f5f9; border: 1px solid #cbd5e1; padding: 0.75rem 1.4rem; border-radius: 9999px; font-weight: 600; cursor: pointer;" onclick="closeProtoModal()">
+              Fechar Visualização
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer style="text-align: center; padding: 2.5rem 1rem; color: #64748b; font-size: 0.85rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+    PET-Saúde: Informação e Saúde Digital • Grupo de Trabalho 08 (HUB - UnB)<br>
+    Mockup de Validação de Arquitetura: 3 Variações da Linha do Tempo e Botão CTA do Protótipo.
+  </footer>
+
+  <!-- ==========================================================================
+       SCRIPTS: CONTROLE DAS VARIAÇÕES, OFFCANVAS E MODAL
+       ========================================================================== -->
+  <script>
+    const variationsMeta = {
+      'A': {
+        badge: "Recomendada pelo Tech Lead",
+        badgeClass: "badge-va",
+        title: "Variação A: Stepper Horizontal de Etapas (1 → 2 → 3)",
+        desc: "Exibe as Etapas 1, 2 e 3 em um seletor horizontal superior com status evidente. Ao clicar em uma etapa, sua timeline vertical de objetivos e entregas surge logo abaixo. O acesso ao Protótipo Digital é elevado ao topo no Banner do Cabeçalho.",
+        pros: [
+          "CTA do Protótipo no Banner: visibilidade imediata sem descer a página",
+          "Navegação limpa entre as etapas sem poluição visual",
+          "Perfeita para a transição: Etapa 1 completa e Etapas 2/3 preparadas para o futuro"
+        ],
+        cons: [
+          "Exige 1 clique para ver o conteúdo da Etapa 2 ou 3"
+        ],
+        ctaPosition: "Banner do Cabeçalho (topo direito)",
+        rec: "<strong>A mais equilibrada e escalável:</strong> Coloca o Protótipo no ponto focal mais nobre do portal (ao lado do minicard do HUB) e mantém a timeline da Etapa 1 focada e limpa."
+      },
+      'B': {
+        badge: "Narrativa Contínua",
+        badgeClass: "badge-vb",
+        title: "Variação B: Timeline Vertical Contínua (Grandes Marcos)",
+        desc: "Uma linha do tempo vertical contínua onde as 3 Etapas são marcos principais conectados. O Protótipo Digital recebe um Hero Banner proeminente antes da timeline.",
+        pros: [
+          "Visão panorâmica da evolução do projeto em uma única rolagem",
+          "Hero Banner do Protótipo com grande destaque visual",
+          "Demonstra graficamente o roadmap do início ao fim"
+        ],
+        cons: [
+          "Página mais extensa com múltiplos níveis de recuo vertical"
+        ],
+        ctaPosition: "Hero Card / Banner antes da timeline",
+        rec: "<strong>Excelente para leitura contínua:</strong> Recomendada se você prefere que o visitante veja a Etapa 1 e já enxergue o caminho percorrido até as Etapas 2 e 3 na mesma linha."
+      },
+      'C': {
+        badge: "Visão Panorâmica (Kanban)",
+        badgeClass: "badge-vc",
+        title: "Variação C: Roadmap Visual em 3 Colunas + CTA Flutuante",
+        desc: "Exibe as Etapas 1, 2 e 3 lado a lado em colunas de Roadmap/Kanban. Os objetivos da Etapa 1 abrem detalhes em um painel lateral retrátil (offcanvas), e o Protótipo ganha um botão flutuante (FAB) fixo na tela.",
+        pros: [
+          "Visão comparativa instantânea das 3 etapas sem rolagem",
+          "Botão do Protótipo sempre acessível e flutuante na tela",
+          "Sensação moderna de dashboard de projeto"
+        ],
+        cons: [
+          "Colunas podem ficar estreitas em resoluções intermediárias (tablets)"
+        ],
+        ctaPosition: "Botão Flutuante (FAB fixo no canto inferior direito)",
+        rec: "<strong>Ideal para visão de gestão:</strong> Dá clareza imediata sobre o que está pronto (Etapa 1) e o que está por vir (Etapas 2 e 3) lado a lado."
+      }
+    };
+
+    let currentVar = 'A';
+    let isCompare = false;
+
+    function updateInfo(varKey) {
+      const data = variationsMeta[varKey];
+      const box = document.getElementById("info-card-box");
+      box.innerHTML = `
+        <div>
+          <div class="info-header">
+            <span class="info-badge ${data.badgeClass}">${data.badge}</span>
+            <h2 class="info-title">${data.title}</h2>
+          </div>
+          <p class="info-desc">${data.desc}</p>
+          <div class="pros-cons-grid">
+            <span class="tag-cta">🎯 Posição do CTA: ${data.ctaPosition}</span>
+            ${data.pros.map(p => `<span class="tag-pro">✔ ${p}</span>`).join('')}
+            ${data.cons.map(c => `<span class="tag-con">⚠ ${c}</span>`).join('')}
+          </div>
+        </div>
+        <div class="recommendation-badge">
+          <strong>Avaliação do Tech Lead:</strong>
+          ${data.rec}
+        </div>
+      `;
+    }
+
+    function switchVariation(varKey) {
+      isCompare = false;
+      currentVar = varKey;
+
+      document.querySelectorAll(".btn-variation").forEach(b => b.classList.remove("active"));
+      document.getElementById(`btn-v${varKey.toLowerCase()}`).classList.add("active");
+      document.getElementById("btn-compare").classList.remove("active");
+
+      const stage = document.getElementById("preview-stage-wrap");
+      stage.classList.remove("compare-grid-mode");
+
+      document.querySelectorAll(".variation-container").forEach(c => c.classList.remove("visible"));
+      document.getElementById(`var-${varKey.toLowerCase()}`).classList.add("visible");
+
+      updateInfo(varKey);
+    }
+
+    function toggleCompareMode() {
+      isCompare = !isCompare;
+      const stage = document.getElementById("preview-stage-wrap");
+      const compareBtn = document.getElementById("btn-compare");
+
+      if (isCompare) {
+        stage.classList.add("compare-grid-mode");
+        compareBtn.classList.add("active");
+        document.querySelectorAll(".btn-variation").forEach(b => b.classList.remove("active"));
+        document.getElementById("info-card-box").innerHTML = `
+          <div>
+            <div class="info-header">
+              <span class="info-badge badge-va">Modo Comparativo</span>
+              <h2 class="info-title">Comparação Direta: Stepper Horizontal (A) vs Timeline (B) vs Roadmap (C)</h2>
+            </div>
+            <p class="info-desc">
+              Analise como cada variação equilibra a visibilidade das 3 etapas e o posicionamento de destaque do <strong>Protótipo Digital</strong>.
+            </p>
+          </div>
+          <div class="recommendation-badge">
+            <strong>Recomendação Principal:</strong>
+            A <strong>Variação A</strong> oferece a melhor experiência de leitura no desktop e mobile, integrando o botão do protótipo ao cabeçalho.
+          </div>
+        `;
+      } else {
+        switchVariation(currentVar);
+      }
+    }
+
+    // Navegação entre abas Contribuição e Resultados
+    function switchMainTab(varKey, tab, btn) {
+      btn.parentElement.querySelectorAll(".mock-nav-tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(`v${varKey.toLowerCase()}-page-contribuicao`).style.display = tab === 'contribuicao' ? 'block' : 'none';
+      document.getElementById(`v${varKey.toLowerCase()}-page-resultados`).style.display = tab === 'resultados' ? 'block' : 'none';
+    }
+
+    // Controles da Variação A
+    function vaSelectStep(stepNum, card) {
+      card.parentElement.querySelectorAll(".va-step-card").forEach(c => c.classList.remove("active"));
+      card.classList.add("active");
+      document.getElementById("va-panel-etapa-1").style.display = stepNum === 1 ? 'block' : 'none';
+      document.getElementById("va-panel-etapa-2").style.display = stepNum === 2 ? 'block' : 'none';
+      document.getElementById("va-panel-etapa-3").style.display = stepNum === 3 ? 'block' : 'none';
+    }
+
+    function vaToggleAcc(id) {
+      document.getElementById(id).classList.toggle("open");
+    }
+
+    // Modal Universal do Protótipo
+    function openProtoModal() {
+      document.getElementById("proto-modal").classList.add("active");
+    }
+
+    function closeProtoModal() {
+      document.getElementById("proto-modal").classList.remove("active");
+    }
+
+    // Drawer Offcanvas da Variação C
+    const drawerData = {
+      1: {
+        title: "Aprimorar e/ou construir propostas de sistemas de informação entre ambulatório HUB e UBSs",
+        tag: "OBJETIVO ESPECÍFICO 01 • ETAPA 1",
+        content: `
+          <div style="margin-bottom: 1.25rem;">
+            <span class="badge-status badge-status-concluido">Entregue na Etapa 1</span>
+          </div>
+          <h5 style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Resultados Esperados</h5>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: #334155; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li>Mapeamento de Processos assistenciais do percurso terciário</li>
+            <li>Diagnóstico Situacional de ferramentas e formulários de parecer</li>
+            <li>Proposta de aprimoramento e indicadores de devolução</li>
+          </ul>
+          <h5 style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Preceptores Responsáveis</h5>
+          <div class="member-pill-list" style="margin-bottom: 1rem;">
+            <span class="member-pill member-pill-preceptor">Fernanda Santana</span>
+            <span class="member-pill member-pill-preceptor">Lucas Alves</span>
+          </div>
+          <h5 style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Monitores Alocados</h5>
+          <div class="member-pill-list" style="margin-bottom: 1.5rem;">
+            <span class="member-pill member-pill-monitor">Luanna Barros (Medicina)</span>
+            <span class="member-pill member-pill-monitor">Mayara Marques (Eng. Software)</span>
+            <span class="member-pill member-pill-monitor">Franco Bueno (Mecatrônica)</span>
+            <span class="member-pill member-pill-monitor">Heitor Chagas (Eng. Software)</span>
+          </div>
+          <div style="background: #fff7ed; border: 1px solid #fed7aa; padding: 1rem; border-radius: 8px; text-align: center;">
+            <p style="font-size: 0.85rem; color: #9a3412; font-weight: 600; margin-bottom: 0.75rem;">
+              O formulário do protótipo digital é a solução técnica deste objetivo.
+            </p>
+            <button class="btn-cta-prototipo" onclick="openProtoModal()" style="font-size: 0.85rem; padding: 0.6rem 1.2rem;">
+              Testar Protótipo Digital
+            </button>
+          </div>
+        `
+      },
+      2: {
+        title: "Realizar revisão rápida (RLS) sobre fluxos de referência e contrarreferência no Brasil",
+        tag: "OBJETIVO ESPECÍFICO 02 • ETAPA 1",
+        content: `
+          <div style="margin-bottom: 1.25rem;">
+            <span class="badge-status badge-status-concluido">RLS Concluída</span>
+          </div>
+          <h5 style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Resultados Esperados</h5>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: #334155; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li>RLS consolidada sobre mecanismos de regulação</li>
+            <li>Indicadores para avaliação de fluxos assistenciais</li>
+          </ul>
+          <h5 style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Preceptores Responsáveis</h5>
+          <div class="member-pill-list" style="margin-bottom: 1rem;">
+            <span class="member-pill member-pill-preceptor">Sabrina Feitosa</span>
+            <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+          </div>
+          <h5 style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Monitores Alocados</h5>
+          <div class="member-pill-list">
+            <span class="member-pill member-pill-monitor">Paula Iara (Farmácia)</span>
+            <span class="member-pill member-pill-monitor">Plabio Lucas (Medicina)</span>
+            <span class="member-pill member-pill-monitor">Flávia Lima (Enfermagem)</span>
+            <span class="member-pill member-pill-monitor">Hugo de Verson (Medicina)</span>
+          </div>
+        `
+      },
+      3: {
+        title: "Construir o protocolo de atendimento e de encaminhamento do Ambulatório de Saúde Integral",
+        tag: "OBJETIVO ESPECÍFICO 03 • ETAPA 1",
+        content: `
+          <div style="margin-bottom: 1.25rem;">
+            <span class="badge-status badge-status-validacao">Em Validação Clínica</span>
+          </div>
+          <h5 style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Resultados Esperados</h5>
+          <ul style="padding-left: 1.2rem; font-size: 0.88rem; color: #334155; margin-bottom: 1.5rem; display: flex; flex-direction: column; gap: 0.4rem;">
+            <li>Protocolo de atendimento multiprofissional</li>
+            <li>Protocolo de encaminhamento padronizado do HUB</li>
+          </ul>
+          <h5 style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Preceptores Responsáveis</h5>
+          <div class="member-pill-list" style="margin-bottom: 1rem;">
+            <span class="member-pill member-pill-preceptor">Flávio Torres</span>
+            <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+          </div>
+          <h5 style="font-size: 0.8rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.4rem;">Monitores Alocados</h5>
+          <div class="member-pill-list">
+            <span class="member-pill member-pill-monitor">João Victor Macêdo (Medicina)</span>
+          </div>
+        `
+      }
+    };
+
+    function vcOpenDrawer(objId) {
+      const data = drawerData[objId];
+      document.getElementById("drawer-obj-tag").innerText = data.tag;
+      document.getElementById("drawer-obj-title").innerText = data.title;
+      document.getElementById("drawer-obj-content").innerHTML = data.content;
+      document.getElementById("vc-drawer-backdrop").classList.add("active");
+      document.getElementById("vc-drawer-panel").classList.add("active");
+    }
+
+    function vcCloseDrawer() {
+      document.getElementById("vc-drawer-backdrop").classList.remove("active");
+      document.getElementById("vc-drawer-panel").classList.remove("active");
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      updateInfo('A');
+    });
+  </script>
+</body>
+</html>

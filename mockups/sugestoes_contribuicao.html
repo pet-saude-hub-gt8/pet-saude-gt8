@@ -1,0 +1,2187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sugestões de Layout • Contribuição & Resultados | PET-Saúde GT 8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       RESET & BASE DESIGN SYSTEM
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary-navy: #0c3258;
+      --primary-navy-dark: #061122;
+      --brand-blue: #0284c7;
+      --brand-blue-light: #38bdf8;
+      --pet-orange: #ea5b2d;
+      --pet-orange-hover: #d94817;
+      --unb-green: #009a44;
+      --unb-green-vibrant: #10b981;
+      --bg-slate: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0b1526;
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       TOP SELECTOR BAR (FIXO) & PAINEL DE CONTROLE DE DECISÃO
+       ========================================================================== */
+    .decision-hub-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 21, 38, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.85rem 1.5rem;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .decision-bar-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .decision-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .decision-brand-badge {
+      background: linear-gradient(135deg, var(--pet-orange), #f97316);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .decision-brand-title {
+      color: #ffffff;
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .decision-brand-title span {
+      color: var(--brand-blue-light);
+      font-weight: 400;
+    }
+
+    .decision-selector-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.3rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-suggestion {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1.1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-suggestion:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-suggestion.active {
+      background: var(--brand-blue);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.45);
+    }
+
+    .btn-compare {
+      background: rgba(234, 91, 45, 0.15);
+      border: 1px solid rgba(234, 91, 45, 0.35);
+      color: #fdba74;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-compare:hover, .btn-compare.active {
+      background: var(--pet-orange);
+      color: #ffffff;
+      border-color: var(--pet-orange);
+      box-shadow: 0 2px 10px rgba(234, 91, 45, 0.45);
+    }
+
+    /* Bloco Explicativo do Modelo Ativo */
+    .decision-info-panel {
+      max-width: 1400px;
+      margin: 1.2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .info-card {
+      background: linear-gradient(145deg, #0e1e36, #091527);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .info-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-s1 { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-s2 { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-s3 { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+
+    .info-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .info-desc {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      margin-bottom: 0.75rem;
+    }
+
+    .pros-cons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .tag-pro, .tag-con {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .tag-pro {
+      background: rgba(16, 185, 129, 0.1);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    .tag-con {
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.25);
+    }
+
+    .recommendation-badge {
+      background: rgba(2, 132, 199, 0.15);
+      border: 1px solid rgba(2, 132, 199, 0.35);
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      text-align: right;
+      color: #bae6fd;
+      font-size: 0.82rem;
+    }
+
+    .recommendation-badge strong {
+      display: block;
+      color: #38bdf8;
+      font-size: 0.88rem;
+    }
+
+    /* ==========================================================================
+       CONTAINERS DE SUGESTÃO (SIMULAÇÃO DO MKDOCS)
+       ========================================================================== */
+    .preview-stage {
+      max-width: 1400px;
+      margin: 0 auto 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .suggestion-container {
+      background: var(--bg-slate);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .suggestion-container.visible {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MODO COMPARATIVO LADO A LADO */
+    .compare-grid-mode {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .compare-grid-mode .suggestion-container {
+      display: block !important;
+      transform-origin: top left;
+      font-size: 0.82rem;
+    }
+
+    .compare-grid-mode .suggestion-container .page-header-title {
+      font-size: 1.4rem !important;
+    }
+
+    /* ==========================================================================
+       NAVBAR SIMULADA DO MKDOCS MATERIAL
+       ========================================================================== */
+    .mock-header {
+      background: #0d3b66;
+      border-bottom: 1px solid #092c4c;
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+    }
+
+    .mock-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .mock-logo-box {
+      width: 34px;
+      height: 34px;
+      background: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--primary-navy);
+      font-size: 0.85rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .mock-site-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .mock-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .mock-nav-tab {
+      background: none;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.4rem 0.2rem;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .mock-nav-tab:hover {
+      color: #ffffff;
+    }
+
+    .mock-nav-tab.active {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .mock-nav-tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 2px;
+      background-color: var(--brand-blue-light);
+    }
+
+    .mock-nav-tab.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .mock-header-tools {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .tool-pill {
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      border-radius: 9999px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* ==========================================================================
+       BANNER DE PÁGINA (PADRÃO DO SITE ATUAL)
+       ========================================================================== */
+    .page-header-banner {
+      width: 100%;
+      background: radial-gradient(circle at 8% 25%, rgba(234, 91, 45, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 92% 75%, rgba(0, 154, 68, 0.12) 0%, transparent 45%),
+                  #0c3258 !important;
+      padding: 2rem 1.75rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid transparent !important;
+      border-image: linear-gradient(90deg, #ea5b2d 0%, #009a44 48%, #0284c7 85%) 1 !important;
+      color: #ffffff;
+    }
+
+    .page-header-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .page-header-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .page-header-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .page-header-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header-subtitle {
+      font-size: 1rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
+    .page-header-minicard {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 0.75rem 1.2rem;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    }
+
+    .page-header-minicard-logo {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-navy);
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+
+    .page-header-minicard-text {
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .minicard-sub {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .minicard-sub::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #009a44;
+    }
+
+    /* Container Principal */
+    .page-main-container {
+      max-width: 1140px;
+      margin: 0 auto 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================================
+       COMPONENTES COMPARTILHADOS (PILLS, CARDS, TABELAS)
+       ========================================================================== */
+    .member-pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .member-pill {
+      display: inline-block;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    .member-pill-preceptor {
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+    }
+
+    .member-pill-monitor {
+      background: #ecfdf5;
+      color: #007a36;
+      border: 1px solid #a7f3d0;
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-status-concluido {
+      background: #dcfce7;
+      color: #15803d;
+      border: 1px solid #bbf7d0;
+    }
+
+    .badge-status-validacao {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+
+    .badge-status-andamento {
+      background: #fef9c3;
+      color: #854d0e;
+      border: 1px solid #fef08a;
+    }
+
+    /* Mockup Visual do Protótipo */
+    .prototype-mock-showcase {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+
+    .prototype-mock-bar {
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .prototype-browser-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .prototype-url-pill {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 9999px;
+      padding: 0.2rem 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      color: #94a3b8;
+    }
+
+    .prototype-mock-body {
+      padding: 2rem;
+      background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+      text-align: center;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .mock-screen-card {
+      max-width: 720px;
+      margin: 0 auto;
+      background: #ffffff;
+      border: 2px dashed #0284c7;
+      border-radius: 12px;
+      padding: 2.5rem 1.5rem;
+      box-shadow: 0 4px 20px rgba(2, 132, 199, 0.08);
+    }
+
+    .mock-screen-icon {
+      font-size: 2.8rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .mock-screen-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      margin-bottom: 0.5rem;
+    }
+
+    .mock-screen-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      max-width: 540px;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    .btn-mock-action {
+      background: var(--pet-orange);
+      color: #ffffff;
+      border: none;
+      padding: 0.7rem 1.4rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 4px 14px rgba(234, 91, 45, 0.35);
+      transition: all 0.2s ease;
+    }
+
+    .btn-mock-action:hover {
+      background: var(--pet-orange-hover);
+      transform: translateY(-2px);
+    }
+
+    .prototype-features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      padding: 1.5rem;
+      background: #f1f5f9;
+    }
+
+    .proto-feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      font-size: 0.85rem;
+      color: #334155;
+      font-weight: 500;
+    }
+
+    .proto-feature-icon {
+      color: var(--unb-green);
+      font-weight: 900;
+    }
+
+    /* ==========================================================================
+       SUGESTÃO 1: SUB-ABAS (MODULARIDADE & FOCO)
+       ========================================================================== */
+    .s1-subtabs-nav {
+      display: flex;
+      gap: 0.75rem;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 2rem;
+    }
+
+    .s1-tab-btn {
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 0.75rem 1.25rem;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s ease;
+    }
+
+    .s1-tab-btn:hover {
+      color: var(--brand-blue);
+    }
+
+    .s1-tab-btn.active {
+      color: var(--brand-blue);
+      border-bottom-color: var(--brand-blue);
+      font-weight: 700;
+    }
+
+    .s1-subtab-pane {
+      display: none;
+    }
+
+    .s1-subtab-pane.active {
+      display: block;
+      animation: fadeIn 0.25s ease;
+    }
+
+    /* Cards dos Objetivos na S1 */
+    .matrix-cards-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+
+    .objective-matrix-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+      display: grid;
+      grid-template-columns: 2fr 2fr 1.5fr;
+      gap: 1.5rem;
+      align-items: start;
+      position: relative;
+      border-left: 5px solid var(--brand-blue);
+    }
+
+    .obj-number-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: #f1f5f9;
+      color: var(--brand-blue);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.5rem;
+    }
+
+    .obj-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      line-height: 1.4;
+    }
+
+    .deliverables-box h5, .team-box h5 {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .deliverables-box ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .deliverables-box li {
+      font-size: 0.88rem;
+      color: #334155;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.4rem;
+    }
+
+    .deliverables-box li::before {
+      content: "✔";
+      color: var(--unb-green);
+      font-weight: bold;
+      font-size: 0.8rem;
+    }
+
+    /* ==========================================================================
+       SUGESTÃO 2: PÁGINA ÚNICA COM SCROLL (LEITURA FLUIDA)
+       ========================================================================== */
+    .s2-quick-jumper {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+    }
+
+    .s2-jumper-label {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .s2-jumper-links {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .s2-jumper-btn {
+      background: #f1f5f9;
+      color: #334155;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+
+    .s2-jumper-btn:hover {
+      background: var(--brand-blue);
+      color: #ffffff;
+    }
+
+    .s2-section-heading {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      margin: 2rem 0 1rem 0;
+    }
+
+    .s2-obj-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .s2-obj-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+    }
+
+    .s2-obj-num-box {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--brand-blue), #0369a1);
+      color: #ffffff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    /* ==========================================================================
+       SUGESTÃO 3: LINHA DO TEMPO & STEPPER (NARRATIVA PROGRESSIVA)
+       ========================================================================== */
+    .s3-stepper-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .s3-step-node {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .s3-step-node.active {
+      border-color: var(--brand-blue);
+      background: #f0f9ff;
+      box-shadow: 0 4px 15px rgba(2, 132, 199, 0.12);
+    }
+
+    .s3-step-node.active::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-top: 8px solid var(--brand-blue);
+    }
+
+    .s3-step-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.35rem;
+    }
+
+    .s3-step-index {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--brand-blue);
+      text-transform: uppercase;
+    }
+
+    .s3-step-title {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      line-height: 1.3;
+    }
+
+    .s3-accordion-item {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+
+    .s3-acc-header {
+      padding: 1.25rem 1.5rem;
+      background: #ffffff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-left: 5px solid var(--brand-blue);
+      transition: background 0.2s;
+    }
+
+    .s3-acc-header:hover {
+      background: #f8fafc;
+    }
+
+    .s3-acc-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .s3-acc-toggle {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      transition: transform 0.2s ease;
+    }
+
+    .s3-accordion-item.open .s3-acc-toggle {
+      transform: rotate(180deg);
+    }
+
+    .s3-acc-body {
+      display: none;
+      padding: 1.5rem;
+      border-top: 1px solid #f1f5f9;
+      background: #fafafa;
+    }
+
+    .s3-accordion-item.open .s3-acc-body {
+      display: block;
+      animation: fadeIn 0.2s ease;
+    }
+
+    /* Conexão especial do Protótipo dentro do Objetivo 1 na S3 */
+    .s3-proto-callout {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    /* ==========================================================================
+       PÁGINA: RESULTADOS (PROPOSTA COMPLETA DE CONTEÚDO)
+       ========================================================================== */
+    .results-kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .kpi-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      border-top: 4px solid var(--brand-blue);
+    }
+
+    .kpi-number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      line-height: 1.1;
+      margin-bottom: 0.25rem;
+    }
+
+    .kpi-label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .kpi-trend {
+      font-size: 0.78rem;
+      color: var(--unb-green);
+      font-weight: 700;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .results-table-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      margin-bottom: 2rem;
+    }
+
+    .results-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    .results-table th {
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      padding: 0.9rem 1.2rem;
+    }
+
+    .results-table td {
+      padding: 1rem 1.2rem;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 0.88rem;
+      color: #334155;
+    }
+
+    .results-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .results-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .btn-artifact {
+      background: #f1f5f9;
+      color: var(--brand-blue);
+      border: 1px solid #cbd5e1;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      text-decoration: none;
+    }
+
+    .btn-artifact:hover {
+      background: var(--brand-blue);
+      color: #ffffff;
+      border-color: var(--brand-blue);
+    }
+
+    /* Rodapé do Mockup */
+    .mockup-footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      color: #64748b;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Responsividade */
+    @media (max-width: 992px) {
+      .compare-grid-mode {
+        grid-template-columns: 1fr;
+      }
+      .objective-matrix-card {
+        grid-template-columns: 1fr;
+      }
+      .results-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .prototype-features-grid {
+        grid-template-columns: 1fr;
+      }
+      .info-card {
+        grid-template-columns: 1fr;
+      }
+      .recommendation-badge {
+        text-align: left;
+      }
+      .page-header-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP SELECTOR BAR (BARRA FIXA DE DECISÃO)
+       ========================================================================== -->
+  <header class="decision-hub-header">
+    <div class="decision-bar-container">
+      <div class="decision-brand">
+        <span class="decision-brand-badge">Tech Lead • Hub de Layout</span>
+        <div class="decision-brand-title">PET-Saúde GT 8 <span>| Novas Abas: Contribuição & Resultados</span></div>
+      </div>
+
+      <div class="decision-selector-group">
+        <button class="btn-suggestion active" onclick="switchSuggestion(1)" id="btn-s1">
+          <span>📑</span> Sugestão 1 · Sub-abas
+        </button>
+        <button class="btn-suggestion" onclick="switchSuggestion(2)" id="btn-s2">
+          <span>📜</span> Sugestão 2 · Scroll Único
+        </button>
+        <button class="btn-suggestion" onclick="switchSuggestion(3)" id="btn-s3">
+          <span>⏳</span> Sugestão 3 · Stepper / Timeline
+        </button>
+        <button class="btn-compare" onclick="toggleCompareMode()" id="btn-compare">
+          <span>⊞</span> Comparar Lado a Lado
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       BLOCO EXPLICATIVO DA ABORDAGEM ATIVA
+       ========================================================================== -->
+  <section class="decision-info-panel">
+    <div class="info-card" id="info-card-box">
+      <!-- Conteúdo inserido dinamicamente via JavaScript -->
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ÁREA DE VISUALIZAÇÃO DOS MOCKUPS (MKDOCS SIMULADO)
+       ========================================================================== -->
+  <main class="preview-stage" id="preview-stage-wrap">
+
+    <!-- ========================================================================
+         SUGESTÃO 1: SUB-ABAS INTERNAS (MODULARIDADE & SEPARAÇÃO DE FOCO)
+         ======================================================================== -->
+    <div class="suggestion-container visible" id="sugestao-1">
+      
+      <!-- Top Navbar Simulada -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab active" onclick="s1SwitchMainPage('contribuicao', this)">Contribuição</button>
+          <button class="mock-nav-tab" onclick="s1SwitchMainPage('resultados', this)">Resultados</button>
+        </div>
+        <div class="mock-header-tools">
+          <span class="tool-pill">A+</span>
+          <span class="tool-pill">Alto Contraste</span>
+          <span class="tool-pill">☀️</span>
+        </div>
+      </nav>
+
+      <!-- PÁGINA 1: CONTRIBUIÇÃO (SUGESTÃO 1) -->
+      <div id="s1-page-contribuicao">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Contribuição do GT 8</h1>
+              <p class="page-header-subtitle">
+                Plano operacional da Etapa 1 e acesso ao protótipo digital de triagem ambulatorial.
+              </p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+          <!-- Navegação por Sub-abas -->
+          <div class="s1-subtabs-nav">
+            <button class="s1-tab-btn active" onclick="s1SwitchSubTab('matriz', this)">
+              <span>📋</span> Etapa 1 – Objetivos e Entregas
+            </button>
+            <button class="s1-tab-btn" onclick="s1SwitchSubTab('prototipo', this)">
+              <span>💻</span> Protótipo Digital Interativo
+            </button>
+          </div>
+
+          <!-- Sub-aba 1: Objetivos da Etapa 1 -->
+          <div class="s1-subtab-pane active" id="s1-pane-matriz">
+            <div class="matrix-cards-grid">
+              
+              <!-- Objetivo 1 -->
+              <div class="objective-matrix-card">
+                <div>
+                  <span class="obj-number-badge">OBJETIVO ESPECÍFICO 01</span>
+                  <h4 class="obj-title">Aprimorar e construir propostas de sistemas de informação entre o ambulatório do HUB e as UBSs</h4>
+                  <div style="margin-top: 0.75rem;">
+                    <span class="badge-status badge-status-concluido">Entregue na Etapa 1</span>
+                  </div>
+                </div>
+                <div class="deliverables-box">
+                  <h5>Resultados Esperados</h5>
+                  <ul>
+                    <li>Mapeamento de Processos assistenciais</li>
+                    <li>Diagnóstico Situacional (ferramentas e protocolos)</li>
+                    <li>Proposta de aprimoramento e indicadores</li>
+                  </ul>
+                </div>
+                <div class="team-box">
+                  <h5>Preceptores Responsáveis</h5>
+                  <div class="member-pill-list" style="margin-bottom: 0.6rem;">
+                    <span class="member-pill member-pill-preceptor">Fernanda Santana</span>
+                    <span class="member-pill member-pill-preceptor">Lucas Alves</span>
+                  </div>
+                  <h5>Monitores Alocados</h5>
+                  <div class="member-pill-list">
+                    <span class="member-pill member-pill-monitor">Luanna Barros (Medicina)</span>
+                    <span class="member-pill member-pill-monitor">Mayara Marques (Eng. Software)</span>
+                    <span class="member-pill member-pill-monitor">Franco Bueno (Mecatrônica)</span>
+                    <span class="member-pill member-pill-monitor">Heitor Chagas (Eng. Software)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Objetivo 2 -->
+              <div class="objective-matrix-card">
+                <div>
+                  <span class="obj-number-badge">OBJETIVO ESPECÍFICO 02</span>
+                  <h4 class="obj-title">Realizar revisão rápida (RLS) sobre fluxos de referência e contrarreferência no Brasil</h4>
+                  <div style="margin-top: 0.75rem;">
+                    <span class="badge-status badge-status-concluido">RLS Concluída</span>
+                  </div>
+                </div>
+                <div class="deliverables-box">
+                  <h5>Resultados Esperados</h5>
+                  <ul>
+                    <li>RLS consolidada com síntese de evidências</li>
+                    <li>Indicadores de avaliação de fluxos</li>
+                  </ul>
+                </div>
+                <div class="team-box">
+                  <h5>Preceptores Responsáveis</h5>
+                  <div class="member-pill-list" style="margin-bottom: 0.6rem;">
+                    <span class="member-pill member-pill-preceptor">Sabrina Feitosa</span>
+                    <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+                  </div>
+                  <h5>Monitores Alocados</h5>
+                  <div class="member-pill-list">
+                    <span class="member-pill member-pill-monitor">Paula Iara (Farmácia)</span>
+                    <span class="member-pill member-pill-monitor">Plabio Lucas (Medicina)</span>
+                    <span class="member-pill member-pill-monitor">Flávia Lima (Enfermagem)</span>
+                    <span class="member-pill member-pill-monitor">Hugo de Verson (Medicina)</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Objetivo 3 -->
+              <div class="objective-matrix-card">
+                <div>
+                  <span class="obj-number-badge">OBJETIVO ESPECÍFICO 03</span>
+                  <h4 class="obj-title">Construir o protocolo de atendimento e de encaminhamento do Ambulatório de Saúde Integral</h4>
+                  <div style="margin-top: 0.75rem;">
+                    <span class="badge-status badge-status-validacao">Em Validação Clínica</span>
+                  </div>
+                </div>
+                <div class="deliverables-box">
+                  <h5>Resultados Esperados</h5>
+                  <ul>
+                    <li>Protocolo de atendimento multiprofissional</li>
+                    <li>Protocolo de encaminhamento padronizado</li>
+                  </ul>
+                </div>
+                <div class="team-box">
+                  <h5>Preceptores Responsáveis</h5>
+                  <div class="member-pill-list" style="margin-bottom: 0.6rem;">
+                    <span class="member-pill member-pill-preceptor">Flávio Torres</span>
+                    <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+                  </div>
+                  <h5>Monitores Alocados</h5>
+                  <div class="member-pill-list">
+                    <span class="member-pill member-pill-monitor">João Victor Macêdo (Medicina)</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Sub-aba 2: Protótipo Digital Interativo -->
+          <div class="s1-subtab-pane" id="s1-pane-prototipo">
+            <div class="prototype-mock-showcase">
+              <div class="prototype-mock-bar">
+                <div class="prototype-browser-dots">
+                  <div class="dot dot-red"></div>
+                  <div class="dot dot-yellow"></div>
+                  <div class="dot dot-green"></div>
+                </div>
+                <div class="prototype-url-pill">assets/prototipo_app.html • Sandbox Interativo</div>
+                <span style="font-size: 0.75rem; color: #38bdf8; font-weight: 600;">v1.2 Produção</span>
+              </div>
+              <div class="prototype-mock-body">
+                <div class="mock-screen-card">
+                  <span class="mock-screen-icon">🩺💻</span>
+                  <h3 class="mock-screen-title">Protótipo Interativo – prototipo_app.html</h3>
+                  <p class="mock-screen-desc">
+                    Formulário didático e estruturado para qualificação da contrarreferência entre a atenção terciária do HUB e a Atenção Primária à Saúde.
+                  </p>
+                  <button class="btn-mock-action" onclick="alert('No ambiente MkDocs, o iframe incorporará o prototipo_app.html interativamente!')">
+                    <span>🚀</span> Abrir Protótipo Completo no Portal
+                  </button>
+                </div>
+              </div>
+              <div class="prototype-features-grid">
+                <div class="proto-feature-item">
+                  <span class="proto-feature-icon">✔</span>
+                  <span>Critérios clínicos objetivos de encaminhamento</span>
+                </div>
+                <div class="proto-feature-item">
+                  <span class="proto-feature-icon">✔</span>
+                  <span>Eliminação de devoluções por parecer incompleto</span>
+                </div>
+                <div class="proto-feature-item">
+                  <span class="proto-feature-icon">✔</span>
+                  <span>Exportação instantânea de relatório padronizado</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PÁGINA 2: RESULTADOS (SUGESTÃO 1) -->
+      <div id="s1-page-resultados" style="display: none;">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Resultados e Indicadores</h1>
+              <p class="page-header-subtitle">
+                Painel consolidado de produtos entregues, métricas de impacto e status da Etapa 1.
+              </p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+          <!-- KPIs -->
+          <div class="results-kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-number">3 / 3</div>
+              <div class="kpi-label">Objetivos Ativos</div>
+              <div class="kpi-trend">✔ 100% da Etapa 1 Mapeada</div>
+            </div>
+            <div class="kpi-card" style="border-top-color: var(--pet-orange);">
+              <div class="kpi-number">1</div>
+              <div class="kpi-label">Protótipo Funcional</div>
+              <div class="kpi-trend">✔ v1.2 Validado pelo GT</div>
+            </div>
+            <div class="kpi-card" style="border-top-color: var(--unb-green);">
+              <div class="kpi-number">100%</div>
+              <div class="kpi-label">RLS Concluída</div>
+              <div class="kpi-trend">✔ Síntese de Evidências</div>
+            </div>
+            <div class="kpi-card" style="border-top-color: #8b5cf6;">
+              <div class="kpi-number">14</div>
+              <div class="kpi-label">Membros Mobilizados</div>
+              <div class="kpi-trend">✔ Tutores, Preceptores e Monitores</div>
+            </div>
+          </div>
+
+          <!-- Tabela de Produtos -->
+          <div class="results-table-card">
+            <table class="results-table">
+              <thead>
+                <tr>
+                  <th>Objetivo Vinculado</th>
+                  <th>Produto / Artefato Técnico</th>
+                  <th>Status Operacional</th>
+                  <th>Ação</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Obj. 1 – Sistemas de Informação</strong></td>
+                  <td>Protótipo de Formulário Didático Digital (Web App)</td>
+                  <td><span class="badge-status badge-status-concluido">Entregue / v1.2</span></td>
+                  <td><button class="btn-artifact" onclick="alert('Visualização do artefato')">Acessar App →</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Obj. 1 – Sistemas de Informação</strong></td>
+                  <td>Diagnóstico do Percurso de Contrarreferência HUB</td>
+                  <td><span class="badge-status badge-status-concluido">Concluído</span></td>
+                  <td><button class="btn-artifact" onclick="alert('Download do relatório técnico')">Ver Relatório 📄</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Obj. 2 – Revisão Rápida</strong></td>
+                  <td>Síntese de Evidências de Referência e Contrarreferência</td>
+                  <td><span class="badge-status badge-status-concluido">Concluído</span></td>
+                  <td><button class="btn-artifact" onclick="alert('Download do arquivo de evidências')">Ver RLS 📚</button></td>
+                </tr>
+                <tr>
+                  <td><strong>Obj. 3 – Protocolo de Atendimento</strong></td>
+                  <td>Minuta de Protocolo Clínico do Ambulatório Integral</td>
+                  <td><span class="badge-status badge-status-validacao">Em Validação Clínica</span></td>
+                  <td><button class="btn-artifact" onclick="alert('Visualizar rascunho de homologação')">Minuta v0.9 🩺</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         SUGESTÃO 2: PÁGINA ÚNICA COM SCROLL (LEITURA FLUIDA & PROTÓTIPO EM DESTAQUE)
+         ======================================================================== -->
+    <div class="suggestion-container" id="sugestao-2">
+      
+      <!-- Top Navbar Simulada -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab active" onclick="s2SwitchMainPage('contribuicao', this)">Contribuição</button>
+          <button class="mock-nav-tab" onclick="s2SwitchMainPage('resultados', this)">Resultados</button>
+        </div>
+        <div class="mock-header-tools">
+          <span class="tool-pill">A+</span>
+          <span class="tool-pill">Alto Contraste</span>
+          <span class="tool-pill">☀️</span>
+        </div>
+      </nav>
+
+      <!-- PÁGINA 1: CONTRIBUIÇÃO (SUGESTÃO 2) -->
+      <div id="s2-page-contribuicao">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Contribuição do GT 8</h1>
+              <p class="page-header-subtitle">
+                Visão contínua das frentes de trabalho da Etapa 1 e acesso direto ao protótipo digital do ambulatório.
+              </p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+          
+          <!-- Barra de Atalhos Rápidos da Página Única -->
+          <div class="s2-quick-jumper">
+            <span class="s2-jumper-label">
+              <span>⚡</span> Navegação Rápida na Página:
+            </span>
+            <div class="s2-jumper-links">
+              <a href="#s2-sec-objetivos" class="s2-jumper-btn">1. Objetivos da Etapa 1</a>
+              <a href="#s2-sec-prototipo" class="s2-jumper-btn" style="background: rgba(234, 91, 45, 0.12); color: #c2410c;">2. Protótipo Interativo ↓</a>
+            </div>
+          </div>
+
+          <!-- Seção 1: Objetivos Específicos -->
+          <div id="s2-sec-objetivos">
+            <h3 class="s2-section-heading">
+              <span>📋</span> Matriz de Objetivos e Responsabilidades (Etapa 1)
+            </h3>
+
+            <div class="s2-obj-stack">
+              <!-- Objetivo 1 -->
+              <div class="s2-obj-card">
+                <div class="s2-obj-num-box">01</div>
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                    <h4 class="obj-title" style="margin: 0;">Aprimorar e/ou construir propostas de sistemas de informação entre o ambulatório do HUB e as UBSs</h4>
+                    <span class="badge-status badge-status-concluido">Concluído</span>
+                  </div>
+                  <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 0.75rem;">
+                    <strong>Resultados:</strong> Mapeamento de Processos • Diagnóstico Situacional de Ferramentas • Proposta de Indicadores.
+                  </p>
+                  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
+                    <div>
+                      <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 0.25rem;">Preceptores</span>
+                      <div class="member-pill-list">
+                        <span class="member-pill member-pill-preceptor">Fernanda Santana</span>
+                        <span class="member-pill member-pill-preceptor">Lucas Alves</span>
+                      </div>
+                    </div>
+                    <div>
+                      <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 0.25rem;">Monitores</span>
+                      <div class="member-pill-list">
+                        <span class="member-pill member-pill-monitor">Luanna Barros (Medicina)</span>
+                        <span class="member-pill member-pill-monitor">Mayara Marques (Eng. Software)</span>
+                        <span class="member-pill member-pill-monitor">Franco Bueno (Mecatrônica)</span>
+                        <span class="member-pill member-pill-monitor">Heitor Chagas (Eng. Software)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Objetivo 2 -->
+              <div class="s2-obj-card">
+                <div class="s2-obj-num-box">02</div>
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                    <h4 class="obj-title" style="margin: 0;">Realizar revisão rápida (RLS) sobre fluxos de referência e contrarreferência no Brasil</h4>
+                    <span class="badge-status badge-status-concluido">Concluído</span>
+                  </div>
+                  <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 0.75rem;">
+                    <strong>Resultados:</strong> RLS Consolidada • Indicadores de Avaliação de Regulação.
+                  </p>
+                  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
+                    <div>
+                      <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 0.25rem;">Preceptores</span>
+                      <div class="member-pill-list">
+                        <span class="member-pill member-pill-preceptor">Sabrina Feitosa</span>
+                        <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+                      </div>
+                    </div>
+                    <div>
+                      <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 0.25rem;">Monitores</span>
+                      <div class="member-pill-list">
+                        <span class="member-pill member-pill-monitor">Paula Iara (Farmácia)</span>
+                        <span class="member-pill member-pill-monitor">Plabio Lucas (Medicina)</span>
+                        <span class="member-pill member-pill-monitor">Flávia Lima (Enfermagem)</span>
+                        <span class="member-pill member-pill-monitor">Hugo de Verson (Medicina)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Objetivo 3 -->
+              <div class="s2-obj-card">
+                <div class="s2-obj-num-box">03</div>
+                <div>
+                  <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">
+                    <h4 class="obj-title" style="margin: 0;">Construir o protocolo de atendimento e de encaminhamento do Ambulatório de Saúde Integral</h4>
+                    <span class="badge-status badge-status-validacao">Em Validação</span>
+                  </div>
+                  <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 0.75rem;">
+                    <strong>Resultados:</strong> Protocolo de Atendimento • Protocolo de Encaminhamento Padronizado.
+                  </p>
+                  <div style="display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 0.75rem;">
+                    <div>
+                      <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 0.25rem;">Preceptores</span>
+                      <div class="member-pill-list">
+                        <span class="member-pill member-pill-preceptor">Flávio Torres</span>
+                        <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+                      </div>
+                    </div>
+                    <div>
+                      <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: #94a3b8; display: block; margin-bottom: 0.25rem;">Monitores</span>
+                      <div class="member-pill-list">
+                        <span class="member-pill member-pill-monitor">João Victor Macêdo (Medicina)</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Seção 2: Protótipo em Destaque no Final -->
+          <div id="s2-sec-prototipo" style="margin-top: 3.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+              <h3 class="s2-section-heading" style="margin: 0;">
+                <span>💻</span> Solução Digital: Protótipo do Ambulatório
+              </h3>
+              <span class="badge-status badge-status-concluido">Resultado do Objetivo 01</span>
+            </div>
+
+            <div class="prototype-mock-showcase">
+              <div class="prototype-mock-bar">
+                <div class="prototype-browser-dots">
+                  <div class="dot dot-red"></div>
+                  <div class="dot dot-yellow"></div>
+                  <div class="dot dot-green"></div>
+                </div>
+                <div class="prototype-url-pill">docs/assets/prototipo_app.html • Iframe Interativo</div>
+                <span style="font-size: 0.75rem; color: #38bdf8;">Visualização Embutida</span>
+              </div>
+              <div class="prototype-mock-body">
+                <div class="mock-screen-card">
+                  <span class="mock-screen-icon">🩺📋</span>
+                  <h3 class="mock-screen-title">Protótipo Digital – prototipo_app.html</h3>
+                  <p class="mock-screen-desc">
+                    Na implementação final no MkDocs, o formulário interativo completo será exibido aqui neste card com scroll interno de 1450px.
+                  </p>
+                  <button class="btn-mock-action" onclick="alert('No ambiente MkDocs, o iframe interativo carregará diretamente aqui!')">
+                    <span>⚡</span> Abrir em Tela Cheia
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PÁGINA 2: RESULTADOS (SUGESTÃO 2) -->
+      <div id="s2-page-resultados" style="display: none;">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Resultados e Indicadores</h1>
+              <p class="page-header-subtitle">
+                Acompanhamento contínuo dos produtos entregues e métricas de desempenho.
+              </p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-main-container">
+          <div class="results-kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-number">3 / 3</div>
+              <div class="kpi-label">Objetivos Concluídos</div>
+              <div class="kpi-trend">✔ Etapa 1 Finalizada</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">1</div>
+              <div class="kpi-label">Protótipo Validado</div>
+              <div class="kpi-trend">✔ Formulário Digital v1.2</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">100%</div>
+              <div class="kpi-label">RLS Concluída</div>
+              <div class="kpi-trend">✔ Evidências SUS</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">01</div>
+              <div class="kpi-label">Protocolo Clínico</div>
+              <div class="kpi-trend">✔ Fase de Homologação</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         SUGESTÃO 3: LINHA DO TEMPO & STEPPER (NARRATIVA VISUAL & ACCORDION)
+         ======================================================================== -->
+    <div class="suggestion-container" id="sugestao-3">
+      
+      <!-- Top Navbar Simulada -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab active" onclick="s3SwitchMainPage('contribuicao', this)">Contribuição</button>
+          <button class="mock-nav-tab" onclick="s3SwitchMainPage('resultados', this)">Resultados</button>
+        </div>
+        <div class="mock-header-tools">
+          <span class="tool-pill">A+</span>
+          <span class="tool-pill">Alto Contraste</span>
+          <span class="tool-pill">☀️</span>
+        </div>
+      </nav>
+
+      <!-- PÁGINA 1: CONTRIBUIÇÃO (SUGESTÃO 3) -->
+      <div id="s3-page-contribuicao">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Contribuição do GT 8</h1>
+              <p class="page-header-subtitle">
+                Jornada evolutiva da Etapa 1 com objetivos detalhados e conexão direta aos produtos.
+              </p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+          
+          <!-- Stepper Visual de Progresso -->
+          <div class="s3-stepper-bar">
+            <div class="s3-step-node active" onclick="s3OpenAccordion(1)">
+              <div class="s3-step-header">
+                <span class="s3-step-index">PASSO 01</span>
+                <span class="badge-status badge-status-concluido">Entregue</span>
+              </div>
+              <div class="s3-step-title">Sistemas & Protótipo</div>
+            </div>
+
+            <div class="s3-step-node" onclick="s3OpenAccordion(2)">
+              <div class="s3-step-header">
+                <span class="s3-step-index">PASSO 02</span>
+                <span class="badge-status badge-status-concluido">Entregue</span>
+              </div>
+              <div class="s3-step-title">Revisão Rápida (RLS)</div>
+            </div>
+
+            <div class="s3-step-node" onclick="s3OpenAccordion(3)">
+              <div class="s3-step-header">
+                <span class="s3-step-index">PASSO 03</span>
+                <span class="badge-status badge-status-validacao">Validação</span>
+              </div>
+              <div class="s3-step-title">Protocolo Clínico</div>
+            </div>
+          </div>
+
+          <!-- Accordions dos Objetivos -->
+          <div class="s3-accordions-wrap">
+            
+            <!-- Accordion 1 (com Protótipo Integrado) -->
+            <div class="s3-accordion-item open" id="s3-acc-1">
+              <div class="s3-acc-header" onclick="s3ToggleAccordion(1)">
+                <div class="s3-acc-title-wrap">
+                  <span class="s2-obj-num-box" style="width: 34px; height: 34px; font-size: 0.9rem;">01</span>
+                  <div>
+                    <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--primary-navy); margin: 0;">
+                      Objetivo 1: Aprimorar/construir propostas de sistemas de informação HUB-UBS
+                    </h4>
+                    <span style="font-size: 0.8rem; color: #64748b;">Clique para expandir/recolher detalhes e protótipo</span>
+                  </div>
+                </div>
+                <span class="s3-acc-toggle">▼</span>
+              </div>
+              <div class="s3-acc-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.25rem;">
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Resultados Esperados</h5>
+                    <ul class="deliverables-box" style="padding-left: 0;">
+                      <li>Mapeamento de Processos assistenciais</li>
+                      <li>Diagnóstico Situacional de fluxos</li>
+                      <li>Proposta de indicadores e formulário digital</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Equipe Envolvida</h5>
+                    <div style="margin-bottom: 0.4rem;">
+                      <span class="member-pill member-pill-preceptor">Fernanda Santana</span>
+                      <span class="member-pill member-pill-preceptor">Lucas Alves</span>
+                    </div>
+                    <div>
+                      <span class="member-pill member-pill-monitor">Luanna Barros</span>
+                      <span class="member-pill member-pill-monitor">Mayara Marques</span>
+                      <span class="member-pill member-pill-monitor">Franco Bueno</span>
+                      <span class="member-pill member-pill-monitor">Heitor Chagas</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Destaque do Protótipo incorporado diretamente no Objetivo 1 -->
+                <div class="s3-proto-callout">
+                  <div style="display: flex; align-items: center; gap: 0.85rem;">
+                    <span style="font-size: 2rem;">💻</span>
+                    <div>
+                      <h4 style="font-size: 0.98rem; font-weight: 700; color: #166534; margin: 0;">
+                        Produto do Objetivo 1: Protótipo Digital Interativo
+                      </h4>
+                      <p style="font-size: 0.82rem; color: #15803d; margin: 0;">
+                        O formulário foi concebido diretamente como entrega deste objetivo específico.
+                      </p>
+                    </div>
+                  </div>
+                  <button class="btn-mock-action" style="padding: 0.5rem 1rem; font-size: 0.82rem;" onclick="alert('Abre o modal ou desce até o protótipo interativo!')">
+                    Carregar Protótipo ↓
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion 2 -->
+            <div class="s3-accordion-item" id="s3-acc-2">
+              <div class="s3-acc-header" onclick="s3ToggleAccordion(2)">
+                <div class="s3-acc-title-wrap">
+                  <span class="s2-obj-num-box" style="width: 34px; height: 34px; font-size: 0.9rem; background: #059669;">02</span>
+                  <div>
+                    <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--primary-navy); margin: 0;">
+                      Objetivo 2: Revisão rápida (RLS) sobre fluxos de referência e contrarreferência
+                    </h4>
+                    <span style="font-size: 0.8rem; color: #64748b;">Evidências nacionais para fundamentação dos modelos</span>
+                  </div>
+                </div>
+                <span class="s3-acc-toggle">▼</span>
+              </div>
+              <div class="s3-acc-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Resultados Esperados</h5>
+                    <ul class="deliverables-box" style="padding-left: 0;">
+                      <li>RLS consolidada sobre regulação e fluxos</li>
+                      <li>Indicadores de avaliação de eficiência</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Equipe Envolvida</h5>
+                    <div style="margin-bottom: 0.4rem;">
+                      <span class="member-pill member-pill-preceptor">Sabrina Feitosa</span>
+                      <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+                    </div>
+                    <div>
+                      <span class="member-pill member-pill-monitor">Paula Iara</span>
+                      <span class="member-pill member-pill-monitor">Plabio Lucas</span>
+                      <span class="member-pill member-pill-monitor">Flávia Lima</span>
+                      <span class="member-pill member-pill-monitor">Hugo de Verson</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Accordion 3 -->
+            <div class="s3-accordion-item" id="s3-acc-3">
+              <div class="s3-acc-header" onclick="s3ToggleAccordion(3)">
+                <div class="s3-acc-title-wrap">
+                  <span class="s2-obj-num-box" style="width: 34px; height: 34px; font-size: 0.9rem; background: #d97706;">03</span>
+                  <div>
+                    <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--primary-navy); margin: 0;">
+                      Objetivo 3: Protocolo de atendimento e encaminhamento do Ambulatório Integral
+                    </h4>
+                    <span style="font-size: 0.8rem; color: #64748b;">Normatização dos critérios clínicos e acolhimento multiprofissional</span>
+                  </div>
+                </div>
+                <span class="s3-acc-toggle">▼</span>
+              </div>
+              <div class="s3-acc-body">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Resultados Esperados</h5>
+                    <ul class="deliverables-box" style="padding-left: 0;">
+                      <li>Protocolo de atendimento multiprofissional</li>
+                      <li>Protocolo de encaminhamento padronizado</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h5 style="font-size: 0.78rem; text-transform: uppercase; color: #64748b; font-weight: 700; margin-bottom: 0.5rem;">Equipe Envolvida</h5>
+                    <div style="margin-bottom: 0.4rem;">
+                      <span class="member-pill member-pill-preceptor">Flávio Torres</span>
+                      <span class="member-pill member-pill-preceptor">Pedro Ruas</span>
+                    </div>
+                    <div>
+                      <span class="member-pill member-pill-monitor">João Victor Macêdo</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- PÁGINA 2: RESULTADOS (SUGESTÃO 3) -->
+      <div id="s3-page-resultados" style="display: none;">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Resultados e Indicadores</h1>
+              <p class="page-header-subtitle">
+                Progresso detalhado por objetivo e matriz de artefatos homologados.
+              </p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-main-container">
+          <div class="results-kpi-grid">
+            <div class="kpi-card">
+              <div class="kpi-number">3 / 3</div>
+              <div class="kpi-label">Frentes de Trabalho</div>
+              <div class="kpi-trend">✔ Etapa 1 Concluída</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">1</div>
+              <div class="kpi-label">Protótipo Web</div>
+              <div class="kpi-trend">✔ Aprovado pela Preceptoria</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">01</div>
+              <div class="kpi-label">RLS Finalizada</div>
+              <div class="kpi-trend">✔ Síntese Publicada</div>
+            </div>
+            <div class="kpi-card">
+              <div class="kpi-number">01</div>
+              <div class="kpi-label">Protocolo</div>
+              <div class="kpi-trend">✔ Em fase de teste</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="mockup-footer">
+    PET-Saúde: Informação e Saúde Digital • Grupo de Trabalho 08 (HUB - UnB)<br>
+    Arquivo estático de validação de Arquitetura da Informação e UX. Nenhuma alteração foi persistida no repositório MkDocs ainda.
+  </footer>
+
+  <!-- ==========================================================================
+       LOGICA JAVASCRIPT: NAVEGAÇÃO ENTRE SUGESTÕES, ABAS E COMPARATIVO
+       ========================================================================== -->
+  <script>
+    // Dados explicativos para cada sugestão
+    const suggestionsData = {
+      1: {
+        badge: "Foco & Modularidade",
+        badgeClass: "badge-s1",
+        title: "Sugestão 1: Abas Modulares Internas (Sub-tabs)",
+        desc: "Separa 'Etapa 1 – Objetivos e Entregas' e 'Protótipo Digital' em sub-abas dedicadas dentro de Contribuição. Permite alternar rapidamente entre a visualização técnica e o aplicativo sem poluir a tela.",
+        pros: ["Foco total: o usuário não é distraído pelo formulário enquanto lê a matriz", "Carregamento isolado: não pesa o scroll da página", "Design moderno e alinhado ao padrão de documentação de software"],
+        cons: ["Exige 1 clique adicional para visualizar o protótipo"],
+        rec: "Altamente recomendada se a equipe deseja que o leitor consulte os objetivos sem precisar rolar uma página muito extensa."
+      },
+      2: {
+        badge: "Leitura Contínua & Rápida",
+        badgeClass: "badge-s2",
+        title: "Sugestão 2: Página Única com Scroll (Single Page Feed)",
+        desc: "Exibe todos os dados na mesma página: os 3 objetivos em lista empilhada e o protótipo digital logo abaixo em destaque, com atalhos âncora no topo.",
+        pros: ["Tudo visível em uma única rolagem", "Sem necessidade de alternar abas", "Excelente para apresentações rápidas a stakeholders"],
+        cons: ["Página mais longa, já que o protótipo ocupa bastante altura vertical"],
+        rec: "Ideal para bancas ou apresentações rápidas onde rolar a tela é mais conveniente do que clicar em abas."
+      },
+      3: {
+        badge: "Narrativa Visual & Conexão Direta",
+        badgeClass: "badge-s3",
+        title: "Sugestão 3: Linha do Tempo & Stepper Interativo",
+        desc: "Organiza a Etapa 1 como uma sequência metodológica (Passo 1 → 2 → 3), com accordions colapsáveis e o Protótipo incorporado diretamente como o resultado prático do Objetivo 1.",
+        pros: ["Explica a lógica: mostra que o protótipo é o produto direto do Objetivo 1", "Layout compacto graças aos accordions", "Visual elegante com stepper de progresso"],
+        cons: ["Esconde o conteúdo inicial dos objetivos 2 e 3 até que o usuário clique"],
+        rec: "Recomendada se o objetivo for destacar o rigor metodológico e a relação causa-efeito entre objetivos e produtos."
+      }
+    };
+
+    let activeSuggestion = 1;
+    let isCompareMode = false;
+
+    // Atualiza o painel explicativo superior
+    function updateInfoPanel(index) {
+      const data = suggestionsData[index];
+      const card = document.getElementById("info-card-box");
+      card.innerHTML = `
+        <div>
+          <div class="info-header">
+            <span class="info-badge ${data.badgeClass}">${data.badge}</span>
+            <h2 class="info-title">${data.title}</h2>
+          </div>
+          <p class="info-desc">${data.desc}</p>
+          <div class="pros-cons-grid">
+            ${data.pros.map(p => `<span class="tag-pro">✔ ${p}</span>`).join('')}
+            ${data.cons.map(c => `<span class="tag-con">⚠ ${c}</span>`).join('')}
+          </div>
+        </div>
+        <div class="recommendation-badge">
+          <strong>Avaliação do Tech Lead:</strong>
+          ${data.rec}
+        </div>
+      `;
+    }
+
+    // Alterna a sugestão ativa
+    function switchSuggestion(index) {
+      isCompareMode = false;
+      activeSuggestion = index;
+
+      document.querySelectorAll(".btn-suggestion").forEach((btn, idx) => {
+        btn.classList.toggle("active", idx + 1 === index);
+      });
+      document.getElementById("btn-compare").classList.remove("active");
+
+      const stage = document.getElementById("preview-stage-wrap");
+      stage.classList.remove("compare-grid-mode");
+
+      document.querySelectorAll(".suggestion-container").forEach((c, idx) => {
+        c.classList.toggle("visible", idx + 1 === index);
+      });
+
+      updateInfoPanel(index);
+    }
+
+    // Alterna o modo comparativo lado a lado
+    function toggleCompareMode() {
+      isCompareMode = !isCompareMode;
+      const stage = document.getElementById("preview-stage-wrap");
+      const compareBtn = document.getElementById("btn-compare");
+
+      if (isCompareMode) {
+        stage.classList.add("compare-grid-mode");
+        compareBtn.classList.add("active");
+        document.querySelectorAll(".btn-suggestion").forEach(b => b.classList.remove("active"));
+        document.getElementById("info-card-box").innerHTML = `
+          <div>
+            <div class="info-header">
+              <span class="info-badge badge-s1">Modo Comparativo</span>
+              <h2 class="info-title">Comparação Direta das 3 Abordagens de Layout</h2>
+            </div>
+            <p class="info-desc">
+              Visualize lado a lado as diferenças estruturais entre a abordagem por <strong>Sub-abas (S1)</strong>, <strong>Scroll Único (S2)</strong> e <strong>Stepper/Timeline (S3)</strong>.
+            </p>
+          </div>
+          <div class="recommendation-badge">
+            <strong>Dica de Escolha:</strong>
+            Avalie qual experiência de navegação reflete melhor a maturidade do projeto para seus usuários finais.
+          </div>
+        `;
+      } else {
+        switchSuggestion(activeSuggestion);
+      }
+    }
+
+    // --- CONTROLES INTERNOS DA SUGESTÃO 1 ---
+    function s1SwitchMainPage(page, btn) {
+      btn.parentElement.querySelectorAll(".mock-nav-tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("s1-page-contribuicao").style.display = page === 'contribuicao' ? 'block' : 'none';
+      document.getElementById("s1-page-resultados").style.display = page === 'resultados' ? 'block' : 'none';
+    }
+
+    function s1SwitchSubTab(tab, btn) {
+      btn.parentElement.querySelectorAll(".s1-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("s1-pane-matriz").classList.toggle("active", tab === 'matriz');
+      document.getElementById("s1-pane-prototipo").classList.toggle("active", tab === 'prototipo');
+    }
+
+    // --- CONTROLES INTERNOS DA SUGESTÃO 2 ---
+    function s2SwitchMainPage(page, btn) {
+      btn.parentElement.querySelectorAll(".mock-nav-tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("s2-page-contribuicao").style.display = page === 'contribuicao' ? 'block' : 'none';
+      document.getElementById("s2-page-resultados").style.display = page === 'resultados' ? 'block' : 'none';
+    }
+
+    // --- CONTROLES INTERNOS DA SUGESTÃO 3 ---
+    function s3SwitchMainPage(page, btn) {
+      btn.parentElement.querySelectorAll(".mock-nav-tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("s3-page-contribuicao").style.display = page === 'contribuicao' ? 'block' : 'none';
+      document.getElementById("s3-page-resultados").style.display = page === 'resultados' ? 'block' : 'none';
+    }
+
+    function s3ToggleAccordion(index) {
+      const item = document.getElementById(`s3-acc-${index}`);
+      item.classList.toggle("open");
+    }
+
+    function s3OpenAccordion(index) {
+      document.querySelectorAll(".s3-step-node").forEach((n, idx) => {
+        n.classList.toggle("active", idx + 1 === index);
+      });
+      document.querySelectorAll(".s3-accordion-item").forEach((item, idx) => {
+        if (idx + 1 === index) {
+          item.classList.add("open");
+          item.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          item.classList.remove("open");
+        }
+      });
+    }
+
+    // Inicializa no carregamento
+    window.addEventListener("DOMContentLoaded", () => {
+      updateInfoPanel(1);
+    });
+  </script>
+</body>
+</html>

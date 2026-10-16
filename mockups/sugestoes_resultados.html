@@ -1,0 +1,1913 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sugestões de Layout • Aba Resultados | PET-Saúde GT 8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       RESET & DESIGN SYSTEM
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary-navy: #0c3258;
+      --primary-navy-dark: #061122;
+      --brand-blue: #0284c7;
+      --brand-blue-light: #38bdf8;
+      --pet-orange: #ea5b2d;
+      --pet-orange-hover: #d94817;
+      --unb-green: #009a44;
+      --unb-green-vibrant: #10b981;
+      --bg-slate: #f8fafc;
+      --border-color: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: #0b1526;
+      color: var(--text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ==========================================================================
+       TOP SELECTOR BAR (FIXO)
+       ========================================================================== */
+    .decision-hub-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11, 21, 38, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.85rem 1.5rem;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .decision-bar-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .decision-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .decision-brand-badge {
+      background: linear-gradient(135deg, var(--pet-orange), #f97316);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .decision-brand-title {
+      color: #ffffff;
+      font-size: 0.98rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .decision-brand-title span {
+      color: var(--brand-blue-light);
+      font-weight: 400;
+    }
+
+    .decision-selector-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 0.3rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-res-option {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1.1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-res-option:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-res-option.active {
+      background: var(--brand-blue);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.45);
+    }
+
+    .btn-compare {
+      background: rgba(234, 91, 45, 0.15);
+      border: 1px solid rgba(234, 91, 45, 0.35);
+      color: #fdba74;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-compare:hover, .btn-compare.active {
+      background: var(--pet-orange);
+      color: #ffffff;
+      border-color: var(--pet-orange);
+      box-shadow: 0 2px 10px rgba(234, 91, 45, 0.45);
+    }
+
+    /* Painel Explicativo Superior */
+    .decision-info-panel {
+      max-width: 1400px;
+      margin: 1.2rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .info-card {
+      background: linear-gradient(145deg, #0e1e36, #091527);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 14px;
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .info-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .info-badge {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    .badge-ra { background: rgba(56, 189, 248, 0.15); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.3); }
+    .badge-rb { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-rc { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+
+    .info-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .info-desc {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      margin-bottom: 0.75rem;
+    }
+
+    .pros-cons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .tag-pro, .tag-con {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-weight: 500;
+    }
+
+    .tag-pro { background: rgba(16, 185, 129, 0.1); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.25); }
+    .tag-con { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.25); }
+
+    .recommendation-badge {
+      background: rgba(2, 132, 199, 0.15);
+      border: 1px solid rgba(2, 132, 199, 0.35);
+      padding: 0.85rem 1.1rem;
+      border-radius: 10px;
+      text-align: right;
+      color: #bae6fd;
+      font-size: 0.82rem;
+      max-width: 400px;
+    }
+
+    .recommendation-badge strong {
+      display: block;
+      color: #38bdf8;
+      font-size: 0.88rem;
+      margin-bottom: 0.25rem;
+    }
+
+    /* ==========================================================================
+       CONTAINERS DE PREVIEW
+       ========================================================================== */
+    .preview-stage {
+      max-width: 1400px;
+      margin: 0 auto 4rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .suggestion-container {
+      background: var(--bg-slate);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .suggestion-container.visible {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* MODO COMPARATIVO LADO A LADO */
+    .compare-grid-mode {
+      display: grid !important;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .compare-grid-mode .suggestion-container {
+      display: block !important;
+      font-size: 0.8rem;
+    }
+
+    /* ==========================================================================
+       NAVBAR SIMULADA
+       ========================================================================== */
+    .mock-header {
+      background: #0d3b66;
+      border-bottom: 1px solid #092c4c;
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+    }
+
+    .mock-header-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .mock-logo-box {
+      width: 34px;
+      height: 34px;
+      background: #ffffff;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      color: var(--primary-navy);
+      font-size: 0.85rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+
+    .mock-site-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .mock-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .mock-nav-tab {
+      background: none;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.4rem 0.2rem;
+      cursor: pointer;
+      position: relative;
+      transition: color 0.2s ease;
+      text-decoration: none;
+    }
+
+    .mock-nav-tab:hover {
+      color: #ffffff;
+    }
+
+    .mock-nav-tab.active {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .mock-nav-tab.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: 2px;
+      background-color: var(--brand-blue-light);
+    }
+
+    .mock-nav-tab.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    /* Banner de Página */
+    .page-header-banner {
+      width: 100%;
+      background: radial-gradient(circle at 8% 25%, rgba(234, 91, 45, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 92% 75%, rgba(0, 154, 68, 0.12) 0%, transparent 45%),
+                  #0c3258 !important;
+      padding: 2rem 1.75rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid transparent !important;
+      border-image: linear-gradient(90deg, #ea5b2d 0%, #009a44 48%, #0284c7 85%) 1 !important;
+      color: #ffffff;
+    }
+
+    .page-header-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .page-header-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .page-header-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .page-header-title {
+      font-size: 2.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      color: #ffffff;
+      margin: 0 0 0.5rem 0;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header-subtitle {
+      font-size: 1rem;
+      color: #e2e8f0;
+      line-height: 1.45;
+    }
+
+    .page-header-minicard {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 0.75rem 1.1rem;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+    }
+
+    .page-header-minicard-logo {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary-navy);
+      font-weight: 800;
+      font-size: 0.8rem;
+    }
+
+    .page-header-minicard-text {
+      color: #ffffff;
+      font-size: 0.86rem;
+      font-weight: 700;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .minicard-sub {
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .minicard-sub::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #009a44;
+    }
+
+    .page-main-container {
+      max-width: 1140px;
+      margin: 0 auto 3rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================================
+       RESUMO NUMÉRICO / STATS BAR (CALCULADO DA TABELA, SEM INVENÇÃO)
+       ========================================================================== */
+    .kpi-summary-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .strip-stat-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      border-left: 4px solid var(--brand-blue);
+    }
+
+    .strip-stat-num {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      line-height: 1.1;
+      margin-bottom: 0.2rem;
+    }
+
+    .strip-stat-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Legenda de Status de Resultados */
+    .results-legend-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 0.75rem 1.2rem;
+      margin-bottom: 1.5rem;
+      font-size: 0.82rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+    }
+
+    .legend-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .legend-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .dot-disponivel { background: var(--unb-green-vibrant); box-shadow: 0 0 6px rgba(16, 185, 129, 0.6); }
+    .dot-elaboracao { background: #f59e0b; }
+    .dot-definir { background: #94a3b8; }
+
+    /* ==========================================================================
+       TABELA DE RESULTADOS (SOMENTE O BLOCO DA DIREITA: FORMULÁRIO E PROTÓTIPO)
+       ========================================================================== */
+    .res-table-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      margin-bottom: 2rem;
+    }
+
+    .res-table-header {
+      background: #f8fafc;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .res-table-title-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .res-table-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--brand-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .res-table-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--primary-navy);
+      margin: 0;
+    }
+
+    .res-table-summary {
+      font-size: 0.86rem;
+      color: #64748b;
+      margin: 0;
+    }
+
+    .res-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .res-table th {
+      background: #0f2747;
+      color: #ffffff;
+      padding: 0.8rem 1.25rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-right: 1px solid #1a3a63;
+    }
+
+    .res-table th:last-child {
+      border-right: none;
+    }
+
+    .res-table th.res-super-header {
+      background: #081d38;
+      text-align: center;
+      font-size: 0.84rem;
+      border-bottom: 2px solid var(--brand-blue-light);
+    }
+
+    .res-table td {
+      padding: 0.85rem 1.25rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+      vertical-align: middle;
+    }
+
+    .res-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .res-spec-name {
+      font-weight: 700;
+      color: var(--primary-navy);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Ações e Tags de Status */
+    .btn-action-disponivel {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-action-disponivel:hover {
+      background: var(--unb-green);
+      color: #ffffff;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 8px rgba(0, 154, 68, 0.25);
+    }
+
+    .tag-status-elaboracao {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #fffbeb;
+      color: #92400e;
+      border: 1px solid #fde68a;
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    .res-table-footer {
+      background: #f8fafc;
+      padding: 0.75rem 1.25rem;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    /* Estado Vazio de Etapa (Em Breve) */
+    .empty-simple-card {
+      background: #ffffff;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 3.5rem 2rem;
+      text-align: center;
+      color: #64748b;
+    }
+
+    /* ==========================================================================
+       RESULTADOS A: FILTRO EM PILLS NO TOPO + TABELAS EMPILHADAS
+       ========================================================================== */
+    .ra-filter-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .ra-pills-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: #f1f5f9;
+      padding: 0.3rem;
+      border-radius: 9999px;
+    }
+
+    .ra-pill-btn {
+      background: transparent;
+      border: none;
+      color: #475569;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .ra-pill-btn:hover {
+      color: var(--primary-navy);
+    }
+
+    .ra-pill-btn.active {
+      background: var(--brand-blue);
+      color: #ffffff;
+      box-shadow: 0 2px 8px rgba(2, 132, 199, 0.3);
+    }
+
+    .ra-search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.84rem;
+    }
+
+    .ra-search-box input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-family: inherit;
+      font-size: 0.84rem;
+      color: var(--text-main);
+      width: 200px;
+    }
+
+    /* ==========================================================================
+       RESULTADOS B: SIDEBAR LATERAL DE FILTROS (ETAPA, OBJETIVO, STATUS)
+       ========================================================================== */
+    .rb-layout-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    .rb-sidebar-filter {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      position: sticky;
+      top: 85px;
+    }
+
+    .rb-filter-block {
+      margin-bottom: 1.5rem;
+    }
+
+    .rb-filter-title {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      font-weight: 800;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .rb-filter-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .rb-filter-item {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #334155;
+      text-align: left;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.2s;
+    }
+
+    .rb-filter-item:hover {
+      background: #f1f5f9;
+    }
+
+    .rb-filter-item.active {
+      background: #f0f9ff;
+      color: var(--brand-blue);
+      border-color: #bae6fd;
+      font-weight: 700;
+    }
+
+    .rb-count-tag {
+      font-size: 0.72rem;
+      padding: 0.15rem 0.45rem;
+      border-radius: 9999px;
+      background: #e2e8f0;
+      color: #475569;
+    }
+
+    .rb-filter-item.active .rb-count-tag {
+      background: var(--brand-blue);
+      color: #ffffff;
+    }
+
+    /* ==========================================================================
+       RESULTADOS C: ABAS POR OBJETIVO DENTRO DA ETAPA (NESTED TABS)
+       ========================================================================== */
+    .rc-etapas-nav {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .rc-etapa-tab {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary-navy);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .rc-etapa-tab.active {
+      background: var(--primary-navy);
+      color: #ffffff;
+      border-color: var(--primary-navy);
+    }
+
+    .rc-obj-subtabs {
+      display: flex;
+      gap: 0.5rem;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 1.5rem;
+    }
+
+    .rc-obj-tab-btn {
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding: 0.65rem 1.1rem;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .rc-obj-tab-btn:hover {
+      color: var(--brand-blue);
+    }
+
+    .rc-obj-tab-btn.active {
+      color: var(--brand-blue);
+      border-bottom-color: var(--brand-blue);
+      font-weight: 800;
+    }
+
+    /* Responsividade */
+    @media (max-width: 992px) {
+      .compare-grid-mode { grid-template-columns: 1fr; }
+      .kpi-summary-strip { grid-template-columns: repeat(2, 1fr); }
+      .rb-layout-grid { grid-template-columns: 1fr; }
+      .info-card { grid-template-columns: 1fr; }
+      .recommendation-badge { text-align: left; max-width: 100%; }
+      .page-header-container { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       TOP SELECTOR BAR (BARRA FIXA DE DECISÃO)
+       ========================================================================== -->
+  <header class="decision-hub-header">
+    <div class="decision-bar-container">
+      <div class="decision-brand">
+        <span class="decision-brand-badge">Tech Lead • Arquitetura de Resultados</span>
+        <div class="decision-brand-title">PET-Saúde GT 8 <span>| Organização da Aba Resultados</span></div>
+      </div>
+
+      <div class="decision-selector-group">
+        <button class="btn-res-option active" onclick="switchResOption('A')" id="btn-ra">
+          <span>📑</span> Resultados A · Filtro Pills + Empilhadas
+        </button>
+        <button class="btn-res-option" onclick="switchResOption('B')" id="btn-rb">
+          <span>📐</span> Resultados B · Filtro em Sidebar
+        </button>
+        <button class="btn-res-option" onclick="switchResOption('C')" id="btn-rc">
+          <span>🗂️</span> Resultados C · Abas por Objetivo
+        </button>
+        <button class="btn-compare" onclick="toggleCompareMode()" id="btn-compare">
+          <span>⊞</span> Comparar Lado a Lado
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       BLOCO EXPLICATIVO DA OPÇÃO ATIVA
+       ========================================================================== -->
+  <section class="decision-info-panel">
+    <div class="info-card" id="info-card-box">
+      <!-- Inserido dinamicamente via JS -->
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ÁREA DE VISUALIZAÇÃO DOS MOCKUPS (MKDOCS SIMULADO)
+       ========================================================================== -->
+  <main class="preview-stage" id="preview-stage-wrap">
+
+    <!-- ========================================================================
+         RESULTADOS A: FILTRO EM PILLS NO TOPO + TABELAS EMPILHADAS
+         ======================================================================== -->
+    <div class="suggestion-container visible" id="container-ra">
+      
+      <!-- Top Navbar Simulada com Abas Contribuição e Resultados Ativas -->
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab" onclick="switchPortalPage('A', 'contribuicao', this)">Contribuição</button>
+          <button class="mock-nav-tab active" onclick="switchPortalPage('A', 'resultados', this)">Resultados</button>
+        </div>
+      </nav>
+
+      <!-- PÁGINA CONTRIBUIÇÃO (COM TABELA A APLICADA) -->
+      <div id="ra-page-contribuicao" style="display: none;">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Contribuição do GT 8</h1>
+              <p class="page-header-subtitle">Visualização coerente com a Tabela A de responsáveis da Etapa 1.</p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="page-main-container">
+          <div style="background: #ffffff; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+            <p style="color: #475569; font-size: 0.95rem;">
+              ✅ <strong>Aba Contribuição validada:</strong> Utiliza o Stepper Horizontal e a <strong>Tabela A (Uma linha por especialidade)</strong> aprovada no passo anterior.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PÁGINA RESULTADOS (RESULTADOS A) -->
+      <div id="ra-page-resultados">
+        
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Resultados e Entregas</h1>
+              <p class="page-header-subtitle">
+                Painel executivo de formulários de encaminhamento e protótipos digitais por especialidade.
+              </p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+
+          <!-- Barra de Filtro de Etapas + Busca -->
+          <div class="ra-filter-toolbar">
+            <div style="display: flex; align-items: center; gap: 0.75rem;">
+              <span style="font-size: 0.82rem; font-weight: 700; color: var(--primary-navy); text-transform: uppercase;">Filtrar por Etapa:</span>
+              <div class="ra-pills-group">
+                <button class="ra-pill-btn active" onclick="raSelectEtapa(1, this)">Etapa 1 (Ativa)</button>
+                <button class="ra-pill-btn" onclick="raSelectEtapa(2, this)">Etapa 2</button>
+                <button class="ra-pill-btn" onclick="raSelectEtapa(3, this)">Etapa 3</button>
+              </div>
+            </div>
+
+            <div class="ra-search-box">
+              <span>🔍</span>
+              <input type="text" placeholder="Buscar especialidade..." oninput="raFilterSearch(this.value)">
+            </div>
+          </div>
+
+          <!-- PAINEL ETAPA 1 -->
+          <div id="ra-panel-etapa-1">
+            
+            <!-- Resumo Numérico Real da Etapa 1 -->
+            <div class="kpi-summary-strip">
+              <div class="strip-stat-card">
+                <div class="strip-stat-num">8</div>
+                <div class="strip-stat-label">Especialidades Mapeadas</div>
+              </div>
+              <div class="strip-stat-card" style="border-left-color: var(--unb-green-vibrant);">
+                <div class="strip-stat-num">1</div>
+                <div class="strip-stat-label">Disponível para Teste</div>
+              </div>
+              <div class="strip-stat-card" style="border-left-color: #f59e0b;">
+                <div class="strip-stat-num">7</div>
+                <div class="strip-stat-label">Em Elaboração</div>
+              </div>
+              <div class="strip-stat-card" style="border-left-color: #94a3b8;">
+                <div class="strip-stat-num">1</div>
+                <div class="strip-stat-label">Especialidade a Definir</div>
+              </div>
+            </div>
+
+            <!-- Legenda Oficial -->
+            <div class="results-legend-bar">
+              <span style="font-weight: 700; color: var(--primary-navy);">Legenda de Acesso:</span>
+              <div class="legend-tag"><span class="legend-dot dot-disponivel"></span> <strong>Disponível:</strong> Link ativo para o formulário e protótipo digital</div>
+              <div class="legend-tag"><span class="legend-dot dot-elaboracao"></span> <strong>Em elaboração:</strong> Critérios clínicos e telas em desenvolvimento</div>
+              <div class="legend-tag"><span class="legend-dot dot-definir"></span> <strong>A definir:</strong> Especialidade aguardando alocação técnica</div>
+            </div>
+
+            <!-- TABELA DO OBJETIVO ESPECÍFICO 01 -->
+            <div class="res-table-card ra-obj-block" id="ra-card-obj-1">
+              <div class="res-table-header">
+                <div class="res-table-title-wrap">
+                  <span class="res-table-badge">Objetivo Específico 01</span>
+                  <h3 class="res-table-title">Sistemas de Informação HUB e UBSs</h3>
+                  <p class="res-table-summary">Mapeamento de processos e construção de formulários didáticos digitais.</p>
+                </div>
+                <span class="badge-status badge-status-concluido">8 Especialidades</span>
+              </div>
+
+              <table class="res-table">
+                <thead>
+                  <tr>
+                    <th colspan="2" class="res-super-header">Resultado / Especialidade</th>
+                  </tr>
+                  <tr>
+                    <th style="width: 50%;">Formulário de Encaminhamento</th>
+                    <th style="width: 50%;">Protótipo Digital</th>
+                  </tr>
+                </thead>
+                <tbody id="ra-tbody-obj1">
+                  <!-- Endocrinologia (Exemplo Disponível do Documento: Laís) -->
+                  <tr class="ra-row-item" data-spec="endocrinologia">
+                    <td>
+                      <div class="res-spec-name">
+                        <span>Endocrinologia</span>
+                        <span style="font-size: 0.72rem; color: #15803d; background: #dcfce7; padding: 0.15rem 0.45rem; border-radius: 4px;">Referência Laís</span>
+                      </div>
+                    </td>
+                    <td>
+                      <button class="btn-action-disponivel" onclick="alert('Abrindo o formulário didático de Endocrinologia!')">
+                        <span>🟢</span> Acessar Formulário & Protótipo v1.2 ↗
+                      </button>
+                    </td>
+                  </tr>
+
+                  <!-- Cardiologia -->
+                  <tr class="ra-row-item" data-spec="cardiologia">
+                    <td><div class="res-spec-name">Cardiologia</div></td>
+                    <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+
+                  <!-- Cirurgia Geral -->
+                  <tr class="ra-row-item" data-spec="cirurgia geral">
+                    <td><div class="res-spec-name">Cirurgia geral</div></td>
+                    <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+
+                  <!-- Coloproctologia -->
+                  <tr class="ra-row-item" data-spec="coloproctologia">
+                    <td><div class="res-spec-name">Coloproctologia</div></td>
+                    <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+
+                  <!-- Gastroenterologia -->
+                  <tr class="ra-row-item" data-spec="gastroenterologia">
+                    <td><div class="res-spec-name">Gastroenterologia</div></td>
+                    <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+
+                  <!-- Ginecologia (Desduplicada: aparecia para Franco e Lucas) -->
+                  <tr class="ra-row-item" data-spec="ginecologia">
+                    <td>
+                      <div class="res-spec-name">
+                        <span>Ginecologia</span>
+                        <span style="font-size: 0.72rem; color: #64748b; background: #f1f5f9; padding: 0.1rem 0.4rem; border-radius: 4px;">Unificada</span>
+                      </div>
+                    </td>
+                    <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+
+                  <!-- Nutrição Adulto -->
+                  <tr class="ra-row-item" data-spec="nutricao adulto">
+                    <td><div class="res-spec-name">Nutrição adulto</div></td>
+                    <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+
+                  <!-- Pneumologia -->
+                  <tr class="ra-row-item" data-spec="pneumologia">
+                    <td><div class="res-spec-name">Pneumologia</div></td>
+                    <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <!-- Rodapé da Tabela com Contador de Especialidades a Definir -->
+              <div class="res-table-footer">
+                <span>Ordenação alfabética (A-Z) para consulta rápida em serviço.</span>
+                <span>📌 <strong>1 especialidade a definir</strong> atribuída à preceptoria de enfermagem.</span>
+              </div>
+            </div>
+
+            <!-- TABELA DO OBJETIVO ESPECÍFICO 02 -->
+            <div class="res-table-card ra-obj-block" id="ra-card-obj-2">
+              <div class="res-table-header">
+                <div class="res-table-title-wrap">
+                  <span class="res-table-badge">Objetivo Específico 02</span>
+                  <h3 class="res-table-title">Revisão Rápida (RLS) sobre Fluxos no Brasil</h3>
+                  <p class="res-table-summary">Síntese de evidências científicas e indicadores de regulação assistencial.</p>
+                </div>
+                <span class="badge-status badge-status-concluido">RLS Concluída</span>
+              </div>
+
+              <div style="padding: 1.5rem; text-align: center; color: #64748b; background: #fafafa;">
+                <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">
+                  📚 <strong>Meta de síntese documental global:</strong> Este objetivo não prevê formulários clínicos ambulatoriais por especialidade.
+                </p>
+                <button class="btn-action-disponivel" style="background: #f0fdf4; color: #166534;" onclick="alert('Download da Síntese de Evidências RLS!')">
+                  <span>📄</span> Baixar Síntese de Evidências Consolidada (PDF)
+                </button>
+              </div>
+
+              <div class="res-table-footer">
+                <span>Indicadores de avaliação disponíveis para incorporação na Etapa 2.</span>
+                <span>0 especialidades pendentes</span>
+              </div>
+            </div>
+
+            <!-- TABELA DO OBJETIVO ESPECÍFICO 03 -->
+            <div class="res-table-card ra-obj-block" id="ra-card-obj-3">
+              <div class="res-table-header">
+                <div class="res-table-title-wrap">
+                  <span class="res-table-badge">Objetivo Específico 03</span>
+                  <h3 class="res-table-title">Protocolo de Atendimento e Encaminhamento</h3>
+                  <p class="res-table-summary">Normatização de critérios de acolhimento e regulação do Ambulatório de Saúde Integral.</p>
+                </div>
+                <span class="badge-status badge-status-andamento">Em Validação</span>
+              </div>
+
+              <div style="padding: 1.5rem; text-align: center; color: #64748b; background: #fafafa;">
+                <p style="font-size: 0.9rem; margin-bottom: 0.75rem;">
+                  🩺 <strong>Minuta de Protocolo Clínico Geral:</strong> Especialidades específicas serão homologadas em conjunto com a gestão do HUB.
+                </p>
+                <span class="tag-status-elaboracao" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe;">
+                  Minuta v0.9 em análise pelo corpo clínico
+                </span>
+              </div>
+
+              <div class="res-table-footer">
+                <span>Critérios gerais de encaminhamento padronizados.</span>
+                <span>Especialidades ambulatoriais vinculadas ao Objetivo 01</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- PAINEL ETAPA 2 (ESTADO EM BREVE) -->
+          <div id="ra-panel-etapa-2" style="display: none;">
+            <div class="empty-simple-card">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">⏳</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">Etapa 2: Integração & Fluxos</h3>
+              <p>Em breve.</p>
+            </div>
+          </div>
+
+          <!-- PAINEL ETAPA 3 (ESTADO EM BREVE) -->
+          <div id="ra-panel-etapa-3" style="display: none;">
+            <div class="empty-simple-card">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🎯</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">Etapa 3: Consolidação & Homologação</h3>
+              <p>Em breve.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         RESULTADOS B: FILTRO EM SIDEBAR LATERAL (ETAPA, OBJETIVO, STATUS)
+         ======================================================================== -->
+    <div class="suggestion-container" id="container-rb">
+      
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab" onclick="switchPortalPage('B', 'contribuicao', this)">Contribuição</button>
+          <button class="mock-nav-tab active" onclick="switchPortalPage('B', 'resultados', this)">Resultados</button>
+        </div>
+      </nav>
+
+      <div id="rb-page-contribuicao" style="display: none;">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Contribuição do GT 8</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="rb-page-resultados">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Resultados e Entregas</h1>
+              <p class="page-header-subtitle">Navegação segmentada por filtros dedicados na barra lateral.</p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+          
+          <div class="rb-layout-grid">
+            
+            <!-- SIDEBAR DE FILTROS -->
+            <aside class="rb-sidebar-filter">
+              
+              <!-- Filtro de Etapa -->
+              <div class="rb-filter-block">
+                <div class="rb-filter-title"><span>📂</span> Etapa do Projeto</div>
+                <div class="rb-filter-list">
+                  <button class="rb-filter-item active" onclick="rbFilterEtapa(1, this)">
+                    <span>01 - Etapa 1</span>
+                    <span class="rb-count-tag">Ativa</span>
+                  </button>
+                  <button class="rb-filter-item" onclick="rbFilterEtapa(2, this)">
+                    <span>02 - Etapa 2</span>
+                    <span class="rb-count-tag">Em breve</span>
+                  </button>
+                  <button class="rb-filter-item" onclick="rbFilterEtapa(3, this)">
+                    <span>03 - Etapa 3</span>
+                    <span class="rb-count-tag">Em breve</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Filtro de Objetivo -->
+              <div class="rb-filter-block" id="rb-filter-objs-box">
+                <div class="rb-filter-title"><span>🎯</span> Filtrar Objetivo</div>
+                <div class="rb-filter-list">
+                  <button class="rb-filter-item active" onclick="rbFilterObj('all', this)">
+                    <span>Todos os Objetivos</span>
+                    <span class="rb-count-tag">3</span>
+                  </button>
+                  <button class="rb-filter-item" onclick="rbFilterObj(1, this)">
+                    <span>Obj. 01 - Sistemas</span>
+                    <span class="rb-count-tag">8</span>
+                  </button>
+                  <button class="rb-filter-item" onclick="rbFilterObj(2, this)">
+                    <span>Obj. 02 - RLS</span>
+                    <span class="rb-count-tag">1</span>
+                  </button>
+                  <button class="rb-filter-item" onclick="rbFilterObj(3, this)">
+                    <span>Obj. 03 - Protocolo</span>
+                    <span class="rb-count-tag">1</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Filtro de Status -->
+              <div class="rb-filter-block" id="rb-filter-status-box">
+                <div class="rb-filter-title"><span>📊</span> Filtrar Status</div>
+                <div class="rb-filter-list">
+                  <button class="rb-filter-item active" onclick="rbFilterStatus('all', this)">
+                    <span>Todos</span>
+                  </button>
+                  <button class="rb-filter-item" onclick="rbFilterStatus('disponivel', this)">
+                    <span>🟢 Disponíveis</span>
+                    <span class="rb-count-tag">1</span>
+                  </button>
+                  <button class="rb-filter-item" onclick="rbFilterStatus('elaboracao', this)">
+                    <span>🟡 Em elaboração</span>
+                    <span class="rb-count-tag">7</span>
+                  </button>
+                </div>
+              </div>
+
+            </aside>
+
+            <!-- CONTEÚDO PRINCIPAL (TABELAS) -->
+            <div class="rb-main-tables" id="rb-main-content">
+              
+              <!-- Tabela Obj 1 -->
+              <div class="res-table-card" id="rb-card-obj-1">
+                <div class="res-table-header">
+                  <div class="res-table-title-wrap">
+                    <span class="res-table-badge">Objetivo Específico 01</span>
+                    <h3 class="res-table-title">Sistemas de Informação HUB e UBSs</h3>
+                    <p class="res-table-summary">Mapeamento de processos e construção de formulários didáticos digitais.</p>
+                  </div>
+                </div>
+                <table class="res-table">
+                  <thead>
+                    <tr>
+                      <th colspan="2" class="res-super-header">Resultado / Especialidade</th>
+                    </tr>
+                    <tr>
+                      <th style="width: 50%;">Formulário de Encaminhamento</th>
+                      <th style="width: 50%;">Protótipo Digital</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="rb-row-item" data-status="disponivel">
+                      <td><div class="res-spec-name">Endocrinologia</div></td>
+                      <td>
+                        <button class="btn-action-disponivel" onclick="alert('Acessando protótipo de Endocrinologia!')">
+                          <span>🟢</span> Acessar Formulário & Protótipo ↗
+                        </button>
+                      </td>
+                    </tr>
+                    <tr class="rb-row-item" data-status="elaboracao">
+                      <td><div class="res-spec-name">Cardiologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr class="rb-row-item" data-status="elaboracao">
+                      <td><div class="res-spec-name">Cirurgia geral</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr class="rb-row-item" data-status="elaboracao">
+                      <td><div class="res-spec-name">Coloproctologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr class="rb-row-item" data-status="elaboracao">
+                      <td><div class="res-spec-name">Gastroenterologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr class="rb-row-item" data-status="elaboracao">
+                      <td><div class="res-spec-name">Ginecologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr class="rb-row-item" data-status="elaboracao">
+                      <td><div class="res-spec-name">Nutrição adulto</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr class="rb-row-item" data-status="elaboracao">
+                      <td><div class="res-spec-name">Pneumologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="res-table-footer">
+                  <span>Ordenadas de A a Z</span>
+                  <span>1 especialidade a definir</span>
+                </div>
+              </div>
+
+              <!-- Tabela Obj 2 -->
+              <div class="res-table-card" id="rb-card-obj-2">
+                <div class="res-table-header">
+                  <div class="res-table-title-wrap">
+                    <span class="res-table-badge">Objetivo Específico 02</span>
+                    <h3 class="res-table-title">Revisão Rápida (RLS)</h3>
+                    <p class="res-table-summary">Síntese de evidências científicas de referência e contrarreferência.</p>
+                  </div>
+                </div>
+                <div style="padding: 1.5rem; text-align: center; color: #64748b;">
+                  <button class="btn-action-disponivel" style="background: #f0fdf4; color: #166534;" onclick="alert('Download do relatório de RLS!')">
+                    <span>📄</span> Síntese de Evidências Finalizada (PDF)
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- PAINEL ETAPA 2 (ESTADO EM BREVE NA VARIAÇÃO B) -->
+            <div id="rb-panel-etapa-2" style="display: none; grid-column: span 2;">
+              <div class="empty-simple-card">
+                <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">⏳</span>
+                <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">Etapa 2: Integração & Fluxos</h3>
+                <p>Em breve.</p>
+              </div>
+            </div>
+
+            <!-- PAINEL ETAPA 3 (ESTADO EM BREVE NA VARIAÇÃO B) -->
+            <div id="rb-panel-etapa-3" style="display: none; grid-column: span 2;">
+              <div class="empty-simple-card">
+                <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🎯</span>
+                <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">Etapa 3: Consolidação & Homologação</h3>
+                <p>Em breve.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================================
+         RESULTADOS C: ABAS POR OBJETIVO DENTRO DA ETAPA (NESTED TABS)
+         ======================================================================== -->
+    <div class="suggestion-container" id="container-rc">
+      
+      <nav class="mock-header">
+        <div class="mock-header-brand">
+          <div class="mock-logo-box">PET</div>
+          <span class="mock-site-title">PET-Saúde GT 8 | HUB - UnB</span>
+        </div>
+        <div class="mock-nav-menu">
+          <span class="mock-nav-tab disabled">Início</span>
+          <span class="mock-nav-tab disabled">Objetivos</span>
+          <span class="mock-nav-tab disabled">Equipe</span>
+          <button class="mock-nav-tab" onclick="switchPortalPage('C', 'contribuicao', this)">Contribuição</button>
+          <button class="mock-nav-tab active" onclick="switchPortalPage('C', 'resultados', this)">Resultados</button>
+        </div>
+      </nav>
+
+      <div id="rc-page-contribuicao" style="display: none;">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Contribuição do GT 8</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="rc-page-resultados">
+        <div class="page-header-banner">
+          <div class="page-header-container">
+            <div class="page-header-left">
+              <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+              <h1 class="page-header-title">Resultados e Entregas</h1>
+              <p class="page-header-subtitle">Navegação focada em abas: visualize um objetivo por vez.</p>
+            </div>
+            <div class="page-header-minicard">
+              <div class="page-header-minicard-logo">HUB</div>
+              <div class="page-header-minicard-text">
+                <span class="minicard-sub">Hospital Parceiro</span>
+                <span>HUB / UnB</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-main-container">
+          
+          <!-- Seletor de Etapas -->
+          <div class="rc-etapas-nav">
+            <button class="rc-etapa-tab active" onclick="rcSelectEtapa(1, this)">01 · Etapa 1 (Ativa)</button>
+            <button class="rc-etapa-tab" onclick="rcSelectEtapa(2, this)">02 · Etapa 2</button>
+            <button class="rc-etapa-tab" onclick="rcSelectEtapa(3, this)">03 · Etapa 3</button>
+          </div>
+
+          <!-- PAINEL ETAPA 1 -->
+          <div id="rc-panel-etapa-1">
+            
+            <!-- Sub-abas por Objetivo -->
+            <div class="rc-obj-subtabs">
+              <button class="rc-obj-tab-btn active" onclick="rcSelectObj(1, this)">
+                🎯 Objetivo 01 · Sistemas & Formulários
+              </button>
+              <button class="rc-obj-tab-btn" onclick="rcSelectObj(2, this)">
+                📚 Objetivo 02 · Revisão Rápida
+              </button>
+              <button class="rc-obj-tab-btn" onclick="rcSelectObj(3, this)">
+                🩺 Objetivo 03 · Protocolo Clínico
+              </button>
+            </div>
+
+            <!-- TABELA OBJETIVO 1 -->
+            <div id="rc-pane-obj-1">
+              <div class="res-table-card">
+                <div class="res-table-header">
+                  <div class="res-table-title-wrap">
+                    <span class="res-table-badge">Objetivo Específico 01</span>
+                    <h3 class="res-table-title">Sistemas de Informação HUB e UBSs</h3>
+                    <p class="res-table-summary">Mapeamento de processos e construção de formulários didáticos digitais.</p>
+                  </div>
+                  <span class="badge-status badge-status-concluido">8 Especialidades</span>
+                </div>
+                <table class="res-table">
+                  <thead>
+                    <tr>
+                      <th colspan="2" class="res-super-header">Resultado / Especialidade</th>
+                    </tr>
+                    <tr>
+                      <th style="width: 50%;">Formulário de Encaminhamento</th>
+                      <th style="width: 50%;">Protótipo Digital</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><div class="res-spec-name">Endocrinologia</div></td>
+                      <td>
+                        <button class="btn-action-disponivel" onclick="alert('Abrindo Endocrinologia!')">
+                          <span>🟢</span> Acessar Formulário & Protótipo ↗
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><div class="res-spec-name">Cardiologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td><div class="res-spec-name">Cirurgia geral</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td><div class="res-spec-name">Coloproctologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td><div class="res-spec-name">Gastroenterologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td><div class="res-spec-name">Ginecologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td><div class="res-spec-name">Nutrição adulto</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                    <tr>
+                      <td><div class="res-spec-name">Pneumologia</div></td>
+                      <td><span class="tag-status-elaboracao">🟡 Em elaboração</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="res-table-footer">
+                  <span>Ordenadas alfabeticamente</span>
+                  <span>1 especialidade a definir</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONTEÚDO OBJETIVO 2 -->
+            <div id="rc-pane-obj-2" style="display: none;">
+              <div class="res-table-card">
+                <div class="res-table-header">
+                  <div class="res-table-title-wrap">
+                    <span class="res-table-badge">Objetivo Específico 02</span>
+                    <h3 class="res-table-title">Revisão Rápida (RLS)</h3>
+                    <p class="res-table-summary">Síntese de evidências científicas de referência e contrarreferência no Brasil.</p>
+                  </div>
+                </div>
+                <div style="padding: 2.5rem; text-align: center; color: #64748b;">
+                  <button class="btn-action-disponivel" style="background: #f0fdf4; color: #166534;" onclick="alert('Download do PDF!')">
+                    <span>📄</span> Acessar Síntese de Evidências Concluída (PDF)
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- CONTEÚDO OBJETIVO 3 -->
+            <div id="rc-pane-obj-3" style="display: none;">
+              <div class="res-table-card">
+                <div class="res-table-header">
+                  <div class="res-table-title-wrap">
+                    <span class="res-table-badge">Objetivo Específico 03</span>
+                    <h3 class="res-table-title">Protocolo de Atendimento e Encaminhamento</h3>
+                    <p class="res-table-summary">Normatização de critérios de acolhimento do Ambulatório de Saúde Integral.</p>
+                  </div>
+                </div>
+                <div style="padding: 2.5rem; text-align: center; color: #64748b;">
+                  <span class="tag-status-elaboracao" style="background: #eff6ff; color: #1e40af; border-color: #bfdbfe;">
+                    Minuta em análise pelo corpo clínico
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- PAINEL ETAPA 2 (ESTADO EM BREVE) -->
+          <div id="rc-panel-etapa-2" style="display: none;">
+            <div class="empty-simple-card">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">⏳</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">Etapa 2: Integração & Fluxos</h3>
+              <p>Em breve.</p>
+            </div>
+          </div>
+
+          <!-- PAINEL ETAPA 3 (ESTADO EM BREVE) -->
+          <div id="rc-panel-etapa-3" style="display: none;">
+            <div class="empty-simple-card">
+              <span style="font-size: 2.5rem; display: block; margin-bottom: 0.5rem;">🎯</span>
+              <h3 style="font-size: 1.3rem; font-weight: 800; color: var(--primary-navy); margin-bottom: 0.5rem;">Etapa 3: Consolidação & Homologação</h3>
+              <p>Em breve.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Rodapé -->
+  <footer style="text-align: center; padding: 2.5rem 1rem; color: #64748b; font-size: 0.85rem; border-top: 1px solid rgba(255, 255, 255, 0.08);">
+    PET-Saúde: Informação e Saúde Digital • Grupo de Trabalho 08 (HUB - UnB)<br>
+    Mockup de Arquitetura de Informação: 3 Modelos de Layout para a Aba Resultados.
+  </footer>
+
+  <!-- ==========================================================================
+       SCRIPTS DE CONTROLE E INTERATIVIDADE
+       ========================================================================== -->
+  <script>
+    const resOptionsMeta = {
+      'A': {
+        badge: "Recomendada pelo Tech Lead",
+        badgeClass: "badge-ra",
+        title: "Resultados A: Filtro em Pills no Topo + Tabelas Empilhadas",
+        desc: "Uma barra limpa de filtros no topo (Etapas 1, 2 e 3 + campo de busca) com os KPIs resumidos e as tabelas dos objetivos empilhadas em fluxo natural de leitura.",
+        pros: [
+          "Leitura contínua: permite ver todo o panorama de resultados rolando a página",
+          "Barra de busca instantânea: o médico ou gestor acha a especialidade digitando 2 letras",
+          "Adaptação perfeita para mobile sem perder nenhuma coluna"
+        ],
+        cons: [
+          "Se houver dezenas de tabelas de objetivos no futuro, a página ficará mais longa"
+        ],
+        sortExplanation: "<strong>Ordenação escolhida: Ordem Alfabética (A-Z)</strong>. Para um catálogo clínico de especialidades médicas (Cardiologia, Cirurgia, Ginecologia...), a ordem alfabética é o padrão universal que minimiza a carga cognitiva do profissional de saúde que busca um formulário específico.",
+        rec: "<strong>A melhor experiência de usuário:</strong> Dá clareza total com KPIs reais no topo, barra de busca em tempo real e tabelas limpas sem repetição de especialidades."
+      },
+      'B': {
+        badge: "Painel Analítico / Dashboard",
+        badgeClass: "badge-rb",
+        title: "Resultados B: Filtro Lateral em Sidebar",
+        desc: "Painel com filtros fixos à esquerda (Etapa, Objetivo e Status) e área principal de tabelas à direita. Estilo portal de dados ou dashboard corporativo.",
+        pros: [
+          "Permite múltiplos cruzamentos de filtros (ex: ver apenas o que está 'Disponível')",
+          "Visual de produto de software e ferramenta de gestão",
+          "Filtros fixos que acompanham a rolagem no desktop"
+        ],
+        cons: [
+          "No mobile, a sidebar precisa colapsar em modal ou menu sanfona para não espremer a tela"
+        ],
+        sortExplanation: "<strong>Ordenação alfabética</strong>, com opção de filtrar exclusivamente itens 'Disponíveis'.",
+        rec: "<strong>Excelente para perfil de gestão:</strong> Recomendada se o portal tiver como público principal coordenadores e auditores que precisam filtrar status com frequência."
+      },
+      'C': {
+        badge: "Foco Individual por Objetivo",
+        badgeClass: "badge-rc",
+        title: "Resultados C: Abas por Objetivo dentro da Etapa",
+        desc: "Organização em dois níveis de abas: primeiro seleciona-se a Etapa (1, 2 ou 3) e logo abaixo escolhe-se a aba do Objetivo (Obj 01, 02 ou 03), exibindo estritamente uma tabela por vez.",
+        pros: [
+          "Zero poluição visual: uma única tabela em tela por vez",
+          "Página super compacta sem necessidade de rolagem vertical longa",
+          "Separação cirúrgica entre as metas do projeto"
+        ],
+        cons: [
+          "Não permite comparar as especialidades do Objetivo 1 com os outros objetivos ao mesmo tempo"
+        ],
+        sortExplanation: "<strong>Ordenação alfabética</strong> dentro da tabela de cada objetivo ativo.",
+        rec: "<strong>Ideal para foco absoluto:</strong> Se a equipe preferir que o usuário consulte uma meta isolada sem qualquer distração."
+      }
+    };
+
+    let activeResOption = 'A';
+    let isCompare = false;
+
+    function updateInfo(optKey) {
+      const data = resOptionsMeta[optKey];
+      const box = document.getElementById("info-card-box");
+      box.innerHTML = `
+        <div>
+          <div class="info-header">
+            <span class="info-badge ${data.badgeClass}">${data.badge}</span>
+            <h2 class="info-title">${data.title}</h2>
+          </div>
+          <p class="info-desc">${data.desc}</p>
+          <div style="background: rgba(255,255,255,0.06); padding: 0.6rem 0.85rem; border-radius: 8px; margin-bottom: 0.75rem; font-size: 0.82rem; color: #cbd5e1;">
+            📌 <strong>Critério de Ordenação das Especialidades:</strong> ${data.sortExplanation}
+          </div>
+          <div class="pros-cons-grid">
+            ${data.pros.map(p => `<span class="tag-pro">✔ ${p}</span>`).join('')}
+            ${data.cons.map(c => `<span class="tag-con">⚠ ${c}</span>`).join('')}
+          </div>
+        </div>
+        <div class="recommendation-badge">
+          <strong>Avaliação do Tech Lead:</strong>
+          ${data.rec}
+        </div>
+      `;
+    }
+
+    function switchResOption(optKey) {
+      isCompare = false;
+      activeResOption = optKey;
+
+      document.querySelectorAll(".btn-res-option").forEach(b => b.classList.remove("active"));
+      document.getElementById(`btn-r${optKey.toLowerCase()}`).classList.add("active");
+      document.getElementById("btn-compare").classList.remove("active");
+
+      const stage = document.getElementById("preview-stage-wrap");
+      stage.classList.remove("compare-grid-mode");
+
+      document.querySelectorAll(".suggestion-container").forEach(c => c.classList.remove("visible"));
+      document.getElementById(`container-r${optKey.toLowerCase()}`).classList.add("visible");
+
+      updateInfo(optKey);
+    }
+
+    function toggleCompareMode() {
+      isCompare = !isCompare;
+      const stage = document.getElementById("preview-stage-wrap");
+      const compareBtn = document.getElementById("btn-compare");
+
+      if (isCompare) {
+        stage.classList.add("compare-grid-mode");
+        compareBtn.classList.add("active");
+        document.querySelectorAll(".btn-res-option").forEach(b => b.classList.remove("active"));
+        document.getElementById("info-card-box").innerHTML = `
+          <div>
+            <div class="info-header">
+              <span class="info-badge badge-ra">Modo Comparativo</span>
+              <h2 class="info-title">Comparação Direta: Resultados A vs B vs C</h2>
+            </div>
+            <p class="info-desc">
+              Analise como cada layout estrutura os filtros de <strong>Etapa</strong>, o resumo numérico e a exibição das tabelas de resultados das especialidades.
+            </p>
+          </div>
+          <div class="recommendation-badge">
+            <strong>Recomendação Principal:</strong>
+            A <strong>Resultados A</strong> oferece a melhor usabilidade geral, aliando KPIs claros, busca em tempo real e tabelas empilhadas.
+          </div>
+        `;
+      } else {
+        switchResOption(activeResOption);
+      }
+    }
+
+    // Alternar entre abas do portal (Contribuição vs Resultados)
+    function switchPortalPage(variantKey, pageKey, btn) {
+      btn.parentElement.querySelectorAll(".mock-nav-tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById(`r${variantKey.toLowerCase()}-page-contribuicao`).style.display = pageKey === 'contribuicao' ? 'block' : 'none';
+      document.getElementById(`r${variantKey.toLowerCase()}-page-resultados`).style.display = pageKey === 'resultados' ? 'block' : 'none';
+    }
+
+    // --- CONTROLES RESULTADOS A ---
+    function raSelectEtapa(etapaNum, btn) {
+      btn.parentElement.querySelectorAll(".ra-pill-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("ra-panel-etapa-1").style.display = etapaNum === 1 ? 'block' : 'none';
+      document.getElementById("ra-panel-etapa-2").style.display = etapaNum === 2 ? 'block' : 'none';
+      document.getElementById("ra-panel-etapa-3").style.display = etapaNum === 3 ? 'block' : 'none';
+    }
+
+    function raFilterSearch(term) {
+      const q = term.toLowerCase().trim();
+      const rows = document.querySelectorAll("#ra-tbody-obj1 .ra-row-item");
+      rows.forEach(r => {
+        const spec = r.getAttribute("data-spec");
+        if (!q || spec.includes(q)) {
+          r.style.display = "";
+        } else {
+          r.style.display = "none";
+        }
+      });
+    }
+
+    // --- CONTROLES RESULTADOS B ---
+    function rbFilterEtapa(etapaNum, btn) {
+      btn.parentElement.querySelectorAll(".rb-filter-item").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      
+      const isE1 = etapaNum === 1;
+      document.getElementById("rb-main-content").style.display = isE1 ? 'block' : 'none';
+      document.getElementById("rb-filter-objs-box").style.display = isE1 ? 'block' : 'none';
+      document.getElementById("rb-filter-status-box").style.display = isE1 ? 'block' : 'none';
+      document.getElementById("rb-panel-etapa-2").style.display = etapaNum === 2 ? 'block' : 'none';
+      document.getElementById("rb-panel-etapa-3").style.display = etapaNum === 3 ? 'block' : 'none';
+    }
+
+    function rbFilterObj(objId, btn) {
+      btn.parentElement.querySelectorAll(".rb-filter-item").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      if (objId === 'all') {
+        document.getElementById("rb-card-obj-1").style.display = "block";
+        document.getElementById("rb-card-obj-2").style.display = "block";
+      } else {
+        document.getElementById("rb-card-obj-1").style.display = objId === 1 ? "block" : "none";
+        document.getElementById("rb-card-obj-2").style.display = objId === 2 ? "block" : "none";
+      }
+    }
+
+    function rbFilterStatus(status, btn) {
+      btn.parentElement.querySelectorAll(".rb-filter-item").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const rows = document.querySelectorAll("#rb-card-obj-1 .rb-row-item");
+      rows.forEach(r => {
+        const st = r.getAttribute("data-status");
+        if (status === 'all' || st === status) {
+          r.style.display = "";
+        } else {
+          r.style.display = "none";
+        }
+      });
+    }
+
+    // --- CONTROLES RESULTADOS C ---
+    function rcSelectEtapa(etapaNum, btn) {
+      btn.parentElement.querySelectorAll(".rc-etapa-tab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("rc-panel-etapa-1").style.display = etapaNum === 1 ? 'block' : 'none';
+      document.getElementById("rc-panel-etapa-2").style.display = etapaNum === 2 ? 'block' : 'none';
+      document.getElementById("rc-panel-etapa-3").style.display = etapaNum === 3 ? 'block' : 'none';
+    }
+
+    function rcSelectObj(objNum, btn) {
+      btn.parentElement.querySelectorAll(".rc-obj-tab-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("rc-pane-obj-1").style.display = objNum === 1 ? 'block' : 'none';
+      document.getElementById("rc-pane-obj-2").style.display = objNum === 2 ? 'block' : 'none';
+      document.getElementById("rc-pane-obj-3").style.display = objNum === 3 ? 'block' : 'none';
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      updateInfo('A');
+    });
+  </script>
+</body>
+</html>
