@@ -44,8 +44,8 @@ nav:
   - Início: index.md
   - Objetivos: objetivos.md
   - Equipe: equipe.md
-  - Encaminhamentos: encaminhamentos.md
-  - Protótipo: prototipo.md
+  - Contribuição: contribuicao.md
+  - Resultados: resultados.md
 
 markdown_extensions:
   - admonition
