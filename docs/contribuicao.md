@@ -104,7 +104,7 @@ hide:
                   <td rowspan="3"><span class="pill-role-monitor">Monitora</span></td>
                   <td rowspan="3" class="member-cell">Luanna Barros</td>
                   <td>Pneumologia</td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  <td><a href="../assets/prototipo_app.html" target="_blank" rel="noopener noreferrer" class="status-cell-tag tag-disponivel">🟢 Disponível ↗</a></td>
                 </tr>
                 <tr>
                   <td>Gastroenterologia</td>
@@ -280,9 +280,8 @@ hide:
               <strong>Diretriz de armazenamento:</strong> Artigos encontrados devem ser armazenados com a referência do autor.
             </div>
             <div>
-              <!-- TODO: URL oficial do Esboço da RSL -->
-              <a href="#" onclick="alert('Link para o documento oficial de Esboço da RSL!'); return false;" class="note-link">
-                📄 Acessar Esboço da RSL ↗
+              <a href="../assets/pdf/revisao_sistematica_pet_saude.pdf" target="_blank" rel="noopener noreferrer" class="note-link">
+                📄 Acessar Esboço da RLS (PDF) ↗
               </a>
             </div>
           </div>

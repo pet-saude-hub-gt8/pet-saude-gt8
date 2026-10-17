@@ -105,6 +105,6 @@ nav:
 
 | Ponto Pendente | Impacto | Ação de Mitigação |
 | :--- | :--- | :--- |
-| **URL Oficial do Esboço da RSL** | Link provisório com `href="#"` marcado com `<!-- TODO: URL oficial do Esboço da RSL -->`. | Aguardar a disponibilização do link do Google Docs/Drive da equipe para inserção definitiva. |
+| **Arquivo do Esboço da RLS** | Arquivo PDF importado para o projeto (`docs/assets/pdf/revisao_sistematica_pet_saude.pdf`). | ✅ **Concluído e implementado** nas abas Contribuição e Resultados. |
 | **Especialidade da Preceptora Fernanda** | Indefinição temporária no Objetivo 01. | Mantida como *"⚪ A definir"* na Contribuição e contabilizada no rodapé de Resultados (*"📌 1 especialidade a definir"*). |
 | **Redirecionamento de URLs Legadas** | Usuários com URLs salvas em favoritos de `/encaminhamentos/` e `/prototipo/`. | Implementar redirecionamento automático para `/contribuicao/`. |

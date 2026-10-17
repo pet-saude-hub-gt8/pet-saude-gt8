@@ -111,7 +111,7 @@ hide:
             <!-- 7. Pneumologia -->
             <tr>
               <td><div class="res-spec-name">Pneumologia</div></td>
-              <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+              <td><a href="../assets/prototipo_app.html" target="_blank" rel="noopener noreferrer" class="status-cell-tag tag-disponivel">🟢 Disponível ↗</a></td>
             </tr>
           </tbody>
         </table>
@@ -155,7 +155,11 @@ hide:
           </thead>
           <tbody>
             <tr>
-              <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+              <td>
+                <a href="../assets/pdf/revisao_sistematica_pet_saude.pdf" target="_blank" rel="noopener noreferrer" class="status-cell-tag tag-elaboracao" title="Abrir Esboço da RLS em PDF">
+                  🟡 Em elaboração (PDF ↗)
+                </a>
+              </td>
               <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
             </tr>
           </tbody>
@@ -165,9 +169,8 @@ hide:
         <div class="res-table-footer">
           <span>Entrega vinculada ao rascunho metodológico do artigo da RLS.</span>
           <div>
-            <!-- TODO: URL oficial do Esboço da RSL -->
-            <a href="#" onclick="alert('Link para o documento oficial de Esboço da RSL!'); return false;" class="note-link">
-              📄 Acessar Esboço da RSL ↗
+            <a href="../assets/pdf/revisao_sistematica_pet_saude.pdf" target="_blank" rel="noopener noreferrer" class="note-link">
+              📄 Acessar Esboço da RLS (PDF) ↗
             </a>
           </div>
         </div>
