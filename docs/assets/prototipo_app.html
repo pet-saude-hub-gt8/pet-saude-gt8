@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Protótipo Encaminhamento Ambulatorial HUB - Pneumologia</title>
+    <title>Protótipo de Pneumologia</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.10.2/dist/full.min.css" rel="stylesheet" type="text/css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -38,7 +38,7 @@
                     <span class="inline-block bg-white/20 text-white text-xs font-semibold px-2.5 py-0.5 rounded-full mb-1">
                         PET-Saúde: Saúde Digital • GT 8
                     </span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Encaminhamento Ambulatorial Estruturado</h2>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">Protótipo de Pneumologia</h2>
                     <p class="text-sm opacity-95 mt-1 font-medium">Hospital Universitário de Brasília (HUB / UnB / EBSERH) • Atenção Primária à Saúde</p>
                 </div>
                 <div class="bg-white/10 backdrop-blur-sm px-4 py-2 rounded-xl border border-white/20 text-right self-start sm:self-center">
@@ -72,34 +72,22 @@
 
         <div class="p-6 sm:p-8 space-y-8">
             
-            <!-- 1. Seleção de Especialidade -->
+            <!-- 1. Especialidade Requisitada -->
             <section>
                 <h3 class="text-base font-bold text-gray-800 uppercase tracking-wide border-b pb-2 mb-4 flex items-center gap-2">
                     <span class="w-6 h-6 rounded-full bg-green-100 text-unb flex items-center justify-center text-xs">1</span>
                     Especialidade Requisitada
                 </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <!-- Ativo: Pneumologia -->
-                    <label class="cursor-pointer">
-                        <input type="radio" name="especialidade" class="peer sr-only" checked />
-                        <div class="card bg-base-100 border-2 border-unb ring-2 ring-unb/20 shadow-sm transition-all text-center p-4 hover:shadow-md">
-                            <span class="text-3xl mb-1">🫁</span>
-                            <span class="font-bold text-unb">Pneumologia</span>
-                            <span class="badge badge-sm badge-success mx-auto mt-2 text-white font-medium">Disponível no HUB</span>
+                <div class="card bg-emerald-50/70 border-2 border-unb ring-2 ring-unb/20 shadow-sm p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <span class="text-4xl">🫁</span>
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-wider text-unb">Especialidade Clínica</span>
+                            <h4 class="text-lg font-extrabold text-gray-900">Pneumologia</h4>
+                            <p class="text-xs text-gray-600">Ambulatório de Saúde Integral • HUB / UnB / EBSERH</p>
                         </div>
-                    </label>
-                    <!-- Em Breve: Endocrinologia -->
-                    <div class="card bg-gray-50 border-2 border-dashed border-gray-200 opacity-60 text-center p-4 select-none">
-                        <span class="text-3xl mb-1 grayscale">🩸</span>
-                        <span class="font-bold text-gray-500">Endocrinologia</span>
-                        <span class="badge badge-sm badge-ghost mx-auto mt-2">Em pactuação</span>
                     </div>
-                    <!-- Em Breve: Cardiologia -->
-                    <div class="card bg-gray-50 border-2 border-dashed border-gray-200 opacity-60 text-center p-4 select-none">
-                        <span class="text-3xl mb-1 grayscale">🫀</span>
-                        <span class="font-bold text-gray-500">Cardiologia</span>
-                        <span class="badge badge-sm badge-ghost mx-auto mt-2">Em pactuação</span>
-                    </div>
+                    <span class="badge badge-success text-white font-semibold px-3 py-1">Protótipo Ativo</span>
                 </div>
             </section>
 
