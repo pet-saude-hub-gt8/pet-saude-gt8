@@ -110,7 +110,12 @@ hide:
 
             <!-- 7. Pneumologia -->
             <tr>
-              <td><div class="res-spec-name">Pneumologia</div></td>
+              <td>
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+                  <span class="res-spec-name">Pneumologia</span>
+                  <a href="../assets/pdf/encaminhamento_pneumo.pdf" target="_blank" rel="noopener noreferrer" class="status-cell-tag tag-disponivel" title="Abrir Formulário de Pneumologia (PDF)">🟢 Disponível (PDF ↗)</a>
+                </div>
+              </td>
               <td><a href="../assets/prototipo_app.html" target="_blank" rel="noopener noreferrer" class="status-cell-tag tag-disponivel">🟢 Disponível ↗</a></td>
             </tr>
           </tbody>
@@ -119,6 +124,11 @@ hide:
         <!-- Rodapé Discreto com Contador de Pendência -->
         <div class="res-table-footer">
           <span>Ordenação alfabética (A-Z).</span>
+          <div>
+            <a href="../assets/pdf/encaminhamento_pneumo.pdf" target="_blank" rel="noopener noreferrer" class="note-link">
+              📄 Formulário de Encaminhamento - Pneumologia (PDF) ↗
+            </a>
+          </div>
           <span>📌 1 especialidade a definir</span>
         </div>
       </div>

@@ -106,5 +106,6 @@ nav:
 | Ponto Pendente | Impacto | Ação de Mitigação |
 | :--- | :--- | :--- |
 | **Arquivo do Esboço da RLS** | Arquivo PDF importado para o projeto (`docs/assets/pdf/revisao_sistematica_pet_saude.pdf`). | ✅ **Concluído e implementado** nas abas Contribuição e Resultados. |
+| **Formulário de Pneumologia (Luanna Barros)** | Arquivo PDF importado para o projeto (`docs/assets/pdf/encaminhamento_pneumo.pdf`). | ✅ **Concluído e implementado** nas abas Contribuição, Resultados e no Protótipo. |
 | **Especialidade da Preceptora Fernanda** | Indefinição temporária no Objetivo 01. | Mantida como *"⚪ A definir"* na Contribuição e contabilizada no rodapé de Resultados (*"📌 1 especialidade a definir"*). |
 | **Redirecionamento de URLs Legadas** | Usuários com URLs salvas em favoritos de `/encaminhamentos/` e `/prototipo/`. | Implementar redirecionamento automático para `/contribuicao/`. |
