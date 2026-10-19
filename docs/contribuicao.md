@@ -99,42 +99,7 @@ hide:
                 </tr>
               </thead>
               <tbody>
-                <!-- Luanna (3 especialidades) -->
-                <tr>
-                  <td rowspan="3"><span class="pill-role-monitor">Monitora</span></td>
-                  <td rowspan="3" class="member-cell">Luanna Barros</td>
-                  <td>Pneumologia</td>
-                  <td><a href="../assets/prototipo_app.html" target="_blank" rel="noopener noreferrer" class="status-cell-tag tag-disponivel">🟢 Disponível ↗</a></td>
-                </tr>
-                <tr>
-                  <td>Gastroenterologia</td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
-                </tr>
-                <tr>
-                  <td>Coloproctologia</td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
-                </tr>
-
-                <!-- Mayara (1 especialidade) -->
-                <tr>
-                  <td><span class="pill-role-monitor">Monitora</span></td>
-                  <td class="member-cell">Mayara Marques</td>
-                  <td>Nutrição adulto</td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
-                </tr>
-
-                <!-- Franco (2 especialidades) -->
-                <tr>
-                  <td rowspan="2"><span class="pill-role-monitor">Monitor</span></td>
-                  <td rowspan="2" class="member-cell">Franco Bueno</td>
-                  <td>Cardiologia</td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
-                </tr>
-                <tr>
-                  <td>Ginecologia</td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
-                </tr>
-
+                <!-- Preceptores (Ordem Alfabética: Fernanda Santana, Lucas Alves) -->
                 <!-- Fernanda (A definir) -->
                 <tr>
                   <td><span class="pill-role-preceptor">Preceptora</span></td>
@@ -147,11 +112,53 @@ hide:
                 <tr>
                   <td rowspan="2"><span class="pill-role-preceptor">Preceptor</span></td>
                   <td rowspan="2" class="member-cell">Lucas Alves</td>
-                  <td>Ginecologia</td>
+                  <td>Cirurgia geral</td>
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
                 </tr>
                 <tr>
-                  <td>Cirurgia geral</td>
+                  <td>Ginecologia</td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- Monitores (Ordem Alfabética: Franco Bueno, Luanna Barros, Mayara Marques) -->
+                <!-- Franco (2 especialidades) -->
+                <tr>
+                  <td rowspan="2"><span class="pill-role-monitor">Monitor</span></td>
+                  <td rowspan="2" class="member-cell">Franco Bueno</td>
+                  <td>Cardiologia</td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+                <tr>
+                  <td>Ginecologia</td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- Luanna (3 especialidades) -->
+                <tr>
+                  <td rowspan="3"><span class="pill-role-monitor">Monitora</span></td>
+                  <td rowspan="3" class="member-cell">Luanna Barros</td>
+                  <td>
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+                      <span>Pneumologia</span>
+                      <a href="../assets/pdf/encaminhamento_pneumo.pdf" target="_blank" rel="noopener noreferrer" class="status-cell-tag tag-disponivel" title="Abrir Formulário de Pneumologia (PDF)">🟢 Disponível (PDF ↗)</a>
+                    </div>
+                  </td>
+                  <td><a href="../assets/prototipo_app.html" target="_blank" rel="noopener noreferrer" class="status-cell-tag tag-disponivel">🟢 Disponível ↗</a></td>
+                </tr>
+                <tr>
+                  <td>Coloproctologia</td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+                <tr>
+                  <td>Gastroenterologia</td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- Mayara (1 especialidade) -->
+                <tr>
+                  <td><span class="pill-role-monitor">Monitora</span></td>
+                  <td class="member-cell">Mayara Marques</td>
+                  <td>Nutrição adulto</td>
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
                 </tr>
               </tbody>
@@ -171,6 +178,11 @@ hide:
             <ul class="note-list">
               <li>Disponibilizar os documentos encontrados (com referência), o processo atual e a rastreabilidade.</li>
               <li>Disponibilizar o documento com as anotações sobre os resultados encontrados.</li>
+              <li>
+                <a href="../assets/pdf/encaminhamento_pneumo.pdf" target="_blank" rel="noopener noreferrer" class="note-link">
+                  📄 Formulário de Encaminhamento: Pneumologia - Luanna Barros (PDF) ↗
+                </a>
+              </li>
               <li>
                 <a href="https://docs.google.com/document/d/114v-ZuzqFLFD60hO1DKsan3i5f0yNYwqGF_O8JFxN6s/edit?usp=drivesdk" target="_blank" rel="noopener noreferrer" class="note-link">
                   📄 Compilado do trabalho realizado (Google Docs) ↗
@@ -215,21 +227,22 @@ hide:
                 </tr>
               </thead>
               <tbody>
-                <!-- Monitores (rowspan 4) -->
+                <!-- Preceptores (rowspan 2: Pedro Ruas, Sabrina Feitosa) -->
+                <tr>
+                  <td rowspan="2"><span class="pill-role-preceptor">Preceptores</span></td>
+                  <td class="member-cell">Pedro Ruas</td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+                <tr>
+                  <td class="member-cell">Sabrina Feitosa</td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+                </tr>
+
+                <!-- Monitores (rowspan 4: Flávia Lima, Hugo de Verson, Paula Lira, Plabio Lucas) -->
                 <tr>
                   <td rowspan="4"><span class="pill-role-monitor">Monitores</span></td>
-                  <td class="member-cell">
-                    Paula Lira <span style="font-size: 0.74rem; color: #64748b; font-weight: normal;">(Revisora)</span>
-                  </td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
-                </tr>
-                <tr>
-                  <td class="member-cell">Plabio Lucas</td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
-                  <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
-                </tr>
-                <tr>
                   <td class="member-cell">Flávia Lima</td>
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
@@ -239,16 +252,15 @@ hide:
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
                 </tr>
-
-                <!-- Preceptores (rowspan 2) -->
                 <tr>
-                  <td rowspan="2"><span class="pill-role-preceptor">Preceptores</span></td>
-                  <td class="member-cell">Pedro Ruas</td>
+                  <td class="member-cell">
+                    Paula Lira <span style="font-size: 0.74rem; color: #64748b; font-weight: normal;">(Revisora)</span>
+                  </td>
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
                 </tr>
                 <tr>
-                  <td class="member-cell">Sabrina Feitosa</td>
+                  <td class="member-cell">Plabio Lucas</td>
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
                   <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
                 </tr>
