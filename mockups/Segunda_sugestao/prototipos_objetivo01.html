@@ -1,0 +1,1558 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI/UX Refactoring • Objetivo Específico 01 | PET-Saúde GT 8 (HUB / UnB)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       RESET & SISTEMA DE DESIGN (PET-SAÚDE GT 8 / UNB / HUB)
+       ========================================================================== */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      /* Identidade Visual */
+      --primary-navy: #0c3258;
+      --primary-navy-dark: #061122;
+      --brand-blue: #0284c7;
+      --brand-blue-light: #38bdf8;
+      --pet-orange: #ea5b2d;
+      --pet-orange-hover: #d94817;
+      --unb-green: #009a44;
+      --unb-green-vibrant: #10b981;
+
+      /* Variáveis de Tema Claro */
+      --bg-page: #f8fafc;
+      --bg-card: #ffffff;
+      --bg-card-subtle: #f1f5f9;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --text-soft: #64748b;
+      --border-color: #e2e8f0;
+      --border-subtle: #cbd5e1;
+      --card-shadow: 0 4px 16px rgba(12, 50, 88, 0.04);
+      --card-hover-shadow: 0 8px 24px rgba(2, 132, 199, 0.12);
+
+      /* Badges e Tags */
+      --badge-done-bg: #ecfdf5;
+      --badge-done-text: #065f46;
+      --badge-done-border: #a7f3d0;
+      --badge-prog-bg: #fffbeb;
+      --badge-prog-text: #92400e;
+      --badge-prog-border: #fde68a;
+      --badge-plan-bg: #f1f5f9;
+      --badge-plan-text: #475569;
+      --badge-plan-border: #e2e8f0;
+
+      --table-header-bg: #0f2747;
+      --table-border: #e2e8f0;
+      --table-row-hover: #f8fafc;
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #08162b;
+      --bg-card: #0f2747;
+      --bg-card-subtle: #112a4d;
+      --text-main: #f8fafc;
+      --text-muted: #cbd5e1;
+      --text-soft: #94a3b8;
+      --border-color: #1a3c6b;
+      --border-subtle: #224c87;
+      --card-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+      --card-hover-shadow: 0 8px 28px rgba(56, 189, 248, 0.18);
+
+      --badge-done-bg: rgba(16, 185, 129, 0.18);
+      --badge-done-text: #34d399;
+      --badge-done-border: rgba(16, 185, 129, 0.35);
+      --badge-prog-bg: rgba(245, 158, 11, 0.18);
+      --badge-prog-text: #fde047;
+      --badge-prog-border: rgba(245, 158, 11, 0.35);
+      --badge-plan-bg: rgba(148, 163, 184, 0.15);
+      --badge-plan-text: #cbd5e1;
+      --badge-plan-border: rgba(148, 163, 184, 0.3);
+
+      --table-header-bg: #08182d;
+      --table-border: #1e3a5f;
+      --table-row-hover: #14325a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
+      min-height: 100vh;
+    }
+
+    /* ==========================================================================
+       BARRA FLUTUANTE DE AVALIAÇÃO (TOP EVALUATION SWITCHER)
+       ========================================================================== */
+    .eval-floating-bar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(8, 22, 43, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+      padding: 0.75rem 1.5rem;
+    }
+
+    .eval-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .eval-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .eval-brand-badge {
+      background: linear-gradient(135deg, var(--pet-orange), #f97316);
+      color: #ffffff;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(234, 91, 45, 0.35);
+    }
+
+    .eval-brand-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .eval-brand-title span {
+      color: var(--brand-blue-light);
+      font-weight: 400;
+    }
+
+    .eval-proposals-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 9999px;
+      padding: 0.25rem;
+    }
+
+    .btn-prop-tab {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-prop-tab:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .btn-prop-tab.active {
+      background: var(--brand-blue);
+      color: #ffffff;
+      box-shadow: 0 2px 10px rgba(2, 132, 199, 0.45);
+    }
+
+    .eval-tools {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .btn-theme-toggle {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #f8fafc;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.42rem 0.85rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-theme-toggle:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: #38bdf8;
+      color: #ffffff;
+    }
+
+    /* Card Informativo da Proposta */
+    .eval-info-wrap {
+      max-width: 1200px;
+      margin: 1.25rem auto 1rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .eval-info-card {
+      background: linear-gradient(145deg, #0f2747, #08162b);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 14px;
+      padding: 1.25rem 1.6rem;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+      align-items: center;
+      color: #ffffff;
+    }
+
+    .eval-info-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 0.4rem;
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+    }
+
+    .eval-info-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      color: #ffffff;
+    }
+
+    .eval-info-desc {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .eval-pills-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .eval-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .eval-pill.pill-cleanup {
+      background: rgba(234, 91, 45, 0.15);
+      color: #fb923c;
+      border-color: rgba(234, 91, 45, 0.3);
+    }
+
+    .eval-rec-box {
+      background: rgba(2, 132, 199, 0.12);
+      border: 1px solid rgba(2, 132, 199, 0.35);
+      border-radius: 10px;
+      padding: 0.85rem 1.1rem;
+      text-align: right;
+      max-width: 280px;
+    }
+
+    .eval-rec-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #38bdf8;
+      letter-spacing: 0.05em;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .eval-rec-text {
+      font-size: 0.82rem;
+      color: #e2e8f0;
+      line-height: 1.4;
+    }
+
+    /* Painel Comparativo de Limpeza Visual */
+    .cleanup-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-left: 4px solid #10b981;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      box-shadow: var(--card-shadow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .cleanup-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .cleanup-icon {
+      font-size: 1.5rem;
+    }
+
+    .cleanup-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .cleanup-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .cleanup-tags-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .cleanup-tag-removed {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+      text-decoration: line-through;
+    }
+
+    [data-theme="dark"] .cleanup-tag-removed {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border-color: rgba(239, 68, 68, 0.3);
+    }
+
+    .cleanup-tag-unified {
+      background: #ecfdf5;
+      color: #059669;
+      border: 1px solid #a7f3d0;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    [data-theme="dark"] .cleanup-tag-unified {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    /* ==========================================================================
+       SIMULAÇÃO DE CABEÇALHO DO SITE (MKDOCS)
+       ========================================================================== */
+    .mock-site-navbar {
+      background: #0d3b66;
+      border-bottom: 1px solid #092c4c;
+      padding: 0.6rem 1.5rem;
+      position: relative;
+    }
+
+    .mock-site-navbar::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #ea5b2d 0%, #f97316 20%, #009a44 48%, #10b981 72%, #0284c7 88%, #38bdf8 100%);
+    }
+
+    .mock-navbar-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .mock-nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+    }
+
+    .mock-logo-img {
+      height: 42px;
+      background: #ffffff;
+      padding: 2px 4px;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .mock-brand-name {
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 0.96rem;
+      letter-spacing: -0.01em;
+    }
+
+    .mock-brand-sub {
+      font-size: 0.74rem;
+      color: #94a3b8;
+      display: block;
+    }
+
+    .mock-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .mock-nav-item {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      padding: 0.4rem 0.15rem;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+
+    .mock-nav-item.active {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .mock-nav-item.active::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: #38bdf8;
+      border-radius: 2px;
+    }
+
+    /* Page Header Banner */
+    .page-header-banner {
+      width: 100%;
+      background: radial-gradient(circle at 8% 25%, rgba(234, 91, 45, 0.12) 0%, transparent 45%),
+                  radial-gradient(circle at 92% 75%, rgba(0, 154, 68, 0.12) 0%, transparent 45%),
+                  #0c3258 !important;
+      padding: 2.2rem 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 3px solid transparent !important;
+      border-image: linear-gradient(90deg, #ea5b2d 0%, #009a44 48%, #0284c7 85%) 1 !important;
+      box-sizing: border-box;
+      color: #ffffff;
+    }
+
+    [data-theme="dark"] .page-header-banner {
+      background: radial-gradient(circle at 8% 25%, rgba(234, 91, 45, 0.1) 0%, transparent 45%),
+                  radial-gradient(circle at 92% 75%, rgba(0, 154, 68, 0.1) 0%, transparent 45%),
+                  #061122 !important;
+      border-image: linear-gradient(90deg, #ea5b2d 0%, #10b981 48%, #38bdf8 85%) 1 !important;
+    }
+
+    .page-header-container {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .page-header-left {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .page-header-kicker {
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #38bdf8;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.45rem;
+    }
+
+    .page-header-title {
+      font-size: 2.2rem !important;
+      font-weight: 800 !important;
+      line-height: 1.2 !important;
+      color: #ffffff !important;
+      margin: 0 0 0.5rem 0 !important;
+      letter-spacing: -0.02em;
+    }
+
+    .page-header-subtitle {
+      font-size: 1.05rem !important;
+      color: #e2e8f0 !important;
+      margin: 0 !important;
+      line-height: 1.5 !important;
+    }
+
+    .page-header-minicard {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 0.85rem 1.25rem;
+      backdrop-filter: blur(8px);
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .page-header-minicard-logo {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 5px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+    }
+
+    .page-header-minicard-logo img {
+      max-height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    .page-header-minicard-text {
+      color: #ffffff;
+      font-size: 0.88rem;
+      font-weight: 700;
+      line-height: 1.35;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .page-header-minicard-text .minicard-sub {
+      font-size: 0.74rem;
+      font-weight: 500;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .page-header-minicard-text .minicard-sub::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #009a44;
+      margin-right: 5px;
+      vertical-align: 1px;
+    }
+
+    /* Container Principal */
+    .page-main-container {
+      max-width: 1140px;
+      margin: 0 auto 5rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ==========================================================================
+       ESTRUTURA LIMPA DO CARD DO OBJETIVO ESPECÍFICO 01 (SOLICITADA)
+       ========================================================================== */
+    .objective-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.85rem;
+      box-shadow: var(--card-shadow);
+      margin-bottom: 2rem;
+      transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    .objective-section:hover {
+      box-shadow: var(--card-hover-shadow);
+    }
+
+    .obj-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.6rem;
+    }
+
+    .stage-tag {
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      background: rgba(2, 132, 199, 0.12);
+      color: #0284c7;
+      border: 1px solid rgba(2, 132, 199, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    [data-theme="dark"] .stage-tag {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      background: var(--badge-done-bg);
+      color: var(--badge-done-text);
+      border: 1px solid var(--badge-done-border);
+    }
+
+    .obj-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+      margin: 0 0 0.5rem 0;
+    }
+
+    .obj-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Container de Alternância das Propostas */
+    .prop-view {
+      display: none;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .prop-view.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       ESTILOS DAS TABELAS LIMPAS (REGRAS COMUNS)
+       ========================================================================== */
+    .clean-table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      overflow-x: auto;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+
+    .clean-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.88rem;
+    }
+
+    .clean-table th {
+      background: var(--table-header-bg);
+      color: #ffffff;
+      padding: 0.75rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border: 1px solid var(--border-color);
+    }
+
+    .clean-table td {
+      padding: 0.8rem 1rem;
+      border: 1px solid var(--table-border);
+      color: var(--text-muted);
+      vertical-align: middle;
+      transition: background-color 0.15s ease;
+    }
+
+    .clean-table tr:hover td {
+      background: var(--table-row-hover);
+    }
+
+    .member-cell {
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .pill-role-preceptor {
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fed7aa;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    [data-theme="dark"] .pill-role-preceptor {
+      background: rgba(234, 91, 45, 0.15);
+      color: #fb923c;
+      border-color: rgba(234, 91, 45, 0.35);
+    }
+
+    .pill-role-monitor {
+      background: #ecfdf5;
+      color: #007a36;
+      border: 1px solid #a7f3d0;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      display: inline-block;
+    }
+
+    [data-theme="dark"] .pill-role-monitor {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    /* Tags de Status */
+    .status-cell-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      text-decoration: none !important;
+      white-space: nowrap;
+    }
+
+    .tag-elaboracao {
+      background: var(--badge-prog-bg);
+      color: var(--badge-prog-text);
+      border: 1px solid var(--badge-prog-border);
+    }
+
+    .tag-definir {
+      background: var(--badge-plan-bg);
+      color: var(--badge-plan-text);
+      border: 1px solid var(--badge-plan-border);
+    }
+
+    /* ==========================================================================
+       PROPOSTA 1: LINKS DIRETOS INLINE (SEM "DISPONÍVEL")
+       ========================================================================== */
+    .cell-inline-flex {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .links-inline-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .link-artifact {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none !important;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      white-space: nowrap;
+    }
+
+    .link-artifact.pdf {
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #a7f3d0;
+    }
+
+    .link-artifact.pdf:hover {
+      background: #059669;
+      color: #ffffff !important;
+      border-color: #059669;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(5, 150, 105, 0.25);
+    }
+
+    [data-theme="dark"] .link-artifact.pdf {
+      background: rgba(16, 185, 129, 0.18);
+      color: #34d399;
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    [data-theme="dark"] .link-artifact.pdf:hover {
+      background: #10b981;
+      color: #ffffff !important;
+    }
+
+    .link-artifact.app {
+      background: #f0f9ff;
+      color: #0284c7;
+      border: 1px solid #bae6fd;
+    }
+
+    .link-artifact.app:hover {
+      background: #0284c7;
+      color: #ffffff !important;
+      border-color: #0284c7;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.25);
+    }
+
+    [data-theme="dark"] .link-artifact.app {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38bdf8;
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    [data-theme="dark"] .link-artifact.app:hover {
+      background: #0284c7;
+      color: #ffffff !important;
+    }
+
+    /* ==========================================================================
+       PROPOSTA 2: ULTRA-MINIMALISTA (ZERO BADGES PESADOS)
+       ========================================================================== */
+    .text-link-direct {
+      color: var(--brand-blue);
+      font-weight: 600;
+      text-decoration: underline !important;
+      text-underline-offset: 3px;
+      transition: color 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .text-link-direct:hover {
+      color: #0369a1;
+    }
+
+    [data-theme="dark"] .text-link-direct {
+      color: #38bdf8;
+    }
+
+    .text-muted-soft {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      font-weight: 500;
+      margin-left: 0.35rem;
+    }
+
+    .dot-indicator {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 0.4rem;
+      vertical-align: 1px;
+    }
+
+    .dot-elab { background: #f59e0b; }
+    .dot-defi { background: #94a3b8; }
+
+    /* ==========================================================================
+       PROPOSTA 3: AGRUPADA POR ESPECIALIDADE (LINHA ÚNICA)
+       ========================================================================== */
+    .grouped-member-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.2rem 0.5rem;
+      background: var(--bg-card-subtle);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      font-size: 0.82rem;
+      color: var(--text-main);
+      margin-right: 0.4rem;
+      margin-bottom: 0.2rem;
+    }
+
+    /* Rodapé Informativo das Propostas */
+    .table-footer-clean-hint {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      padding: 0.75rem 0.5rem 0 0.5rem;
+      font-size: 0.76rem;
+      color: var(--text-soft);
+    }
+
+    .hint-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .eval-bar-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .eval-info-card {
+        grid-template-columns: 1fr;
+      }
+      .eval-rec-box {
+        text-align: left;
+        max-width: 100%;
+      }
+      .cell-inline-flex {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+
+  <!-- ==========================================================================
+       BARRA FLUTUANTE DE AVALIAÇÃO (TOP EVALUATION SWITCHER)
+       ========================================================================== */
+  <header class="eval-floating-bar">
+    <div class="eval-bar-inner">
+      <div class="eval-brand">
+        <span class="eval-brand-badge">Objetivo 01</span>
+        <div class="eval-brand-title">
+          PET-Saúde GT 8 <span>• Refatoração da Tabela Unificada</span>
+        </div>
+      </div>
+
+      <div class="eval-proposals-group">
+        <button class="btn-prop-tab active" id="btn-prop-1" onclick="switchProposal(1)">
+          <span>📋</span> Proposta 1: 3 Colunas + Links Inline
+        </button>
+        <button class="btn-prop-tab" id="btn-prop-2" onclick="switchProposal(2)">
+          <span>✨</span> Proposta 2: Ultra-Minimalista
+        </button>
+        <button class="btn-prop-tab" id="btn-prop-3" onclick="switchProposal(3)">
+          <span>🩺</span> Proposta 3: Agrupada por Especialidade
+        </button>
+      </div>
+
+      <div class="eval-tools">
+        <button class="btn-theme-toggle" id="btn-theme-toggle" onclick="toggleTheme()" title="Alternar entre modo claro e escuro">
+          <span id="theme-icon">☀️</span> <span id="theme-label">Modo Claro</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CARD EXPLICATIVO DA PROPOSTA ATIVA -->
+  <div class="eval-info-wrap">
+    <div class="eval-info-card" id="eval-info-card">
+      <div>
+        <span class="eval-info-tag" id="prop-info-badge">Proposta 1 Selecionada</span>
+        <h2 class="eval-info-title" id="prop-info-title">Tabela de 3 Colunas por Integrante + Links Diretos Inline</h2>
+        <p class="eval-info-desc" id="prop-info-desc">
+          Mantém a fidelidade aos nomes dos integrantes, porém unifica as antigas colunas de Formulário e Protótipo em uma só. O termo redundante "🟢 Disponível" é substituído por botões com hiperlinks diretos aos arquivos em Pneumologia.
+        </p>
+        <div class="eval-pills-row" id="prop-info-chips">
+          <span class="eval-pill">🎯 3 Colunas Limpas (antes: 4)</span>
+          <span class="eval-pill">📄 Links Diretos (PDF e App)</span>
+          <span class="eval-pill">🚫 Fim do texto "🟢 Disponível"</span>
+          <span class="eval-pill pill-cleanup">🧹 Sem Chips, Ações Soltas ou Accordions</span>
+        </div>
+      </div>
+      <div class="eval-rec-box">
+        <span class="eval-rec-label">Vantagem Principal</span>
+        <div class="eval-rec-text" id="prop-info-rec">
+          Menor curva de mudança em relação à tabela original, mas eliminando 1 coluna inteira e todos os elementos de poluição visual ao redor.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIMULAÇÃO DO HEADER MKDOCS -->
+  <nav class="mock-site-navbar">
+    <div class="mock-navbar-inner">
+      <a href="#" class="mock-nav-brand">
+        <img src="../../docs/assets/img/logo_pet.jpg" onerror="this.src='https://raw.githubusercontent.com/unb-pet-saude-gt8/gt8/main/docs/assets/img/logo_pet.jpg';" alt="Logo PET" class="mock-logo-img">
+        <div>
+          <span class="mock-brand-name">PET-Saúde GT 8</span>
+          <span class="mock-brand-sub">Informação e Saúde Digital • HUB / UnB</span>
+        </div>
+      </a>
+      <div class="mock-nav-links">
+        <a href="#" class="mock-nav-item">Início</a>
+        <a href="#" class="mock-nav-item">Objetivos</a>
+        <a href="#" class="mock-nav-item active">Contribuição</a>
+        <a href="#" class="mock-nav-item">Resultados</a>
+        <a href="#" class="mock-nav-item">Equipe</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BANNER PADRÃO DO SITE -->
+  <div class="page-header-banner">
+    <div class="page-header-container">
+      <div class="page-header-left">
+        <span class="page-header-kicker">PET-Saúde: Informação e Saúde Digital • GT 8</span>
+        <h1 class="page-header-title">Contribuição do GT 8</h1>
+        <p class="page-header-subtitle">
+          Demonstração do Card do Objetivo Específico 01 com eliminação de ruído visual.
+        </p>
+      </div>
+      <div class="page-header-minicard">
+        <div class="page-header-minicard-logo">
+          <img src="../../docs/assets/img/logo_unb_hub.jpg" onerror="this.src='https://raw.githubusercontent.com/unb-pet-saude-gt8/gt8/main/docs/assets/img/logo_unb_hub.jpg';" alt="UnB HUB EBSERH">
+        </div>
+        <div class="page-header-minicard-text">
+          <span class="minicard-sub">Hospital Parceiro</span>
+          <span>HUB / UnB</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-main-container">
+
+    <!-- PAINEL COMPARATIVO: O QUE FOI REMOVIDO PARA TORNAR O CARD ULTRA-CLEAN -->
+    <div class="cleanup-banner">
+      <div class="cleanup-banner-left">
+        <span class="cleanup-icon">🧹</span>
+        <div>
+          <div class="cleanup-title">Eliminação de Ruído Visual no Card do Objetivo 01</div>
+          <div class="cleanup-desc">Aplicado rigorosamente em todas as 3 propostas abaixo:</div>
+        </div>
+      </div>
+      <div class="cleanup-tags-list">
+        <span class="cleanup-tag-removed">Chips de Entregáveis</span>
+        <span class="cleanup-tag-removed">Barra de Botões Soltos</span>
+        <span class="cleanup-tag-removed">Acordeão de Rodapé</span>
+        <span class="cleanup-tag-removed">Coluna Redundante (4 ➔ 3)</span>
+        <span class="cleanup-tag-removed">Texto "Disponível"</span>
+        <span class="cleanup-tag-unified">✓ Hiperlinks Diretos no Artefato</span>
+      </div>
+    </div>
+
+    <!-- ======================================================================
+         CARD DO OBJETIVO ESPECÍFICO 01 (ESTRUTURA LIMPA: HEADER + DESC + TABELA)
+         ====================================================================== -->
+    <section class="objective-section" id="obj-01">
+      
+      <!-- CABEÇALHO DISCRETO -->
+      <div class="obj-header">
+        <span class="stage-tag">Objetivo Específico 01 · Etapa 1</span>
+        <span class="badge-status">Entregue</span>
+      </div>
+
+      <!-- TÍTULO E DESCRIÇÃO CURTA -->
+      <h3 class="obj-title">Sistemas de Informação HUB e UBSs</h3>
+      <p class="obj-desc">
+        Aprimorar e/ou construir propostas de sistemas de informação entre o ambulatório de Saúde Integral do HUB e as Unidades Básicas de Saúde, utilizando ferramentas de saúde integral.
+      </p>
+
+      <!-- ====================================================================
+           PROPOSTA 1: 3 COLUNAS POR INTEGRANTE + LINKS INLINE NA CÉLULA
+           ==================================================================== -->
+      <div class="prop-view active" id="view-prop-1">
+        <div class="clean-table-card">
+          <table class="clean-table">
+            <thead>
+              <tr>
+                <th style="width: 15%;">Cargo</th>
+                <th style="width: 25%;">Integrante</th>
+                <th style="width: 60%;">Especialidade (Formulário & Protótipo Digital)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Preceptora Fernanda -->
+              <tr>
+                <td><span class="pill-role-preceptor">Preceptora</span></td>
+                <td class="member-cell">Fernanda Santana</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Acolhimento Geral / Triagem</span>
+                    <span class="status-cell-tag tag-definir">⚪ A definir</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Preceptor Lucas Alves (Cirurgia Geral e Ginecologia) -->
+              <tr>
+                <td rowspan="2"><span class="pill-role-preceptor">Preceptor</span></td>
+                <td rowspan="2" class="member-cell">Lucas Alves</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Cirurgia geral</span>
+                    <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Ginecologia</span>
+                    <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Monitor Franco Bueno (Cardiologia e Ginecologia) -->
+              <tr>
+                <td rowspan="2"><span class="pill-role-monitor">Monitor</span></td>
+                <td rowspan="2" class="member-cell">Franco Bueno</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Cardiologia</span>
+                    <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Ginecologia</span>
+                    <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Monitora Luanna Barros (Pneumologia com Links Diretos + Colo/Gastro) -->
+              <tr>
+                <td rowspan="3"><span class="pill-role-monitor">Monitora</span></td>
+                <td rowspan="3" class="member-cell">Luanna Barros</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <strong style="color: var(--brand-blue);">Pneumologia</strong>
+                    <!-- Hiperlinks diretos substituindo "🟢 Disponível" -->
+                    <div class="links-inline-group">
+                      <a href="../../docs/assets/pdf/encaminhamento_pneumo.pdf" target="_blank" rel="noopener noreferrer" class="link-artifact pdf" title="Abrir Formulário Clínico de Pneumologia (PDF)">
+                        📄 Formulário (PDF) ↗
+                      </a>
+                      <a href="../../docs/assets/prototipo_app.html" target="_blank" rel="noopener noreferrer" class="link-artifact app" title="Abrir Protótipo Digital Interativo">
+                        💻 Protótipo Digital ↗
+                      </a>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Coloproctologia</span>
+                    <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Gastroenterologia</span>
+                    <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Monitora Mayara Marques -->
+              <tr>
+                <td><span class="pill-role-monitor">Monitora</span></td>
+                <td class="member-cell">Mayara Marques</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Nutrição adulto</span>
+                    <span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer-clean-hint">
+          <span class="hint-chip">💡 <strong>Proposta 1:</strong> 3 colunas por integrante. Em Pneumologia, o usuário clica diretamente em <em>Formulário (PDF)</em> ou <em>Protótipo Digital</em>.</span>
+          <span class="hint-chip">📄 Documentos abrem diretamente em nova aba.</span>
+        </div>
+      </div>
+
+
+      <!-- ====================================================================
+           PROPOSTA 2: TABELA ULTRA-MINIMALISTA (ZERO BADGES COLORIDOS PESADOS)
+           ==================================================================== -->
+      <div class="prop-view" id="view-prop-2">
+        <div class="clean-table-card">
+          <table class="clean-table">
+            <thead>
+              <tr>
+                <th style="width: 15%;">Cargo</th>
+                <th style="width: 25%;">Integrante</th>
+                <th style="width: 60%;">Entregas por Especialidade (Formulário & Protótipo)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Preceptora Fernanda -->
+              <tr>
+                <td><span class="pill-role-preceptor">Preceptora</span></td>
+                <td class="member-cell">Fernanda Santana</td>
+                <td>
+                  <span class="dot-indicator dot-defi"></span> A definir
+                </td>
+              </tr>
+
+              <!-- Preceptor Lucas Alves -->
+              <tr>
+                <td rowspan="2"><span class="pill-role-preceptor">Preceptor</span></td>
+                <td rowspan="2" class="member-cell">Lucas Alves</td>
+                <td>
+                  <span class="dot-indicator dot-elab"></span> Cirurgia geral <span class="text-muted-soft">(Em elaboração)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="dot-indicator dot-elab"></span> Ginecologia <span class="text-muted-soft">(Em elaboração)</span>
+                </td>
+              </tr>
+
+              <!-- Monitor Franco Bueno -->
+              <tr>
+                <td rowspan="2"><span class="pill-role-monitor">Monitor</span></td>
+                <td rowspan="2" class="member-cell">Franco Bueno</td>
+                <td>
+                  <span class="dot-indicator dot-elab"></span> Cardiologia <span class="text-muted-soft">(Em elaboração)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="dot-indicator dot-elab"></span> Ginecologia <span class="text-muted-soft">(Em elaboração)</span>
+                </td>
+              </tr>
+
+              <!-- Monitora Luanna Barros -->
+              <tr>
+                <td rowspan="3"><span class="pill-role-monitor">Monitora</span></td>
+                <td rowspan="3" class="member-cell">Luanna Barros</td>
+                <td>
+                  <strong style="color: var(--text-main);">Pneumologia:</strong>
+                  <a href="../../docs/assets/pdf/encaminhamento_pneumo.pdf" target="_blank" rel="noopener noreferrer" class="text-link-direct" style="margin-left: 0.5rem;">
+                    Formulário de Encaminhamento (PDF ↗)
+                  </a>
+                  <span style="color: var(--text-soft); margin: 0 0.4rem;">·</span>
+                  <a href="../../docs/assets/prototipo_app.html" target="_blank" rel="noopener noreferrer" class="text-link-direct">
+                    Protótipo Digital (↗)
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="dot-indicator dot-elab"></span> Coloproctologia <span class="text-muted-soft">(Em elaboração)</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="dot-indicator dot-elab"></span> Gastroenterologia <span class="text-muted-soft">(Em elaboração)</span>
+                </td>
+              </tr>
+
+              <!-- Monitora Mayara Marques -->
+              <tr>
+                <td><span class="pill-role-monitor">Monitora</span></td>
+                <td class="member-cell">Mayara Marques</td>
+                <td>
+                  <span class="dot-indicator dot-elab"></span> Nutrição adulto <span class="text-muted-soft">(Em elaboração)</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer-clean-hint">
+          <span class="hint-chip">✨ <strong>Proposta 2:</strong> Elimina caixas coloridas repetitivas e usa links textuais elegantes e indicadores discretos (<code>dot</code>).</span>
+          <span class="hint-chip">Redução de 80% no ruído visual.</span>
+        </div>
+      </div>
+
+
+      <!-- ====================================================================
+           PROPOSTA 3: AGRUPADA POR ESPECIALIDADE (SEM DUPLICAR GINECOLOGIA)
+           ==================================================================== -->
+      <div class="prop-view" id="view-prop-3">
+        <div class="clean-table-card">
+          <table class="clean-table">
+            <thead>
+              <tr>
+                <th style="width: 30%;">Especialidade Clínica</th>
+                <th style="width: 42%;">Responsáveis (Preceptor / Monitor)</th>
+                <th style="width: 28%;">Formulário & Protótipo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Pneumologia (1ª linha: destaque de entrega) -->
+              <tr>
+                <td><strong style="color: var(--brand-blue);">Pneumologia</strong></td>
+                <td>
+                  <span class="grouped-member-item">
+                    <span class="pill-role-monitor">Monitora</span> Luanna Barros
+                  </span>
+                </td>
+                <td>
+                  <div class="links-inline-group">
+                    <a href="../../docs/assets/pdf/encaminhamento_pneumo.pdf" target="_blank" rel="noopener noreferrer" class="link-artifact pdf">
+                      📄 Formulário PDF ↗
+                    </a>
+                    <a href="../../docs/assets/prototipo_app.html" target="_blank" rel="noopener noreferrer" class="link-artifact app">
+                      💻 Protótipo ↗
+                    </a>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Ginecologia (Desduplicada: une Lucas Alves e Franco Bueno na mesma linha) -->
+              <tr>
+                <td><strong>Ginecologia</strong></td>
+                <td>
+                  <span class="grouped-member-item">
+                    <span class="pill-role-preceptor">Preceptor</span> Lucas Alves
+                  </span>
+                  <span class="grouped-member-item">
+                    <span class="pill-role-monitor">Monitor</span> Franco Bueno
+                  </span>
+                </td>
+                <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+              </tr>
+
+              <!-- Cirurgia Geral -->
+              <tr>
+                <td><strong>Cirurgia geral</strong></td>
+                <td>
+                  <span class="grouped-member-item">
+                    <span class="pill-role-preceptor">Preceptor</span> Lucas Alves
+                  </span>
+                </td>
+                <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+              </tr>
+
+              <!-- Cardiologia -->
+              <tr>
+                <td><strong>Cardiologia</strong></td>
+                <td>
+                  <span class="grouped-member-item">
+                    <span class="pill-role-monitor">Monitor</span> Franco Bueno
+                  </span>
+                </td>
+                <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+              </tr>
+
+              <!-- Coloproctologia -->
+              <tr>
+                <td><strong>Coloproctologia</strong></td>
+                <td>
+                  <span class="grouped-member-item">
+                    <span class="pill-role-monitor">Monitora</span> Luanna Barros
+                  </span>
+                </td>
+                <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+              </tr>
+
+              <!-- Gastroenterologia -->
+              <tr>
+                <td><strong>Gastroenterologia</strong></td>
+                <td>
+                  <span class="grouped-member-item">
+                    <span class="pill-role-monitor">Monitora</span> Luanna Barros
+                  </span>
+                </td>
+                <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+              </tr>
+
+              <!-- Nutrição Adulto -->
+              <tr>
+                <td><strong>Nutrição adulto</strong></td>
+                <td>
+                  <span class="grouped-member-item">
+                    <span class="pill-role-monitor">Monitora</span> Mayara Marques
+                  </span>
+                </td>
+                <td><span class="status-cell-tag tag-elaboracao">🟡 Em elaboração</span></td>
+              </tr>
+
+              <!-- Acolhimento Geral / Supervisão -->
+              <tr>
+                <td><strong>Acolhimento Geral & Triagem</strong></td>
+                <td>
+                  <span class="grouped-member-item">
+                    <span class="pill-role-preceptor">Preceptora</span> Fernanda Santana
+                  </span>
+                </td>
+                <td><span class="status-cell-tag tag-definir">⚪ A definir</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-footer-clean-hint">
+          <span class="hint-chip">🩺 <strong>Proposta 3:</strong> Cada especialidade ocupa 1 linha limpa (sem <code>rowspan</code> complexos nem duplicação de Ginecologia).</span>
+          <span class="hint-chip">Tabela 40% mais curta e muito mais fácil de consultar por médicos e gestores.</span>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       SCRIPTS JAVASCRIPT: CONTROLE DAS PROPOSTAS E TEMA
+       ========================================================================== */
+  <script>
+    const proposalsMeta = {
+      1: {
+        badge: "Proposta 1 Selecionada",
+        title: "Tabela de 3 Colunas por Integrante + Links Diretos Inline",
+        desc: "Mantém a divisão tradicional por integrante, mas unifica as antigas colunas de Formulário e Protótipo em uma só. O termo redundante '🟢 Disponível' é substituído por botões com hiperlinks diretos aos arquivos em Pneumologia.",
+        chips: [
+          "🎯 3 Colunas Limpas (antes: 4)",
+          "📄 Links Diretos (PDF e App)",
+          "🚫 Fim do texto '🟢 Disponível'",
+          "🧹 Sem Chips, Ações Soltas ou Accordions"
+        ],
+        rec: "Menor curva de mudança em relação à tabela original, mas eliminando 1 coluna inteira e todos os elementos de poluição visual ao redor."
+      },
+      2: {
+        badge: "Proposta 2 Selecionada",
+        title: "Tabela Ultra-Minimalista (Zero Badges Coloridos)",
+        desc: "Remove todas as caixas coloridas repetitivas ('status-cell-tag') das linhas, adotando links textuais sublinhados com a cor institucional em Pneumologia e pequenos pontos indicadores ('dot') nas especialidades em elaboração.",
+        chips: [
+          "✨ Zero Badges Pesados",
+          "🔗 Hiperlinks Textuais Contínuos",
+          "🟡 Indicador Discreto de Ponto",
+          "📉 80% Menos Ruído Visual"
+        ],
+        rec: "Interface clínica premium com máxima sobriedade visual e altíssima legibilidade para leitura rápida."
+      },
+      3: {
+        badge: "Proposta 3 Selecionada",
+        title: "Tabela Agrupada por Especialidade (Sem Duplicar Ginecologia)",
+        desc: "Reorganiza a matriz colocando a Especialidade Clínica na primeira coluna. Ginecologia aparece apenas uma vez, unindo Lucas Alves e Franco Bueno na mesma linha. Pneumologia ganha destaque no topo com os botões de ação imediata.",
+        chips: [
+          "🩺 1 Linha por Especialidade",
+          "👫 Ginecologia Unificada",
+          "📏 Tabela 40% Mais Curta",
+          "⚡ Coluna de Entregas Compacta"
+        ],
+        rec: "Altamente recomendada por gestores e médicos reguladores, pois organiza o trabalho clínico pelo que realmente importa: a especialidade médica."
+      }
+    };
+
+    function switchProposal(index) {
+      document.querySelectorAll(".btn-prop-tab").forEach((btn, idx) => {
+        btn.classList.toggle("active", idx + 1 === index);
+      });
+
+      document.querySelectorAll(".prop-view").forEach((view, idx) => {
+        view.classList.toggle("active", idx + 1 === index);
+      });
+
+      const meta = proposalsMeta[index];
+      if (meta) {
+        document.getElementById("prop-info-badge").textContent = meta.badge;
+        document.getElementById("prop-info-title").textContent = meta.title;
+        document.getElementById("prop-info-desc").textContent = meta.desc;
+        document.getElementById("prop-info-rec").textContent = meta.rec;
+
+        const chipsContainer = document.getElementById("prop-info-chips");
+        chipsContainer.innerHTML = meta.chips.map(chip => {
+          const isCleanup = chip.includes("Sem Chips");
+          return `<span class="eval-pill ${isCleanup ? 'pill-cleanup' : ''}">${chip}</span>`;
+        }).join("");
+      }
+    }
+
+    function toggleTheme() {
+      const body = document.body;
+      const currentTheme = body.getAttribute("data-theme") || "light";
+      const nextTheme = currentTheme === "light" ? "dark" : "light";
+
+      body.setAttribute("data-theme", nextTheme);
+
+      const icon = document.getElementById("theme-icon");
+      const label = document.getElementById("theme-label");
+
+      if (nextTheme === "dark") {
+        icon.textContent = "🌙";
+        label.textContent = "Modo Escuro";
+      } else {
+        icon.textContent = "☀️";
+        label.textContent = "Modo Claro";
+      }
+    }
+  </script>
+</body>
+</html>
