@@ -276,31 +276,11 @@ window.preencherExemplo = preencherExemplo;
 window.resetarFormulario = resetarFormulario;
 
 /**
- * Alterna as Etapas 1, 2 e 3 na aba Contribuição
- * @param {number} stepNum - Número da etapa (1, 2 ou 3)
- * @param {HTMLElement} [cardEl] - Elemento do card clicado
+ * Alterna as Etapas ou Objetivos na aba Contribuição (depreciado após eliminação de etapas; mantido com fallback seguro)
+ * @param {number} stepNum - Número do objetivo ou etapa
  */
-function contribSelectStep(stepNum, cardEl) {
-  const cards = document.querySelectorAll('.stepper-nav .step-card');
-  if (cards.length) {
-    cards.forEach((c, idx) => {
-      c.classList.toggle('active', (idx + 1) === stepNum);
-    });
-  }
-
-  const isE1 = stepNum === 1;
-  const p1 = document.getElementById('contrib-panel-etapa-1');
-  const p2 = document.getElementById('contrib-panel-etapa-2');
-  const p3 = document.getElementById('contrib-panel-etapa-3');
-
-  if (p1) p1.style.display = isE1 ? 'block' : 'none';
-  if (p2) p2.style.display = stepNum === 2 ? 'block' : 'none';
-  if (p3) p3.style.display = stepNum === 3 ? 'block' : 'none';
-
-  const toc = document.getElementById('contrib-toc-sidebar');
-  if (toc) {
-    toc.style.display = isE1 ? 'block' : 'none';
-  }
+function contribSelectStep(stepNum) {
+  smoothScrollTo(`obj-0${stepNum}`);
 }
 
 /**
@@ -361,16 +341,16 @@ function smoothScrollTo(targetId) {
 }
 
 /**
- * Inicializa o IntersectionObserver para o sumário lateral da aba Contribuição
+ * Inicializa o IntersectionObserver para o sumário lateral contínuo da aba Contribuição
  */
 function initTocObserver() {
-  const objSections = document.querySelectorAll('.objective-section');
+  const sections = document.querySelectorAll('.objective-clean-card, .objective-section, .timeline-stage-block');
   const tocLinks = document.querySelectorAll('.toc-link');
-  if (!objSections.length || !tocLinks.length) return;
+  if (!sections.length || !tocLinks.length) return;
 
   const observerOptions = {
     root: null,
-    rootMargin: "-90px 0px -60% 0px",
+    rootMargin: "-90px 0px -65% 0px",
     threshold: 0
   };
 
@@ -385,7 +365,7 @@ function initTocObserver() {
     });
   }, observerOptions);
 
-  objSections.forEach(sec => observer.observe(sec));
+  sections.forEach(sec => observer.observe(sec));
 }
 
 // Expõe as novas funções no escopo global
