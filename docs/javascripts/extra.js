@@ -368,13 +368,77 @@ function initTocObserver() {
   sections.forEach(sec => observer.observe(sec));
 }
 
+/**
+ * Menu Suspenso (Dropdown) Interativo para Especialidades (Objetivo 01)
+ */
+function closeAllSpecDropdowns() {
+  const openDropdowns = document.querySelectorAll('.spec-dropdown.is-open');
+  openDropdowns.forEach(dropdown => {
+    dropdown.classList.remove('is-open');
+    const trigger = dropdown.querySelector('.spec-dropdown-trigger');
+    if (trigger) {
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+  });
+}
+
+function toggleSpecDropdown(event, btnEl) {
+  if (event) {
+    event.stopPropagation();
+  }
+  if (!btnEl) return;
+
+  const dropdown = btnEl.closest('.spec-dropdown');
+  if (!dropdown) return;
+
+  const wasOpen = dropdown.classList.contains('is-open');
+
+  // Fecha outros menus abertos
+  closeAllSpecDropdowns();
+
+  if (!wasOpen) {
+    dropdown.classList.add('is-open');
+    btnEl.setAttribute('aria-expanded', 'true');
+  } else {
+    dropdown.classList.remove('is-open');
+    btnEl.setAttribute('aria-expanded', 'false');
+  }
+}
+
+// Fechamento ao clicar fora ou em um dos links/itens do menu
+document.addEventListener('click', function(e) {
+  const openDropdowns = document.querySelectorAll('.spec-dropdown.is-open');
+  if (!openDropdowns.length) return;
+
+  openDropdowns.forEach(dropdown => {
+    // Se clicou em um link (.spec-dropdown-item) dentro do menu ou fora do dropdown, fecha
+    if (e.target.closest('.spec-dropdown-item') || !dropdown.contains(e.target)) {
+      dropdown.classList.remove('is-open');
+      const trigger = dropdown.querySelector('.spec-dropdown-trigger');
+      if (trigger) {
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    }
+  });
+});
+
+// Fechamento ao pressionar a tecla Escape
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' || e.key === 'Esc') {
+    closeAllSpecDropdowns();
+  }
+});
+
 // Expõe as novas funções no escopo global
+window.toggleSpecDropdown = toggleSpecDropdown;
+window.closeAllSpecDropdowns = closeAllSpecDropdowns;
 window.contribSelectStep = contribSelectStep;
 window.resSelectEtapa = resSelectEtapa;
 window.resSelectObj = resSelectObj;
 window.smoothScrollTo = smoothScrollTo;
 
 function initPageScripts() {
+  closeAllSpecDropdowns();
   checkPageLayout();
   initTocObserver();
 }
