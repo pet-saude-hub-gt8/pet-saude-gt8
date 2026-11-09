@@ -60,97 +60,25 @@ hide:
               </tr>
             </thead>
             <tbody>
-              <!-- 1. Recepção / Triagem -->
+              <!-- 1. Cardiologia -->
               <tr>
                 <td>
                   <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Recepção / Triagem</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>📄</span>
-                          <div>
-                            <strong>Formulário de Triagem</strong>
-                            <small>Em elaboração técnica</small>
-                          </div>
-                        </div>
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>💻</span>
-                          <div>
-                            <strong>Protótipo Digital</strong>
-                            <small>Em estruturação</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <span>Cardiologia</span>
                   </div>
                 </td>
               </tr>
 
-              <!-- 2. Cardiologia -->
+              <!-- 2. Cirurgia geral -->
               <tr>
                 <td>
                   <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Cardiologia</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>📄</span>
-                          <div>
-                            <strong>Formulário de Encaminhamento</strong>
-                            <small>Em elaboração técnica</small>
-                          </div>
-                        </div>
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>💻</span>
-                          <div>
-                            <strong>Protótipo Digital</strong>
-                            <small>Em estruturação</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <span>Cirurgia geral</span>
                   </div>
                 </td>
               </tr>
 
-              <!-- 3. Cirurgia geral -->
-              <tr>
-                <td>
-                  <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Cirurgia geral</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>📄</span>
-                          <div>
-                            <strong>Formulário de Encaminhamento</strong>
-                            <small>Em elaboração técnica</small>
-                          </div>
-                        </div>
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>💻</span>
-                          <div>
-                            <strong>Protótipo Digital</strong>
-                            <small>Em estruturação</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-
-              <!-- 4. Coloproctologia -->
+              <!-- 3. Coloproctologia -->
               <tr>
                 <td>
                   <div class="cell-inline-flex">
@@ -160,117 +88,47 @@ hide:
                         <span class="spec-dropdown-caret">▾</span>
                       </button>
                       <div class="spec-dropdown-menu">
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
+                        <a href="#" class="spec-dropdown-item">
                           <span>📄</span>
                           <div>
                             <strong>Formulário de Encaminhamento</strong>
-                            <small>Em elaboração técnica</small>
+                            <small>Abrir documento (PDF ↗)</small>
                           </div>
-                        </div>
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>💻</span>
-                          <div>
-                            <strong>Protótipo Digital</strong>
-                            <small>Em estruturação</small>
-                          </div>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
                 </td>
               </tr>
 
-              <!-- 5. Gastroenterologia -->
+              <!-- 4. Gastroenterologia -->
               <tr>
                 <td>
                   <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Gastroenterologia</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>📄</span>
-                          <div>
-                            <strong>Formulário de Encaminhamento</strong>
-                            <small>Em elaboração técnica</small>
-                          </div>
-                        </div>
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>💻</span>
-                          <div>
-                            <strong>Protótipo Digital</strong>
-                            <small>Em estruturação</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <span>Gastroenterologia</span>
                   </div>
                 </td>
               </tr>
 
-              <!-- 6. Ginecologia -->
+              <!-- 5. Ginecologia -->
               <tr>
                 <td>
                   <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Ginecologia</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>📄</span>
-                          <div>
-                            <strong>Formulário de Encaminhamento</strong>
-                            <small>Em elaboração técnica</small>
-                          </div>
-                        </div>
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>💻</span>
-                          <div>
-                            <strong>Protótipo Digital</strong>
-                            <small>Em estruturação</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <span>Ginecologia</span>
                   </div>
                 </td>
               </tr>
 
-              <!-- 7. Nutrição adulto -->
+              <!-- 6. Nutrição adulto -->
               <tr>
                 <td>
                   <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Nutrição adulto</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>📄</span>
-                          <div>
-                            <strong>Formulário de Encaminhamento</strong>
-                            <small>Em elaboração técnica</small>
-                          </div>
-                        </div>
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>💻</span>
-                          <div>
-                            <strong>Protótipo Digital</strong>
-                            <small>Em estruturação</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <span>Nutrição adulto</span>
                   </div>
                 </td>
               </tr>
 
-              <!-- 8. Pneumologia -->
+              <!-- 7. Pneumologia -->
               <tr>
                 <td>
                   <div class="cell-inline-flex">

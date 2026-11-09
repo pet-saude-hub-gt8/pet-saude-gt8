@@ -143,7 +143,21 @@ hide:
               <tr>
                 <td>
                   <div class="cell-inline-flex">
-                    <span>Coloproctologia</span>
+                    <div class="spec-dropdown">
+                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
+                        <span>Coloproctologia</span>
+                        <span class="spec-dropdown-caret">▾</span>
+                      </button>
+                      <div class="spec-dropdown-menu">
+                        <a href="#" class="spec-dropdown-item">
+                          <span>📄</span>
+                          <div>
+                            <strong>Formulário de Encaminhamento</strong>
+                            <small>Abrir documento (PDF ↗)</small>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </td>
               </tr>
