@@ -318,63 +318,16 @@ hide:
           <table class="clean-table">
             <thead>
               <tr>
-                <th style="width: 100%;">Instrumento (Ambulatório de Saúde Integral)</th>
+                <th style="width: 100%;">Ambulatório de Saúde Integral</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>
                   <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Protocolo Clínico de Atendimento</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>🩺</span>
-                          <div>
-                            <strong>Diretriz Clínica Ambulatorial</strong>
-                            <small>Minuta v0.9 em análise técnica</small>
-                          </div>
-                        </div>
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>📋</span>
-                          <div>
-                            <strong>Critérios de Acolhimento</strong>
-                            <small>Em homologação pelo corpo clínico</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Protocolo de Encaminhamento</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>📑</span>
-                          <div>
-                            <strong>Regras de Encaminhamento</strong>
-                            <small>Em estruturação com a Regulação</small>
-                          </div>
-                        </div>
-                        <div class="spec-dropdown-item" style="opacity: 0.75; cursor: default;">
-                          <span>🔄</span>
-                          <div>
-                            <strong>Critérios de Contrarreferência</strong>
-                            <small>Em validação</small>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <a href="../assets/pdf/protocolo_atendimento_encaminhamento.pdf" target="_blank" rel="noopener noreferrer" class="clean-table-link" style="color: #0284c7; font-weight: 600; text-decoration: underline;">
+                      Protocolo de Atendimento e Encaminhamento de Saúde Integral
+                    </a>
                   </div>
                 </td>
               </tr>

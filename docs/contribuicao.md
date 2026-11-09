@@ -368,21 +368,14 @@ hide:
                   <div class="cell-inline-flex">
                     <div class="spec-dropdown">
                       <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Protocolos</span>
+                        <span>Protocolos Flávio Torres</span>
                         <span class="spec-dropdown-caret">▾</span>
                       </button>
                       <div class="spec-dropdown-menu">
-                        <a href="#" class="spec-dropdown-item">
+                        <a href="../assets/pdf/protocolo_atendimento_encaminhamento.pdf" target="_blank" rel="noopener noreferrer" class="spec-dropdown-item">
                           <span>📄</span>
                           <div>
-                            <strong>Protocolo Clínico de Atendimento</strong>
-                            <small>Abrir documento (PDF ↗)</small>
-                          </div>
-                        </a>
-                        <a href="#" class="spec-dropdown-item">
-                          <span>📑</span>
-                          <div>
-                            <strong>Protocolo de Encaminhamento</strong>
+                            <strong>Protocolo de Atendimento e Encaminhamento</strong>
                             <small>Abrir documento (PDF ↗)</small>
                           </div>
                         </a>
@@ -398,28 +391,7 @@ hide:
                 <td class="member-cell">Pedro Ruas</td>
                 <td>
                   <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Protocolos</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <a href="#" class="spec-dropdown-item">
-                          <span>📄</span>
-                          <div>
-                            <strong>Protocolo Clínico de Atendimento</strong>
-                            <small>Abrir documento (PDF ↗)</small>
-                          </div>
-                        </a>
-                        <a href="#" class="spec-dropdown-item">
-                          <span>📑</span>
-                          <div>
-                            <strong>Protocolo de Encaminhamento</strong>
-                            <small>Abrir documento (PDF ↗)</small>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
+                    <span>A definir</span>
                   </div>
                 </td>
               </tr>
@@ -430,28 +402,7 @@ hide:
                 <td class="member-cell">João Victor Macêdo</td>
                 <td>
                   <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Protocolos</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <a href="#" class="spec-dropdown-item">
-                          <span>📄</span>
-                          <div>
-                            <strong>Protocolo Clínico de Atendimento</strong>
-                            <small>Abrir documento (PDF ↗)</small>
-                          </div>
-                        </a>
-                        <a href="#" class="spec-dropdown-item">
-                          <span>📑</span>
-                          <div>
-                            <strong>Protocolo de Encaminhamento</strong>
-                            <small>Abrir documento (PDF ↗)</small>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
+                    <span>A definir</span>
                   </div>
                 </td>
               </tr>
