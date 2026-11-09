@@ -182,95 +182,78 @@ hide:
           Realizar uma revisão rápida sobre sistema de fluxos de referência e contrarreferência no Brasil.
         </p>
 
-        <div class="deliverables-row">
-          <span class="deliverable-chip">📚 <strong>Síntese:</strong> Revisão Rápida de Evidências</span>
-          <span class="deliverable-chip">📊 <strong>Métricas:</strong> Indicadores de Avaliação</span>
-          <span class="deliverable-chip">🔍 <strong>Protocolo:</strong> Critérios de Inclusão e Exclusão</span>
-        </div>
-
-        <div class="doc-actions-strip">
-          <a href="../assets/pdf/revisao_sistematica_pet_saude.pdf" target="_blank" rel="noopener noreferrer" class="btn-action-doc primary">
-            📄 Acessar Esboço da RLS (PDF ↗)
-          </a>
-        </div>
-
         <div class="clean-table-card">
           <table class="clean-table">
             <thead>
               <tr>
-                <th rowspan="2" style="width: 14%;">Cargo</th>
-                <th rowspan="2" style="width: 26%;">Integrante</th>
-                <th colspan="2" class="header-group">Rascunho do Artigo Científico</th>
-              </tr>
-              <tr>
-                <th style="width: 32%;">Artigo (Manuscrito da RLS)</th>
-                <th style="width: 28%;">Registro das Pesquisas</th>
+                <th style="width: 15%;">Cargo</th>
+                <th style="width: 25%;">Integrante</th>
+                <th style="width: 60%;">Resultados</th>
               </tr>
             </thead>
             <tbody>
-              <!-- Preceptores Pedro Ruas e Sabrina Feitosa -->
+              <!-- Pedro Ruas -->
               <tr>
-                <td rowspan="2"><span class="pill-role-preceptor">Preceptores</span></td>
+                <td><span class="pill-role-preceptor">Preceptor</span></td>
                 <td class="member-cell">Pedro Ruas</td>
-                <td>
-                  <div class="cell-inline-flex">
-                    <span class="status-cell-tag tag-elaboracao" title="Artigo em redação e revisão pelos preceptores">🟡 Em elaboração</span>
-                    <a href="../assets/pdf/revisao_sistematica_pet_saude.pdf" target="_blank" rel="noopener noreferrer" class="link-artifact pdf" title="Abrir Esboço da Revisão Rápida (PDF)">
-                      📄 Esboço RLS (PDF) ↗
-                    </a>
+                <td rowspan="6" style="vertical-align: middle; text-align: center;">
+                  <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;">
+                    <div class="cell-inline-flex" style="justify-content: center;">
+                      <div class="spec-dropdown">
+                        <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
+                          <span>Artigo (Manuscrito da RLS)</span>
+                          <span class="spec-dropdown-caret">▾</span>
+                        </button>
+                        <div class="spec-dropdown-menu">
+                          <a href="../assets/pdf/revisao_sistematica_pet_saude.pdf" target="_blank" rel="noopener noreferrer" class="spec-dropdown-item">
+                            <span>📄</span>
+                            <div>
+                              <strong>Esboço da Revisão Rápida</strong>
+                              <small>Abrir documento (PDF ↗)</small>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="cell-inline-flex" style="justify-content: center;">
+                      <span>Registro das Pesquisas</span>
+                    </div>
                   </div>
                 </td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Registro de estratégias de busca e seleção em andamento">🟡 Em elaboração</span></td>
-              </tr>
-              <tr>
-                <td class="member-cell">Sabrina Feitosa</td>
-                <td>
-                  <div class="cell-inline-flex">
-                    <span class="status-cell-tag tag-elaboracao" title="Artigo em redação e revisão pelos preceptores">🟡 Em elaboração</span>
-                    <a href="../assets/pdf/revisao_sistematica_pet_saude.pdf" target="_blank" rel="noopener noreferrer" class="link-artifact pdf" title="Abrir Esboço da Revisão Rápida (PDF)">
-                      📄 Esboço RLS (PDF) ↗
-                    </a>
-                  </div>
-                </td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Registro de estratégias de busca e seleção em andamento">🟡 Em elaboração</span></td>
               </tr>
 
-              <!-- Monitores Flávia Lima, Hugo de Verson, Paula Lira, Plabio Lucas -->
+              <!-- Sabrina Feitosa -->
               <tr>
-                <td rowspan="4"><span class="pill-role-monitor">Monitores</span></td>
+                <td><span class="pill-role-preceptor">Preceptora</span></td>
+                <td class="member-cell">Sabrina Feitosa</td>
+              </tr>
+
+              <!-- Flávia Lima -->
+              <tr>
+                <td><span class="pill-role-monitor">Monitora</span></td>
                 <td class="member-cell">Flávia Lima</td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Colaboração na escrita do manuscrito">🟡 Em elaboração</span></td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Levantamento bibliográfico e extração de dados">🟡 Em elaboração</span></td>
               </tr>
+
+              <!-- Hugo de Verson -->
               <tr>
+                <td><span class="pill-role-monitor">Monitor</span></td>
                 <td class="member-cell">Hugo de Verson</td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Colaboração na escrita do manuscrito">🟡 Em elaboração</span></td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Levantamento bibliográfico e extração de dados">🟡 Em elaboração</span></td>
               </tr>
+
+              <!-- Paula Lira -->
               <tr>
+                <td><span class="pill-role-monitor">Monitora</span></td>
                 <td class="member-cell">Paula Lira <span style="font-size: 0.74rem; color: #64748b; font-weight: normal;">(Revisora)</span></td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Revisão crítica metodológica do manuscrito">🟡 Em elaboração</span></td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Auditoria das buscas e validação por pares">🟡 Em elaboração</span></td>
               </tr>
+
+              <!-- Plabio Lucas -->
               <tr>
+                <td><span class="pill-role-monitor">Monitor</span></td>
                 <td class="member-cell">Plabio Lucas</td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Colaboração na escrita do manuscrito">🟡 Em elaboração</span></td>
-                <td><span class="status-cell-tag tag-elaboracao" title="Levantamento bibliográfico e extração de dados">🟡 Em elaboração</span></td>
               </tr>
             </tbody>
           </table>
         </div>
-
-        <details class="clean-accordion">
-          <summary>Diretrizes Metodológicas da Revisão Rápida (RLS)</summary>
-          <div class="clean-accordion-body">
-            <ul>
-              <li><strong>Requisitos obrigatórios do rascunho:</strong> Questões de pesquisa formuladas, bases de dados consultadas, estratégia de busca booleana e critérios bem definidos de inclusão e exclusão.</li>
-              <li><strong>Rastreabilidade metódica:</strong> Levantamento bibliográfico estruturado com registro detalhado dos passos de busca.</li>
-              <li><strong>Diretriz de armazenamento:</strong> Artigos encontrados devem ser armazenados com a citação e referência completa do autor.</li>
-            </ul>
-          </div>
-        </details>
       </article>
 
       <!-- OBJETIVO ESPECÍFICO 03 -->
@@ -285,57 +268,114 @@ hide:
           Construir o protocolo de atendimento e de encaminhamento do Ambulatório de Saúde Integral.
         </p>
 
-        <div class="deliverables-row">
-          <span class="deliverable-chip">🏥 <strong>Atendimento:</strong> Protocolo Clínico Ambulatorial</span>
-          <span class="deliverable-chip">📑 <strong>Encaminhamento:</strong> Diretrizes Padronizadas</span>
-          <span class="deliverable-chip">🩺 <strong>Qualificação:</strong> Redução de Devoluções P3</span>
-        </div>
-
         <div class="clean-table-card">
           <table class="clean-table">
             <thead>
               <tr>
-                <th rowspan="2" style="width: 15%;">Cargo</th>
-                <th rowspan="2" style="width: 25%;">Integrante</th>
-                <th colspan="2" class="header-group">Instrumentos do Ambulatório de Saúde Integral</th>
-              </tr>
-              <tr>
-                <th style="width: 30%;">Protocolo Clínico de Atendimento</th>
-                <th style="width: 30%;">Protocolo de Encaminhamento</th>
+                <th style="width: 15%;">Cargo</th>
+                <th style="width: 25%;">Integrante</th>
+                <th style="width: 60%;">Instrumento (Ambulatório de Saúde Integral)</th>
               </tr>
             </thead>
             <tbody>
+              <!-- Preceptor Flávio Torres -->
               <tr>
                 <td><span class="pill-role-preceptor">Preceptor</span></td>
                 <td class="member-cell">Flávio Torres</td>
-                <td><span class="status-cell-tag tag-definir" title="Protocolo clínico assistencial em estruturação inicial">⚪ A definir</span></td>
-                <td><span class="status-cell-tag tag-definir" title="Diretrizes e critérios de encaminhamento em estruturação">⚪ A definir</span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <div class="spec-dropdown">
+                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
+                        <span>Protocolos</span>
+                        <span class="spec-dropdown-caret">▾</span>
+                      </button>
+                      <div class="spec-dropdown-menu">
+                        <a href="#" class="spec-dropdown-item">
+                          <span>📄</span>
+                          <div>
+                            <strong>Protocolo Clínico de Atendimento</strong>
+                            <small>Abrir documento (PDF ↗)</small>
+                          </div>
+                        </a>
+                        <a href="#" class="spec-dropdown-item">
+                          <span>📑</span>
+                          <div>
+                            <strong>Protocolo de Encaminhamento</strong>
+                            <small>Abrir documento (PDF ↗)</small>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </td>
               </tr>
+
+              <!-- Preceptor Pedro Ruas -->
               <tr>
                 <td><span class="pill-role-preceptor">Preceptor</span></td>
                 <td class="member-cell">Pedro Ruas</td>
-                <td><span class="status-cell-tag tag-definir" title="Protocolo clínico assistencial em estruturação inicial">⚪ A definir</span></td>
-                <td><span class="status-cell-tag tag-definir" title="Diretrizes e critérios de encaminhamento em estruturação">⚪ A definir</span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <div class="spec-dropdown">
+                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
+                        <span>Protocolos</span>
+                        <span class="spec-dropdown-caret">▾</span>
+                      </button>
+                      <div class="spec-dropdown-menu">
+                        <a href="#" class="spec-dropdown-item">
+                          <span>📄</span>
+                          <div>
+                            <strong>Protocolo Clínico de Atendimento</strong>
+                            <small>Abrir documento (PDF ↗)</small>
+                          </div>
+                        </a>
+                        <a href="#" class="spec-dropdown-item">
+                          <span>📑</span>
+                          <div>
+                            <strong>Protocolo de Encaminhamento</strong>
+                            <small>Abrir documento (PDF ↗)</small>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </td>
               </tr>
+
+              <!-- Monitor João Victor Macêdo -->
               <tr>
                 <td><span class="pill-role-monitor">Monitor</span></td>
                 <td class="member-cell">João Victor Macêdo</td>
-                <td><span class="status-cell-tag tag-definir" title="Protocolo clínico assistencial em estruturação inicial">⚪ A definir</span></td>
-                <td><span class="status-cell-tag tag-definir" title="Diretrizes e critérios de encaminhamento em estruturação">⚪ A definir</span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <div class="spec-dropdown">
+                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
+                        <span>Protocolos</span>
+                        <span class="spec-dropdown-caret">▾</span>
+                      </button>
+                      <div class="spec-dropdown-menu">
+                        <a href="#" class="spec-dropdown-item">
+                          <span>📄</span>
+                          <div>
+                            <strong>Protocolo Clínico de Atendimento</strong>
+                            <small>Abrir documento (PDF ↗)</small>
+                          </div>
+                        </a>
+                        <a href="#" class="spec-dropdown-item">
+                          <span>📑</span>
+                          <div>
+                            <strong>Protocolo de Encaminhamento</strong>
+                            <small>Abrir documento (PDF ↗)</small>
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-
-        <details class="clean-accordion">
-          <summary>Diretrizes do Ambulatório de Saúde Integral</summary>
-          <div class="clean-accordion-body">
-            <ul>
-              <li>Construção de formulários com campos clínicos estruturados e obrigatórios para superar a fragilidade do preenchimento manual em papel de parecer.</li>
-              <li>Padronização das regras de encaminhamento para evitar retornos burocráticos e diminuir a taxa de recusas da regulação técnica.</li>
-            </ul>
-          </div>
-        </details>
       </article>
 
       <!-- OBJETIVO ESPECÍFICO 04 -->
@@ -350,55 +390,62 @@ hide:
           Criar um grupo de trabalho sobre fluxos de comunicação e de encaminhamento, envolvendo gestores da SES, profissionais do HUB e reguladores do HUB.
         </p>
 
-        <div class="deliverables-row">
-          <span class="deliverable-chip">🤝 <strong>Comitê:</strong> Articulação Tripartite SES/HUB/Regulação</span>
-          <span class="deliverable-chip">🗓️ <strong>Pactuação:</strong> Fluxos de Comunicação e Encaminhamento</span>
-          <span class="deliverable-chip">⚖️ <strong>Regulação:</strong> Harmonização de Diretrizes Assistenciais</span>
-        </div>
-
         <div class="clean-table-card">
           <table class="clean-table">
             <thead>
               <tr>
-                <th style="width: 25%;">Segmento Institucional</th>
-                <th style="width: 45%;">Representação Prevista</th>
-                <th style="width: 30%;">Status do Alinhamento</th>
+                <th style="width: 15%;">Segmento</th>
+                <th style="width: 25%;">Representação</th>
+                <th style="width: 60%;">Frente de Articulação e Pactuação</th>
               </tr>
             </thead>
             <tbody>
+              <!-- Gestão SES-DF -->
               <tr>
                 <td><span class="pill-role-preceptor">Gestão SES-DF</span></td>
                 <td class="member-cell">Gestores da Secretaria de Saúde do DF (SES)</td>
-                <td><span class="status-cell-tag tag-definir" title="Composição da mesa bipartite e cronograma em estruturação">⚪ A definir</span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Pactuação de diretrizes regulatórias e governança conjunta com a rede</span>
+                  </div>
+                </td>
               </tr>
+
+              <!-- Corpo Clínico HUB -->
               <tr>
                 <td><span class="pill-role-preceptor">Corpo Clínico HUB</span></td>
                 <td class="member-cell">Profissionais e Médicos do HUB / UnB</td>
-                <td><span class="status-cell-tag tag-definir" title="Indicação de representantes médicos e multiprofissionais em estruturação">⚪ A definir</span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Alinhamento de condutas assistenciais e fluxos ambulatoriais especializados</span>
+                  </div>
+                </td>
               </tr>
+
+              <!-- Complexo Regulador -->
               <tr>
                 <td><span class="pill-role-monitor">Complexo Regulador</span></td>
                 <td class="member-cell">Reguladores do Complexo Regulador em Saúde do DF</td>
-                <td><span class="status-cell-tag tag-definir" title="Articulação técnica de critérios regulatórios em estruturação">⚪ A definir</span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Harmonização de critérios de regulação e diretrizes de encaminhamento</span>
+                  </div>
+                </td>
               </tr>
+
+              <!-- PET-Saúde GT 8 -->
               <tr>
                 <td><span class="pill-role-monitor">PET-Saúde GT 8</span></td>
                 <td class="member-cell">Coordenação, Preceptores e Monitores do GT 8</td>
-                <td><span class="status-cell-tag tag-definir" title="Articulação metodológica e facilitação em estruturação">⚪ A definir</span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Articulação metodológica, facilitação e síntese dos alinhamentos</span>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-
-        <details class="clean-accordion">
-          <summary>Diretrizes de Governança Intersetorial</summary>
-          <div class="clean-accordion-body">
-            <ul>
-              <li>Articulação direta entre a gestão da SES-DF e o hospital universitário para pactuação de diretrizes regulatórias conjuntas.</li>
-              <li>Reuniões estruturadas para alinhamento dos critérios de admissão e devolução entre as redes de atenção especializada e primária.</li>
-            </ul>
-          </div>
-        </details>
       </article>
 
       <!-- OBJETIVO ESPECÍFICO 05 -->
@@ -413,50 +460,72 @@ hide:
           Realizar mapeamento dos protocolos de encaminhamento entre os ambulatórios do HUB e do HUB para as Unidades Básicas de Saúde.
         </p>
 
-        <div class="deliverables-row">
-          <span class="deliverable-chip">🏥 <strong>Inter-ambulatórios:</strong> Fluxos Internos Especializados</span>
-          <span class="deliverable-chip">📍 <strong>Atenção Primária:</strong> Conexão HUB ➔ UBSs</span>
-          <span class="deliverable-chip">📑 <strong>Padronização:</strong> Protocolos de Referência e Contrarreferência</span>
-        </div>
-
         <div class="clean-table-card">
           <table class="clean-table">
             <thead>
               <tr>
-                <th style="width: 25%;">Âmbito Assistencial</th>
-                <th style="width: 45%;">Cenários de Prática Envolvidos</th>
-                <th style="width: 30%;">Status do Mapeamento</th>
+                <th style="width: 15%;">Âmbito</th>
+                <th style="width: 25%;">Cenário Assistencial</th>
+                <th style="width: 60%;">Fluxo / Protocolo Mapeado</th>
               </tr>
             </thead>
             <tbody>
+              <!-- HUB Ambulatórios -->
               <tr>
                 <td><span class="pill-role-preceptor">HUB Ambulatórios</span></td>
-                <td class="member-cell">Encaminhamentos entre ambulatórios especializados do HUB</td>
-                <td><span class="status-cell-tag tag-definir" title="Mapeamento de interfaces inter-ambulatórios em estruturação">⚪ A definir</span></td>
+                <td class="member-cell">Ambulatórios Especializados do HUB</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Protocolo de Encaminhamento Inter-ambulatórios</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Rede de Atenção Primária -->
+              <tr>
+                <td rowspan="4"><span class="pill-role-preceptor">Atenção Primária</span></td>
+                <td rowspan="4" class="member-cell">Unidades Básicas de Saúde (SES-DF)</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Fluxo / Protocolo HUB ➔ UBS 1 Asa Sul</span>
+                  </div>
+                </td>
               </tr>
               <tr>
-                <td><span class="pill-role-preceptor">Rede de Atenção Primária</span></td>
-                <td class="member-cell">Encaminhamentos do HUB para UBS 1 Asa Sul, UBS 17 Ceilândia, UBS 1 Itapoã e UBS 1 Santa Maria</td>
-                <td><span class="status-cell-tag tag-definir" title="Mapeamento de interfaces de contrarreferência para as UBSs em estruturação">⚪ A definir</span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Fluxo / Protocolo HUB ➔ UBS 17 Ceilândia</span>
+                  </div>
+                </td>
               </tr>
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Fluxo / Protocolo HUB ➔ UBS 1 Itapoã</span>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Fluxo / Protocolo HUB ➔ UBS 1 Santa Maria</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Telessaúde & Regulação -->
               <tr>
                 <td><span class="pill-role-monitor">Telessaúde & Regulação</span></td>
                 <td class="member-cell">Núcleo de Telessaúde e Regulação Técnica</td>
-                <td><span class="status-cell-tag tag-definir" title="Diretrizes regulatórias e canais de telessaúde em estruturação">⚪ A definir</span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Diretrizes Regulatórias e Matriciamento por Telessaúde</span>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
         </div>
-
-        <details class="clean-accordion">
-          <summary>Diretrizes de Mapeamento Assistencial</summary>
-          <div class="clean-accordion-body">
-            <ul>
-              <li>Mapeamento das interfaces de comunicação entre os ambulatórios especializados e a rede primária.</li>
-              <li>Garantia de interoperabilidade nos registros clínicos e rastreabilidade dos desfechos dos pacientes referenciados.</li>
-            </ul>
-          </div>
-        </details>
       </article>
 
     </div>
