@@ -561,6 +561,42 @@ hide:
         </div>
       </article>
 
+      <!-- FRENTE TRANSVERSAL: SAÚDE DIGITAL -->
+      <article class="objective-clean-card" id="frente-digital">
+        <div class="obj-card-top-header">
+          <span class="obj-kicker">Frente Transversal · Saúde Digital</span>
+          <span class="badge-status badge-status-concluido">Entregue</span>
+        </div>
+
+        <h3 class="obj-card-title">Saúde Digital & Desenvolvimento</h3>
+        <p class="obj-card-desc">
+          Plataforma Web do GT 8 e Criação de Protótipos.
+        </p>
+
+        <div class="clean-table-card">
+          <table class="clean-table">
+            <thead>
+              <tr>
+                <th style="width: 15%;">Cargo</th>
+                <th style="width: 25%;">Integrante</th>
+                <th style="width: 60%;">Contribuição</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="pill-role-monitor">Monitor</span></td>
+                <td class="member-cell">Heitor Pinheiro</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>Plataforma Web do GT 8 e Criação de Protótipos</span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </article>
+
     </div>
 
     <!-- COLUNA LATERAL DIREITA: SUMÁRIO TOC STICKY (MkDocs Material style) -->
@@ -572,6 +608,7 @@ hide:
         <a href="#obj-03" class="toc-link" onclick="smoothScrollTo('obj-03'); return false;">03 · Protocolo Atendimento</a>
         <a href="#obj-04" class="toc-link" onclick="smoothScrollTo('obj-04'); return false;">04 · Grupo de Trabalho SES/HUB</a>
         <a href="#obj-05" class="toc-link" onclick="smoothScrollTo('obj-05'); return false;">05 · Mapeamento de Protocolos</a>
+        <a href="#frente-digital" class="toc-link" onclick="smoothScrollTo('frente-digital'); return false;">06 · Saúde Digital & Web</a>
       </nav>
     </aside>
 
