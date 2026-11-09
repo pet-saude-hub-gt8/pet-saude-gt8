@@ -4689,6 +4689,34 @@ body[data-contrast="high"] .spec-dropdown-item:hover strong {
   color: #ffff00 !important;
 }
 
+/* Link limpo em tabelas de resultados */
+.clean-table-link {
+  color: #0284c7;
+  font-weight: 600;
+  text-decoration: underline;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.15s ease;
+}
+
+.clean-table-link:hover {
+  color: #0369a1;
+}
+
+body[data-md-color-scheme="slate"] .clean-table-link {
+  color: #38bdf8 !important;
+}
+
+body[data-md-color-scheme="slate"] .clean-table-link:hover {
+  color: #7dd3fc !important;
+}
+
+body[data-contrast="high"] .clean-table-link {
+  color: #ffff00 !important;
+  text-decoration: underline !important;
+}
+
 
 
 
