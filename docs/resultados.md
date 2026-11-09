@@ -178,35 +178,122 @@ hide:
           <table class="clean-table">
             <thead>
               <tr>
-                <th style="width: 100%;">Resultados</th>
+                <th style="width: 65%;">Nome do Artigo</th>
+                <th style="width: 20%;">Revista</th>
+                <th style="width: 15%;">Data</th>
               </tr>
             </thead>
             <tbody>
+              <!-- Artigo 01 (Sabrina Feitosa) -->
               <tr>
                 <td>
                   <div class="cell-inline-flex">
-                    <div class="spec-dropdown">
-                      <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                        <span>Artigo (Manuscrito da RLS)</span>
-                        <span class="spec-dropdown-caret">▾</span>
-                      </button>
-                      <div class="spec-dropdown-menu">
-                        <a href="../assets/pdf/revisao_sistematica_pet_saude.pdf" target="_blank" rel="noopener noreferrer" class="spec-dropdown-item">
-                          <span>📄</span>
-                          <div>
-                            <strong>Esboço da Revisão Rápida</strong>
-                            <small>Abrir documento (PDF ↗)</small>
-                          </div>
-                        </a>
-                      </div>
-                    </div>
+                    <span>QUALIFICAÇÃO DOS PROCESSOS DE ENCAMINHAMENTO AMBULATORIAL ENTRE ESPECIALIDADES MÉDICAS NO CONTEXTO HOSPITALAR: REVISÃO RÁPIDA DA LITERATURA</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>A definir</span>
                   </div>
                 </td>
               </tr>
+
+              <!-- Artigo 02 -->
               <tr>
                 <td>
                   <div class="cell-inline-flex">
-                    <span>Registro das Pesquisas</span>
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>2026</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Artigo 03 -->
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>2026</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Artigo 04 -->
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>2026</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Artigo 05 -->
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>2026</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Artigo 06 -->
+              <tr>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>2026</span>
                   </div>
                 </td>
               </tr>

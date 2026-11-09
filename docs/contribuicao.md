@@ -201,8 +201,10 @@ hide:
             <thead>
               <tr>
                 <th style="width: 15%;">Cargo</th>
-                <th style="width: 25%;">Integrante</th>
-                <th style="width: 60%;">Resultados</th>
+                <th style="width: 20%;">Integrante</th>
+                <th style="width: 45%;">Nome do Artigo</th>
+                <th style="width: 12%;">Revista</th>
+                <th style="width: 8%;">Data</th>
               </tr>
             </thead>
             <tbody>
@@ -210,28 +212,19 @@ hide:
               <tr>
                 <td><span class="pill-role-preceptor">Preceptor</span></td>
                 <td class="member-cell">Pedro Ruas</td>
-                <td rowspan="6" style="vertical-align: middle; text-align: center;">
-                  <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;">
-                    <div class="cell-inline-flex" style="justify-content: center;">
-                      <div class="spec-dropdown">
-                        <button type="button" class="spec-dropdown-trigger" onclick="toggleSpecDropdown(event, this)" aria-expanded="false">
-                          <span>Artigo (Manuscrito da RLS)</span>
-                          <span class="spec-dropdown-caret">▾</span>
-                        </button>
-                        <div class="spec-dropdown-menu">
-                          <a href="../assets/pdf/revisao_sistematica_pet_saude.pdf" target="_blank" rel="noopener noreferrer" class="spec-dropdown-item">
-                            <span>📄</span>
-                            <div>
-                              <strong>Esboço da Revisão Rápida</strong>
-                              <small>Abrir documento (PDF ↗)</small>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="cell-inline-flex" style="justify-content: center;">
-                      <span>Registro das Pesquisas</span>
-                    </div>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>A definir</span>
                   </div>
                 </td>
               </tr>
@@ -240,30 +233,105 @@ hide:
               <tr>
                 <td><span class="pill-role-preceptor">Preceptora</span></td>
                 <td class="member-cell">Sabrina Feitosa</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>QUALIFICAÇÃO DOS PROCESSOS DE ENCAMINHAMENTO AMBULATORIAL ENTRE ESPECIALIDADES MÉDICAS NO CONTEXTO HOSPITALAR: REVISÃO RÁPIDA DA LITERATURA</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>A definir</span>
+                  </div>
+                </td>
               </tr>
 
               <!-- Flávia Lima -->
               <tr>
                 <td><span class="pill-role-monitor">Monitora</span></td>
                 <td class="member-cell">Flávia Lima</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>A definir</span>
+                  </div>
+                </td>
               </tr>
 
               <!-- Hugo de Verson -->
               <tr>
                 <td><span class="pill-role-monitor">Monitor</span></td>
                 <td class="member-cell">Hugo de Verson</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>A definir</span>
+                  </div>
+                </td>
               </tr>
 
               <!-- Paula Lira -->
               <tr>
                 <td><span class="pill-role-monitor">Monitora</span></td>
-                <td class="member-cell">Paula Lira <span style="font-size: 0.74rem; color: #64748b; font-weight: normal;">(Revisora)</span></td>
+                <td class="member-cell">Paula Lira <span style="font-size: 0.74rem; color: #64748b; font-weight: normal;"></span></td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>A definir</span>
+                  </div>
+                </td>
               </tr>
 
               <!-- Plabio Lucas -->
               <tr>
                 <td><span class="pill-role-monitor">Monitor</span></td>
                 <td class="member-cell">Plabio Lucas</td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="cell-inline-flex">
+                    <span>A definir</span>
+                  </div>
+                </td>
+                <td style="text-align: center;">
+                  <div class="cell-inline-flex" style="justify-content: center;">
+                    <span>A definir</span>
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
